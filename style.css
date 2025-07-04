@@ -1,0 +1,107 @@
+/* Resetando margens e preenchimento */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Definindo o estilo geral para o body */
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #e4c1f9, #c6a1e7); /* fundo lilás mais clarinho */
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Estilo para o título */
+h2 {
+  font-size: 2em;
+  margin-bottom: 30px;
+  color: #fff;
+  text-align: center;
+}
+
+/* Estilo geral do formulário */
+form {
+  background-color: #fff; /* fundo branco */
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Estilo para as colunas do formulário */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* Estilo de cada coluna */
+.form-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+label {
+  margin-bottom: 8px;
+  font-size: 1rem;
+  color: #666;
+}
+
+input {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+/* Foco no campo input */
+input:focus {
+  border: 1px solid #a275e4;
+}
+
+/* Estilo do botão de envio */
+button {
+  padding: 12px 20px;
+  background-color: #a275e4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+}
+
+/* Efeito de hover no botão */
+button:hover {
+  background-color: #b085db;
+}
+
+/* Estilo do footer */
+footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 1rem;
+  color: #666;
+}
+a {
+  text-decoration: none; /* Remove o sublinhado */
+  color: #800080; /* Cor roxa para destacar */
+  font-weight: bold; /* Deixa o texto mais forte para destacar */
+}
+
+a:hover {
+  color: #6a006a; /* Cor roxa mais escura quando o link é hover */
+}
