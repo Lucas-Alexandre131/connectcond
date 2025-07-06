@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="index.js"></script>
 </head>
+
 <body>
 
   <h2>Login</h2>
@@ -16,36 +20,38 @@
       <div class="form-column">
         <label for="email">E-mail</label>
         <input type="email" id="email" name="email" required>
-<br>
+        <br>
         <label for="password">Senha</label>
-        <!-- Senha visível -->
         <input type="text" id="password" name="password" required>
       </div>
     </div>
 
-    <button type="submit">Entrar</button>
+    <button id="btnEntrar" type="button">Entrar</button>
   </form>
   <br>
   <p>Não tem uma conta? <a href="cadastro.html">Cadastre-se aqui</a></p>
-
-
+  
   <script>
-    document.getElementById("loginForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-
-      const dadosLogin = {
-        email: document.getElementById("email").value,
-        password: document.getElementById("password").value
-      };
-
-      // Para fins de teste, vou apenas verificar se os dados são corretos.
-      if (dadosLogin.email === "maria@teste.com" && dadosLogin.password === "123456") {
-        alert("Login bem-sucedido!");
-      } else {
-        alert("E-mail ou senha incorretos.");
-      }
-    });
+    $(document).ready(function () {
+      $("#btnEntrar").on("click", function () {
+        const email = $("#email").val();
+        const password =$("#password").val();
+        $.ajax({
+          type: "POST",
+          url: "http://localhost:9000/login",
+          contentType: "application/json",
+          data: JSON.stringify({
+            email, password
+          }),
+          dataType: "json"
+        })
+          .done(function (res) {
+            console.log("Resposta do servidor: ", res); // resposta do servidor.
+          })
+          .fail(function (xhr, status, error) {
+            console.error("Erro:", { status: status, erro: error, resposta: xhr.responseText }); // resposta do servidor.
+          })
+        })});
   </script>
-
 </body>
 </html>
