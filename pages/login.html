@@ -5,9 +5,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login</title>
+  <link rel="shortcut icon" href="/assets/icons/logotcc.ico" type="image/x-icon">
   <link rel="stylesheet" href="/css/style.css" />
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <script src="index.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="/js/logIn.js"></script>
 </head>
 
 <body>
@@ -26,32 +27,10 @@
       </div>
     </div>
 
-    <button id="btnEntrar" type="button">Entrar</button>
+    <button id="btn" type="button">Entrar</button>
   </form>
   <br>
   <p>Não tem uma conta? <a href="cadastro.html">Cadastre-se aqui</a></p>
-  
-  <script>
-    $(document).ready(function () {
-      $("#btnEntrar").on("click", function () {
-        const email = $("#email").val();
-        const password =$("#password").val();
-        $.ajax({
-          type: "POST",
-          url: "http://localhost:9000/login",
-          contentType: "application/json",
-          data: JSON.stringify({
-            email, password
-          }),
-          dataType: "json"
-        })
-          .done(function (res) {
-            console.log("Resposta do servidor: ", res); // resposta do servidor.
-          })
-          .fail(function (xhr, status, error) {
-            console.error("Erro:", { status: status, erro: error, resposta: xhr.responseText }); // resposta do servidor.
-          })
-        })});
-  </script>
+
 </body>
 </html>
