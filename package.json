@@ -1,0 +1,11 @@
+{
+  "name": "connectcondo",
+  "version": "1.0.0",
+  "description": "Front End do nosso tcc.",
+  "main": "index.js",
+  "scripts": {
+    "test": "index.html"
+  },
+  "author": "",
+  "license": "ISC"
+}
