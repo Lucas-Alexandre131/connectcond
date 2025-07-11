@@ -1,102 +1,9 @@
-:root {
-    --text-h2-color: #B320B7;
-    --text-h2-weidth: auto;
-    --text-h2-height: auto;
-    --border-radius: 20px;
-}
+@import url(style.css);
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    /* altura da tela inteira */
-    margin: 0;
-    background-color: white;
-}
-
-.container {
-    display: flex;
-    flex-direction: row;
-    border-radius: 20px;
-    overflow: hidden;
-    width: 450px;
-    height: 240px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    border: 2px solid #c026d3;
-}
-
-.form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    height: var(--spacement-height);
-    width: var(--spacement-width);
-    margin-top: 20px;
-}
-
-.formInput {
-    padding: 10px;
-    border: none;
-    border-radius: 20px;
-    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
-    height: 20px;
-    width: 100px;
-}
-
-.left-panel {
-    background-color: #B320B7;
-    color: white;
-    padding: 40px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-top-left-radius: var(--border-radius);
-    border-bottom-left-radius: var(--border-radius);
-    border-top-right-radius: var(--border-radius);
-    border-bottom-right-radius: var(--border-radius);
-    gap: 30px;
-}
-
-.right-panel {
-    display: flex;
-    flex-direction: column;
-    margin-left: 20px;
-    align-items: center;
-}
-
-.button {
-    background: transparent;
-    border: 2px solid white;
-    color: white;
-    border-radius: 25px;
-    padding: 8px 24px;
-    cursor: pointer;
-}
-
-.button:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    /* fundo branco claro */
-    color: #ffffff;
-}
-
-.button:active {
-    background-color: rgba(255, 255, 255, 0.35);
-    transform: scale(0.97);
-    /* ligeiramente "afundadado" ao clicar */
-}
-
-#h2text {
-    width: var(--text-h2-weidth);
-    color: var(--text-h2-color);
-    height: var(--text-h2-height);
-    margin-top: 10px;
-}
-
-@media (max-width: 500px) {
+@media (max-width: 480px) {
     .container {
         flex-direction: column;
-        width: 90%;
+        width: 80%;
         height: auto;
     }
 
@@ -113,12 +20,139 @@ body {
         padding: 10px;
     }
 
+    .button {
+        background: white;
+        border: 2px solid #B320B7;
+        color: black;
+        border-radius: 25px;
+        padding: 8px 24px;
+        cursor: pointer;
+    }
+
+    .button:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        /* fundo branco claro */
+        color: #ffffff;
+    }
+
+    .button:active {
+        background-color: rgba(255, 255, 255, 0.35);
+        transform: scale(0.97);
+        /* ligeiramente "afundadado" ao clicar */
+    }
+
     .form {
         grid-template-columns: 1fr;
         gap: 10px;
     }
 
     .formInput {
-        width: 100%;
+        width: 90%;
     }
 }
+
+/*modelos pequenos de smartphones*/
+
+@media(max-width: 600px) {
+    .container {
+        flex-direction: column;
+        width: 50%;
+        height: auto;
+    }
+
+    .left-panel {
+        border-radius: var(--border-radius) var(--border-radius) 0 0;
+        width: 100%;
+        padding: 20px 10px;
+        gap: 15px;
+    }
+
+    .right-panel {
+        margin-left: 0;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .button {
+        background: white;
+        border: 2px solid #B320B7;
+        color: black;
+        border-radius: 25px;
+        padding: 8px 24px;
+        cursor: pointer;
+    }
+
+    .button:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        /* fundo branco claro */
+        color: #ffffff;
+    }
+
+    .button:active {
+        background-color: rgba(255, 255, 255, 0.35);
+        transform: scale(0.97);
+        /* ligeiramente "afundadado" ao clicar */
+    }
+
+    .form {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .formInput {
+        width: 90%;
+    }
+}
+
+/*modelos padrão e grandes de smartphones*/
+
+@media (max-width: 800px) {
+    .container {
+        flex-direction: column;
+        width: 50%;
+        height: auto;
+    }
+
+    .left-panel {
+        border-radius: var(--border-radius) var(--border-radius) 0 0;
+        width: 100%;
+        padding: 20px 10px;
+        gap: 15px;
+    }
+
+    .right-panel {
+        margin-left: 0;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .button {
+        background: white;
+        border: 2px solid #B320B7;
+        color: black;
+        border-radius: 25px;
+        padding: 8px 24px;
+        cursor: pointer;
+    }
+
+    .button:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: #ffffff;
+    }
+
+    .button:active {
+        background-color: rgba(255, 255, 255, 0.35);
+        transform: scale(0.97);
+    }
+
+    .form {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .formInput {
+        width: 90%;
+    }
+}
+
+/* modelos padrão e grandes de smartphones, além de tablets pequenos até 800px */
