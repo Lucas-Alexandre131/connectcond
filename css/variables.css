@@ -9,7 +9,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;/* altura da tela inteira */
+    min-height: 100vh;
+    /* altura da tela inteira */
     margin: 0;
     background-color: white;
 }
@@ -90,4 +91,34 @@ body {
     color: var(--text-h2-color);
     height: var(--text-h2-height);
     margin-top: 10px;
+}
+
+@media (max-width: 500px) {
+    .container {
+        flex-direction: column;
+        width: 90%;
+        height: auto;
+    }
+
+    .left-panel {
+        border-radius: var(--border-radius) var(--border-radius) 0 0;
+        width: 100%;
+        padding: 20px 10px;
+        gap: 15px;
+    }
+
+    .right-panel {
+        margin-left: 0;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .form {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .formInput {
+        width: 100%;
+    }
 }
