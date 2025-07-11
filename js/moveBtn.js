@@ -1,7 +1,7 @@
 function moveButton() {
   const btn = document.getElementById('btnSing');
   const form = document.getElementById('form');
-  const leftPanel = document.getElementById('test');
+  const leftPanel = document.getElementById('left');
 
   if (window.innerWidth <= 480 || window.innerWidth <=600 || window.innerWidth <=800) {
     // Se estiver no mobile e o botão ainda não estiver no form
