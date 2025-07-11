@@ -6,31 +6,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login</title>
   <link rel="shortcut icon" href="/assets/icons/logotcc.ico" type="image/x-icon">
-  <link rel="stylesheet" href="/css/style.css" />
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="/js/logIn.js"></script>
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="/js/logIn.js"></script>
 </head>
 
 <body>
 
-  <h2>Login</h2>
-
-  <form id="loginForm">
-    <div class="form-row">
-      <!-- Coluna Única -->
-      <div class="form-column">
+  <div class="container-sing">
+    <div class="left-panel-sing">
+      <h2>Login</h2>
+      <p>Não tem uma conta? <a href="singUp.html">Cadastre-se aqui</a></p>
+    </div>
+    <div class="right-panel-sing">
+      <form id="loginForm" class="form-sing">
         <label for="email">E-mail</label>
-        <input type="email" id="email" name="email" required>
+        <input type="email" id="email" class="form-input-sing" required>
         <br>
         <label for="password">Senha</label>
-        <input type="text" id="password" name="password" required>
-      </div>
+        <input type="text" id="password" class="form-input-sing" required>
+        <button id="btn" type="submit" class="button-sing">Entrar</button>
+      </form>
     </div>
-
-    <button id="btn" type="submit">Entrar</button>
-  </form>
-  <br>
-  <p>Não tem uma conta? <a href="cadastro.html">Cadastre-se aqui</a></p>
+  </div>
 
 </body>
+
 </html>
