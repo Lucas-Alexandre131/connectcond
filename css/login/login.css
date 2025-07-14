@@ -1,5 +1,6 @@
 body {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
@@ -14,7 +15,7 @@ body {
   flex-direction: row;
   border-radius: 20px;
   overflow: hidden;
-  width: auto;
+  width: 460px;
   text-align: center;
   height: 240px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
@@ -68,11 +69,12 @@ body {
   border-radius: 20px;
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
   height: 20px;
-  width: 100px;
+  width: 160px;
 }
 
 .right-panel-login .button-login {
   background: white;
+  width: 120px;
   border: 2px solid #c026d3;
   color: #c026d3;
   border-radius: 25px;
