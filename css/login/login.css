@@ -1,0 +1,109 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  /* altura da tela inteira */
+  margin: 0;
+  height: 100vh;
+  background-color: white;
+}
+
+.container-login {
+  display: flex;
+  flex-direction: row;
+  border-radius: 20px;
+  overflow: hidden;
+  width: auto;
+  text-align: center;
+  height: 240px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  border: 2px solid #c026d3;
+}
+
+.container-login .left-panel-login {
+  background-color: #B320B7;
+  color: white;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+  gap: 30px;
+}
+
+.container-login .right-panel-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.left-panel-login p {
+  width: 200px;
+}
+
+.right-panel-login .form-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.right-panel-login h2 {
+  width: var(--text-h2-weidth);
+  color: var(--text-h2-color);
+  height: var(--text-h2-height);
+  margin-top: 10px;
+}
+
+.input-login {
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+  height: 20px;
+  width: 100px;
+}
+
+.right-panel-login .button-login {
+  background: white;
+  border: 2px solid #c026d3;
+  color: #c026d3;
+  border-radius: 25px;
+  padding: 8px 24px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.button-login:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  /* fundo branco claro */
+  color: #e59fec;
+}
+
+.button-login:active {
+  background-color: rgba(255, 255, 255, 0.35);
+  transform: scale(0.97);
+  /* sensação de afundar ao clicar */
+}
+
+.register-link {
+  display: inline-block;
+  margin-top: 10px;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.register-link:hover,
+.register-link:focus {
+  color: #e59fec;
+  text-decoration: underline;
+}
