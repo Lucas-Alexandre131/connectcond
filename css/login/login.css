@@ -45,7 +45,7 @@ body {
 }
 
 .right-panel-login .register-count{
-  display: block;
+  display: none;
 }
 
 .left-panel-login p {
