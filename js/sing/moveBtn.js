@@ -1,5 +1,5 @@
 function moveButton() {
-  const btn = document.getElementById('btnSing');
+  const btn = document.getElementById('buttonSing');
   const form = document.getElementById('form');
   const leftPanel = document.getElementById('left');
 
