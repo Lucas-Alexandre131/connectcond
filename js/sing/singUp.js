@@ -1,6 +1,7 @@
 
 $(document).ready(function () {
-    $("#btnSing").on("click", function () {
+    $("#buttonSing").on("click", function (e) {
+        e.preventDefault();
         const email = $("#email").val();
         const password = $("#password").val();
         const name = $("#name").val();

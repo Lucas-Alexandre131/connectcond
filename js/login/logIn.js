@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $("#btnLogIn").on("click", function () {
+    $("#buttonLogin").on("click", function () {
         const email = $("#email").val();
         const password = $("#password").val();
         $.ajax({
