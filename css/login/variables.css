@@ -4,6 +4,9 @@
   .container-login {
     padding: 40px 0 !important;/* ajusta o espaçamento interno */
   }
+  .right-panel-login{
+    width: 300px;
+  }
 }
 
 @media (max-width: 800px) {
@@ -29,7 +32,7 @@
     width: 100%;
   }
 
-  .form-login {
+  .right-panel-login .form-login {
     display: flex;
     flex-direction: column;
     align-items: center;
