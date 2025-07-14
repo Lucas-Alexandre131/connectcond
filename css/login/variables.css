@@ -1,7 +1,9 @@
 @import url(login.css);
 
 @media (max-width: 480px) {
-  
+  .container-login {
+    padding: 40px 0 !important;/* ajusta o espaçamento interno */
+  }
 }
 
 @media (max-width: 800px) {
