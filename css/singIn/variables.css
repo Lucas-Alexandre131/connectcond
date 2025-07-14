@@ -1,131 +1,24 @@
 @import url(/css/singIn/sing.css);
 
-@media (max-width: 480px) {
-    .container-sing {
-        flex-direction: column;
-        width: 100%;
-        max-width: 400px;
-        /* opcional */
-        height: auto;
-    }
-
-    .left-panel-sing {
-        border-radius: var(--border-radius) var(--border-radius) 0 0;
-        width: 100%;
-        padding: 20px 10px;
-        gap: 15px;
-    }
-
-    .right-panel-sing {
-        margin-left: 0;
-        width: 100%;
-        padding: 10px;
-    }
-
-    .button-sing {
-        background: white;
-        border: 2px solid #B320B7;
-        color: black;
-        border-radius: 25px;
-        padding: 8px 24px;
-        cursor: pointer;
-    }
-
-    .button-sing:hover {
-        background-color: rgba(255, 255, 255, 0.2);
-        /* fundo branco claro */
-        color: #ffffff;
-    }
-
-    .button-sing:active {
-        background-color: rgba(255, 255, 255, 0.35);
-        transform: scale(0.97);
-        /* ligeiramente "afundadado" ao clicar */
-    }
-
-    .form-sing {
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
-
-    .form-input-sing {
-        width: 90%;
-    }
-}
-
-/*modelos pequenos de smartphones*/
-
-@media(max-width: 600px) {
-    .container-sing {
-        flex-direction: column;
-        width: 50%;
-        height: auto;
-    }
-
-    .left-panel-sing {
-        border-radius: var(--border-radius) var(--border-radius) 0 0;
-        width: 100%;
-        padding: 20px 10px;
-        gap: 15px;
-    }
-
-    .right-panel-sing {
-        margin-left: 0;
-        width: 100%;
-        padding: 10px;
-    }
-
-    .button-sing {
-        background: white;
-        border: 2px solid #B320B7;
-        color: black;
-        border-radius: 25px;
-        padding: 8px 24px;
-        cursor: pointer;
-    }
-
-    .button-sing:hover {
-        background-color: rgba(255, 255, 255, 0.2);
-        /* fundo branco claro */
-        color: #ffffff;
-    }
-
-    .button-sing:active {
-        background-color: rgba(255, 255, 255, 0.35);
-        transform: scale(0.97);
-        /* ligeiramente "afundadado" ao clicar */
-    }
-
-    .form-sing {
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
-
-    .form-input-sing {
-        width: 90%;
-    }
-}
-
-/*modelos padrão e grandes de smartphones*/
-
 @media (max-width: 800px) {
     .container-sing {
         flex-direction: column;
-        width: 50%;
+        width: auto;
         height: auto;
     }
 
     .left-panel-sing {
-        border-radius: var(--border-radius) var(--border-radius) 0 0;
-        width: 100%;
-        padding: 20px 10px;
-        gap: 15px;
+        display: none;
     }
 
     .right-panel-sing {
-        margin-left: 0;
-        width: 100%;
+        margin: 0;
+        width: auto;
         padding: 10px;
+    }
+
+    .right-panel-sing h2 {
+        margin-bottom: 20px;
     }
 
     .button-sing {
