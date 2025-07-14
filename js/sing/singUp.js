@@ -6,7 +6,7 @@ $(document).ready(function () {
         const name = $("#name").val();
         const cpf = $("#cpf").val();
         const role = $("#role").val();
-        const condo_id = $("#condo_id").val();
+        const condo_id = "";// ver isso depois
         const picture = ""; // ver isso depois
         $.ajax({
             type: "POST",
