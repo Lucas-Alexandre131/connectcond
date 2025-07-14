@@ -74,7 +74,8 @@ body {
 
 .right-panel-login .button-login {
   background: white;
-  width: 120px;
+  width: 180px;
+  padding: 10px;
   border: 2px solid #c026d3;
   color: #c026d3;
   border-radius: 25px;
