@@ -53,7 +53,7 @@ body {
   width: var(--text-h2-weidth);
   color: var(--text-h2-color);
   height: var(--text-h2-height);
-  margin-top: 10px;
+  margin: 10px;
 }
 
 .form-sing {
