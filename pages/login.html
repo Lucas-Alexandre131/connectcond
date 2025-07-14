@@ -9,28 +9,26 @@
   <link rel="stylesheet" href="/css/normalize.css">
   <link rel="stylesheet" href="/css/main.css">
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <script src="/js/logIn.js"></script>
+  <script src="/js/login/logIn.js"></script>
 </head>
 
 <body>
 
   <div class="container-login">
-    <div class="left-panel-login">
-      <h2>Login</h2>
-      <p>Não tem uma conta? <a href="singUp.html">Cadastre-se aqui</a></p>
-    </div>
+    <section class="left-panel-login">
+      <h2>Bem-vindo!</h2>
+      <p>Não tem uma conta?</p>
+      <a class="register-link" aria-label="Ir para a página de cadastro" href="singUp.html">Cadastre-se aqui</a>
+    </section>
     <div class="right-panel-login">
+      <h2 id="login-title">Login</h2>
       <form id="loginForm" class="form-login">
-        <label for="email">E-mail</label>
-        <input type="email" id="email" class="form-input-login" required>
-        <br>
-        <label for="password">Senha</label>
-        <input type="text" id="password" class="form-input-login" required>
-        <button id="btnLongin" type="submit" class="button-login">Entrar</button>
+        <input type="email" id="email" class="input-login" placeholder="email" required>
+        <input type="text" id="password" class="input-login" placeholder="senha" required>
       </form>
+      <button id="btnLongin" type="submit" class="button-login">Entrar</button>
     </div>
   </div>
-
 </body>
 
 </html>
