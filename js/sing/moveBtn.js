@@ -1,4 +1,4 @@
-function moveButton() {
+/*function moveButton() {
   const btn = document.getElementById('buttonSing');
   const form = document.getElementById('form');
   const leftPanel = document.getElementById('left');
@@ -18,4 +18,4 @@ function moveButton() {
 
 // Rodar quando a página carrega e sempre que redimensionar
 window.addEventListener('DOMContentLoaded', moveButton);
-window.addEventListener('resize', moveButton);
+window.addEventListener('resize', moveButton); */

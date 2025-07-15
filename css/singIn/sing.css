@@ -75,8 +75,8 @@ body {
 
 .button-sing {
   background: transparent;
-  border: 2px solid white;
-  color: white;
+  border: 2px solid #B320B7;
+  color: #B320B7;
   border-radius: 25px;
   padding: 8px 24px;
   cursor: pointer;
@@ -85,7 +85,7 @@ body {
 .button-sing:hover {
   background-color: rgba(255, 255, 255, 0.2);
   /* fundo branco claro */
-  color: #ffffff;
+  color: #c026d3;
 }
 
 .button-sing:active {

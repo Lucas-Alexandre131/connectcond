@@ -15,22 +15,23 @@
 
 <body>
     <div class="container-sing">
-        <div id="left" class="left-panel-sing">
+        <section id="left" class="left-panel-sing">
             <label>ConnectCondo</label>
             <label>Bem-vindo!</label>
-            <button id="buttonSing" type="submit" class="button-sing">Cadastrar</button>
-            <p>Já possui uma conta? <a href="singUp.html">login</a></p>
-        </div>
-        <div class="right-panel-sing">
+            <small class="register-count">Já tem uma conta?<a class="register-link"
+                    aria-label="Ir para a página de login" href="login.html">Login</a></small>
+        </section>
+        <section class="right-panel-sing">
             <h2 class="">Crie sua conta!</h2>
             <form id="form" class="form-sing">
-                <input class="form-input-sing" type="text" placeholder="name" id="name">
-                <input class="form-input-sing" type="text" placeholder="email" id="email">
-                <input class="form-input-sing" type="text" placeholder="password" id="password">
-                <input class="form-input-sing" type="text" placeholder="cpf" id="cpf">
-                <input class="form-input-sing" type="text" placeholder="role" id="role">
+                <input class="form-input-sing" type="text" placeholder="name" id="name" required>
+                <input class="form-input-sing" type="text" placeholder="email" id="email" required>
+                <input class="form-input-sing" type="text" placeholder="password" id="password" required>
+                <input class="form-input-sing" type="text" placeholder="cpf" id="cpf" required>
+                <input class="form-input-sing" type="text" placeholder="role" id="role" required>
+                <button id="buttonSing" type="submit" class="button-sing">Cadastrar</button>
             </form>
-        </div>
+        </section>
     </div>
     </div>
 </body>
