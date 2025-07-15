@@ -1,5 +1,16 @@
 @import url(/css/singIn/sing.css);
 
+@media (max-width: 480px) {
+    .container-sing {
+        padding: 40px 0 !important;
+        /* ajusta o espaçamento interno */
+    }
+
+    .right-panel-sing {
+        width: 300px;
+    }
+}
+
 @media (max-width: 800px) {
     .container-sing {
         flex-direction: column;
@@ -19,7 +30,8 @@
 
     .right-panel-sing {
         margin: 0;
-        width: 100;
+        width: auto;
+        height: auto;
         padding: 10px;
     }
 
@@ -42,15 +54,20 @@
         transform: scale(0.97);
     }
 
-    .form-sing {
+    .right-panel-sing .form-sing {
+        display: grid;
         grid-template-columns: 1fr;
         gap: 10px;
     }
 
     .form-input-sing {
-        width: 100%;
+        width: auto;
         border-radius: 3px;
         font-size: 14px;
+    }
+
+    .register-login {
+        display: block;
     }
 }
 

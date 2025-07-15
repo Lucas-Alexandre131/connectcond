@@ -21,8 +21,8 @@ body {
   flex-direction: row;
   border-radius: 20px;
   overflow: hidden;
-  width: auto;
-  height: auto;
+  width: 500px;
+  height: 240px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   border: 2px solid #c026d3;
 }
@@ -33,6 +33,7 @@ body {
   padding: 40px 20px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   border-radius: var(--border-radius);
   gap: 30px;
@@ -46,6 +47,9 @@ body {
   margin-right: 20px;
 }
 
+.register-login{
+  display: none;
+}
 .right-panel-sing h2 {
   width: var(--text-h2-weidth);
   color: var(--text-h2-color);
@@ -54,10 +58,9 @@ body {
 }
 
 .right-panel-sing .form-sing {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
   gap: 10px;
   margin-top: 20px;
 }
