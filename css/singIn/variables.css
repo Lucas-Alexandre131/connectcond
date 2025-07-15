@@ -3,8 +3,14 @@
 @media (max-width: 800px) {
     .container-sing {
         flex-direction: column;
-        width: auto;
+        width: 90%;
+        max-width: 350px;
         height: auto;
+        background-color: #fff;
+        border: 2px solid #c026d3;
+        border-radius: 10px;
+        padding: 40px 30px;
+        box-shadow: none;
     }
 
     .left-panel-sing {
@@ -13,7 +19,7 @@
 
     .right-panel-sing {
         margin: 0;
-        width: auto;
+        width: 100;
         padding: 10px;
     }
 
@@ -22,12 +28,8 @@
     }
 
     .button-sing {
-        background: white;
-        border: 2px solid #B320B7;
-        color: black;
-        border-radius: 25px;
-        padding: 8px 24px;
-        cursor: pointer;
+        border-radius: 5px;
+        width: 100%;
     }
 
     .button-sing:hover {
@@ -46,7 +48,9 @@
     }
 
     .form-input-sing {
-        width: 90%;
+        width: 100%;
+        border-radius: 3px;
+        font-size: 14px;
     }
 }
 

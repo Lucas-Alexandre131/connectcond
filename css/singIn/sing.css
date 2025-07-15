@@ -21,8 +21,8 @@ body {
   flex-direction: row;
   border-radius: 20px;
   overflow: hidden;
-  width: 450px;
-  height: 240px;
+  width: auto;
+  height: auto;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   border: 2px solid #c026d3;
 }
@@ -34,10 +34,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-top-left-radius: var(--border-radius);
-  border-bottom-left-radius: var(--border-radius);
-  border-top-right-radius: var(--border-radius);
-  border-bottom-right-radius: var(--border-radius);
+  border-radius: var(--border-radius);
   gap: 30px;
 }
 
@@ -56,12 +53,13 @@ body {
   margin: 10px;
 }
 
-.form-sing {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  height: var(--spacement-height);
-  width: var(--spacement-width);
+.right-panel-sing .form-sing {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
 }
 
 .form-input-sing {
