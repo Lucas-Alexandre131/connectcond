@@ -1,0 +1,6 @@
+.teste{
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    background-color: aquamarine;
+}
