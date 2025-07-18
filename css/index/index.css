@@ -1,20 +1,31 @@
-.sla{
-
+.mast-head {
+    display: flex;
+    width: 100%;
 }
 
-.sla .container-masthead{
+.mast-head .container-masthead {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    /* distribui espaço entre eles */
+    align-items: center;
+    /* centraliza verticalmente */
+    width: 100%;
+    padding: 10px;
 }
 
-.container-masthead .um{
-
+.head-start {
+    flex: 1;
+    text-align: left;
 }
 
-.container-masthead .dois{
-
+.head-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-.container-masthead .tres{
-
+.head-end {
+    flex: 1;
+    text-align: right;
 }
