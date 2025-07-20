@@ -79,4 +79,5 @@ body {
 
 .button-sing{
   width: auto !important;
+  margin-top: none !important;
 }
