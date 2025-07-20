@@ -1,4 +1,6 @@
 @import url(/css/geral/footer.css);
+@import url(/css/geral/buttons.css);
+
 body {
   display: flex;
   flex-direction: column;
@@ -75,30 +77,6 @@ body {
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
   height: 20px;
   width: 160px;
-}
-
-.form-login .button-login {
-  background: white;
-  width: 180px;
-  padding: 10px;
-  border: 2px solid #c026d3;
-  color: #c026d3;
-  border-radius: 25px;
-  padding: 8px 24px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.button-login:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  /* fundo branco claro */
-  color: #e59fec;
-}
-
-.button-login:active {
-  background-color: rgba(255, 255, 255, 0.35);
-  transform: scale(0.97);
-  /* sensação de afundar ao clicar */
 }
 
 .register-link {

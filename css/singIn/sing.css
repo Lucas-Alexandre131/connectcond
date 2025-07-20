@@ -1,4 +1,6 @@
 @import url(/css/geral/footer.css);
+@import url(/css/geral/buttons.css);
+
 :root {
   --text-h2-color: #B320B7;
   --text-h2-weidth: auto;
@@ -73,25 +75,4 @@ body {
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
   height: 20px;
   width: 100px;
-}
-
-.button-sing {
-  background: transparent;
-  border: 2px solid #B320B7;
-  color: #B320B7;
-  border-radius: 25px;
-  padding: 8px 24px;
-  cursor: pointer;
-}
-
-.button-sing:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  /* fundo branco claro */
-  color: #c026d3;
-}
-
-.button-sing:active {
-  background-color: rgba(255, 255, 255, 0.35);
-  transform: scale(0.97);
-  /* ligeiramente "afundadado" ao clicar */
 }
