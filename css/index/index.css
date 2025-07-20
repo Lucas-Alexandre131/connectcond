@@ -1,3 +1,5 @@
+@import url('/css/geral/buttons.css');
+
 .mast-header {
     display: flex;
     width: 100%;
@@ -26,4 +28,8 @@
 .head-end {
     flex: 1;
     text-align: right;
+}
+
+.button-login, .button-sing{
+    width: 15%;
 }
