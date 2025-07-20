@@ -40,7 +40,7 @@
     }
 
     .button-sing {
-        border-radius: 5px;
+        border-radius: 5px !important;
         width: 100%;
     }
 
