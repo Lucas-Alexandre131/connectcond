@@ -1,4 +1,4 @@
-.button-login {
+.button-login, .button-sing {
     background: white;
     width: 180px;
     padding: 10px;
@@ -10,35 +10,14 @@
     margin-top: 10px;
 }
 
-.button-login:hover {
+.button-login:hover, .button-sing:hover {
     background-color: rgba(255, 255, 255, 0.2);
     /* fundo branco claro */
     color: #e59fec;
 }
 
-.button-login:active {
+.button-login:active, .button-sing:active {
     background-color: rgba(255, 255, 255, 0.35);
     transform: scale(0.97);
     /* sensação de afundar ao clicar */
-}
-
-.button-sing {
-    background: transparent;
-    border: 2px solid #B320B7;
-    color: #B320B7;
-    border-radius: 25px;
-    padding: 8px 24px;
-    cursor: pointer;
-}
-
-.button-sing:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    /* fundo branco claro */
-    color: #c026d3;
-}
-
-.button-sing:active {
-    background-color: rgba(255, 255, 255, 0.35);
-    transform: scale(0.97);
-    /* ligeiramente "afundadado" ao clicar */
 }
