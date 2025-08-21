@@ -30,12 +30,3 @@ img, video, canvas, svg {
   max-width: 100%;
   height: auto;
 }
-
-/* 10. Acessibilidade: reduz animações se necessário */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation: none !important;
-    transition: none !important;
-    scroll-behavior: auto !important;
-  }
-}
