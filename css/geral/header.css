@@ -1,0 +1,29 @@
+.head-end {
+    display: flex;
+    gap: 12px;
+}
+.head-center {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+}
+
+.mast-header {
+    width: 100%;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.container-masthead {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    /* responsivo */
+}
