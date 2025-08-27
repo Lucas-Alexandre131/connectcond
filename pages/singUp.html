@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar</title>
     <link rel="shortcut icon" href="/assets/icons/logotcc.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/geral/header.css">
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/main.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -14,6 +15,33 @@
 </head>
 
 <body>
+    <header class="mast-header">
+        <div class="container-masthead">
+            <!-- Logo -->
+            <div class="head-start">
+                <a href="/index.html" class="logo">
+                    <img src="/assets/images/logotcc-50px.png" alt="Logo TCC">
+                </a>
+            </div>
+
+            <!-- Centro (links ou título) -->
+            <div class="head-center">
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="#">Início</a></li>
+                        <li><a href="/pages/aboutUs.html">Sobre</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Botões -->
+            <div class="head-end">
+                <a href="/pages/login.html" class="btn">Login</a>
+                <a href="/pages/singUp.html" class="btn btn-primary">Sign Up</a>
+            </div>
+        </div>
+    </header>
     <div class="container-sing">
         <section id="left" class="left-panel-sing">
             <h2>ConnectCondo</h2>
@@ -28,6 +56,7 @@
                 <input class="form-input-sing" type="text" placeholder="password" id="password" required>
                 <input class="form-input-sing" type="text" placeholder="cpf" id="cpf" required>
                 <input class="form-input-sing" type="text" placeholder="role" id="role" required>
+                <input class="form-input-sing" type="text" placeholder="condominio" id="condo_id" required>
                 <button id="buttonSing" type="submit" class="button-sing">Cadastrar</button>
             </form>
             <small class="register-login">Já tem uma conta?<a class="register-link"
