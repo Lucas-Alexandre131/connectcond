@@ -6,26 +6,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login</title>
   <link rel="shortcut icon" href="/assets/icons/logotcc.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/css/geral/header.css">
   <link rel="stylesheet" href="/css/normalize.css">
   <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/geral/errorMessage.css">
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="/js/login/logIn.js"></script>
 </head>
 
 <body>
+  <header class="mast-header">
+        <div class="container-masthead">
+            <!-- Logo -->
+            <div class="head-start">
+                <a href="index.html" class="logo">
+                    <img src="/assets/images/logotcc-50px.png" alt="Logo TCC">
+                </a>
+            </div>
+
+            <!-- Centro (links ou título) -->
+            <div class="head-center">
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="#">Início</a></li>
+                        <li><a href="/pages/aboutUs.html">Sobre</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Botões -->
+            <div class="head-end">
+                <a href="/pages/login.html" class="btn">Login</a>
+                <a href="/pages/singUp.html" class="btn btn-primary">Sign Up</a>
+            </div>
+        </div>
+    </header>
 
   <div class="container-login">
     <section class="left-panel-login">
       <h2>ConnectCondo</h2>
       <p>Não tem uma conta?<a class="register-link" aria-label="Ir para a página de cadastro"
           href="singUp.html">Cadastre-se</a></p>
+      <div class="mensagem-erro" id="saida"></div>
     </section>
     <section class="right-panel-login">
       <h2 id="login-title">Login</h2>
       <form id="loginForm" class="form-login">
         <input type="email" id="email" class="input-login" placeholder="email" required>
         <input type="text" id="password" class="input-login" placeholder="senha" required>
-        <button id="buttonLogin" type="submit" class="button-login">Entrar</button>
+        <button id="buttonLogin" type="button" class="button-login">Entrar</button>
       </form>
       <small class="register-count">Não tem uma conta?<a class="register-link" aria-label="Ir para a página de cadastro"
           href="singUp.html">Cadastre-se</a></small>
