@@ -27,3 +27,24 @@
     flex-wrap: wrap;
     /* responsivo */
 }
+
+.logo img {
+    height: 40px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-weight: 500;
+    color: #333;
+    transition: color 0.2s ease-in-out;
+}
+
+.nav-links a:hover {
+    color: #0073e6;
+}
