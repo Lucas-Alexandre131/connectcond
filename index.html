@@ -7,27 +7,37 @@
     <title>Home</title>
     <link rel="shortcut icon" href="assets/icons/logotcc.ico" type="image/x-icon">
     <link rel="stylesheet" href="/css/index/index.css">
+    <link rel="stylesheet" href="/css/geral/header.css">
 </head>
 
 <body>
-    <div id="mast-head" class="mast-header">
-        <div id="container" class="container-masthead">
-            <div id="start" class="head-start">
-                <a href="index.html"><img src="assets\images\logotcc-50px.png" alt="Logo TCC"></a>
+    <header class="mast-header">
+        <div class="container-masthead">
+            <!-- Logo -->
+            <div class="head-start">
+                <a href="index.html" class="logo">
+                    <img src="assets/images/logotcc-50px.png" alt="Logo TCC">
+                </a>
             </div>
-            <div id="center" class="head-center">
-                sla
+
+            <!-- Centro (links ou título) -->
+            <div class="head-center">
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="/pages/aboutUs.html">Sobre</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </nav>
             </div>
-            <div id="end" class="head-end">
-                <button class="button-login">
-                    <a href="/pages/login.html">Login </a>
-                </button>
-                <button class="button-sing">
-                    <a href="/pages/singUp.html">Sign Up </a>
-                </button class="button-sing">
+
+            <!-- Botões -->
+            <div class="head-end">
+                <a href="/pages/login.html" class="btn">Login</a>
+                <a href="/pages/singUp.html" class="btn btn-primary">Sign Up</a>
             </div>
         </div>
-    </div>
+    </header>
 </body>
 
 </html>
