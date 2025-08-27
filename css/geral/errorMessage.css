@@ -1,0 +1,16 @@
+.mensagem-erro {
+    background-color: #ffe6e6; /* fundo suave */
+    color: #d93025;           /* vermelho google-like */
+    border: 1px solid #f5c2c2;
+    border-radius: 12px;       /* arredondado igual inputs */
+    padding: 8px 12px;
+    margin-top: 10px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.mensagem-erro::before {
+    content: "⚠️";
+    font-size: 16px;
+}
