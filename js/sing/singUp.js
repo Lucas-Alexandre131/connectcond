@@ -7,7 +7,7 @@ $(document).ready(function () {
         const name = $("#name").val();
         const cpf = $("#cpf").val();
         const role = $("#role").val();
-        const condo_id = "";// // informações serão configuradas a nivel de banco ou back
+        const condo_id = $("#condo_id").val();
         const picture = ""; // informações serão configuradas a nivel de banco ou back
         $.ajax({
             type: "POST",
@@ -32,6 +32,7 @@ $(document).ready(function () {
                     const json = JSON.parse(jqXHR.responseText);
                     message = json.message || message;
                 } catch (e) {
+                    console.error(e);
                     console.warn('Não foi possível fazer parse da resposta como JSON');
                 }
 
