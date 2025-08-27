@@ -8,17 +8,6 @@
   --border-radius: 20px;
 }
 
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  /* altura da tela inteira */
-  margin: 0;
-  height: 100vh;
-  background-color: white;
-}
-
 .container-sing {
   display: flex;
   flex-direction: row;
