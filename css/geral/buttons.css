@@ -21,3 +21,29 @@
     transform: scale(0.97);
     /* sensação de afundar ao clicar */
 }
+
+
+.btn {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid #c026d3;
+    background: transparent;
+    /*color: ;*/
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    background: #0073e6;
+    color: #fff;
+}
+
+.btn-primary {
+    background: #c026d3;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: #c026d3;
+}
