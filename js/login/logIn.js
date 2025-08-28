@@ -98,7 +98,7 @@ $(document).ready(function () {
         `);
                     // Redireciona após 2s
                     setTimeout(() => {
-                        window.location.href = "/home.html";
+                        window.location.href = "/index.html";
                     }, 2000);
                 }
             })
