@@ -9,9 +9,6 @@
     <link rel="stylesheet" href="/css/geral/header.css">
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/main.css">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="/js/sing/singUp.js"></script>
-    <script src="/js/sing/moveBtn.js"></script>
 </head>
 
 <body>
@@ -30,7 +27,7 @@
                     <ul class="nav-links">
                         <li><a href="#">Início</a></li>
                         <li><a href="/pages/aboutUs.html">Sobre</a></li>
-                        <li><a href="#">Contato</a></li>
+                        <li><a href="/pages/contact.html">Contato</a></li>
                     </ul>
                 </nav>
             </div>
@@ -42,31 +39,38 @@
             </div>
         </div>
     </header>
-    <div class="container-sing">
-        <section id="left" class="left-panel-sing">
-            <h2>ConnectCondo</h2>
-            <p>Possui uma conta?<a class="register-link" aria-label="Ir para a página de login"
-          href="login.html">Conecte-se</a></p>
-        </section>
-        <section class="right-panel-sing">
-            <h2 class="">Crie sua conta!</h2>
-            <form id="form" class="form-sing">
-                <input class="form-input-sing" type="text" placeholder="name" id="name" required>
-                <input class="form-input-sing" type="text" placeholder="email" id="email" required>
-                <input class="form-input-sing" type="text" placeholder="password" id="password" required>
-                <input class="form-input-sing" type="text" placeholder="cpf" id="cpf" required>
-                <input class="form-input-sing" type="text" placeholder="role" id="role" required>
-                <input class="form-input-sing" type="text" placeholder="condominio" id="condo_id" required>
-                <button id="buttonSing" type="submit" class="button-sing">Cadastrar</button>
-            </form>
-            <small class="register-login">Já tem uma conta?<a class="register-link"
-                    aria-label="Ir para a página de cadastro" href="login.html">Login</a></small>
-        </section>
+    <div class="container">
+        <div class="container-sing">
+            <section id="left" class="left-panel-sing">
+                <h2>ConnectCondo</h2>
+                <p>Possui uma conta?<a class="register-link" aria-label="Ir para a página de login"
+                        href="login.html">Conecte-se</a></p>
+            </section>
+            <section class="right-panel-sing">
+                <h2 class="">Crie sua conta!</h2>
+                <form id="form" class="form-sing">
+                    <input class="form-input-sing" type="text" placeholder="name" id="name" required>
+                    <input class="form-input-sing" type="text" placeholder="email" id="email" required>
+                    <input class="form-input-sing" type="text" placeholder="password" id="password" required>
+                    <input class="form-input-sing" type="text" placeholder="cpf" id="cpf" required>
+                    <input class="form-input-sing" type="text" placeholder="role" id="role" required>
+                    <input class="form-input-sing" type="text" placeholder="condominio" id="condo_id" required>
+                    <button id="buttonSing" type="submit" class="button-sing">Cadastrar</button>
+                </form>
+                <small class="register-login">Já tem uma conta?<a class="register-link"
+                        aria-label="Ir para a página de cadastro" href="login.html">Login</a></small>
+            </section>
+        </div>
     </div>
+
     </div>
     <footer class="footer">
         <small class="footer">© 2025 ConnectCondo. Todos os direitos reservados.</small>
     </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="/js/sing/singUp.js"></script>
+    <script src="/js/sing/moveBtn.js"></script>
 </body>
 
 </html>
