@@ -64,6 +64,14 @@ function tratarErro(resposta, xhr = null) {
     };
 }
 
+function mostrarLoader() {
+  document.getElementById("loader").style.display = "flex";
+}
+
+function esconderLoader() {
+  document.getElementById("loader").style.display = "none";
+}
+
 $(document).ready(function () {
     $("#buttonLogin").on("click", function () {
         const email = $("#email").val();
@@ -85,10 +93,9 @@ $(document).ready(function () {
 
                     // mensagem amigável para o usuário
                     $("#saida").html(`
-            <div style="padding:10px; border-radius:8px; background:#ffe0e0; color:#b00020;">
-                ⚠️ ${resultado.mensagem}
-            </div>
-        `);
+                    <div style="padding:10px; border-radius:8px; background:#ffe0e0; color:#b00020;">
+                    ⚠️ ${resultado.mensagem}
+                    </div>`);
                 } else {
                     console.log("Sucesso tratado:", resultado.resposta);
                     $("#saida").html(`
