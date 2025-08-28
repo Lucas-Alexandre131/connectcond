@@ -8,6 +8,17 @@
   --border-radius: 20px;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  /* altura da tela inteira */
+  margin: 0;
+  height: 100vh;
+  background-color: white;
+}
+
 .container-sing {
   display: flex;
   flex-direction: row;
@@ -17,6 +28,7 @@
   height: 290px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   border: 2px solid #c026d3;
+  justify-content: center;
 }
 
 .left-panel-sing {
@@ -69,4 +81,13 @@
 .button-sing{
   width: auto !important;
   margin-top: none !important;
+}
+
+.container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
