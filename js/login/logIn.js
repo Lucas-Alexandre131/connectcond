@@ -64,70 +64,71 @@ function tratarErro(resposta, xhr = null) {
     };
 }
 
+let loaderStartTime = null;
+
 function mostrarLoader() {
-  document.getElementById("loader").style.display = "flex";
+    loaderStartTime = Date.now();
+    document.getElementById("loader").style.display = "flex";
 }
 
 function esconderLoader() {
-  document.getElementById("loader").style.display = "none";
+    const elapsed = Date.now() - loaderStartTime;
+    const minTime = 1500; // 1.5 segundos mínimos
+    const wait = Math.max(0, minTime - elapsed);
+
+    setTimeout(() => {
+        document.getElementById("loader").style.display = "none";
+    }, wait);
 }
 
-$(document).ready(function () {
-    $("#buttonLogin").on("click", function () {
-        const email = $("#email").val();
-        const password = $("#password").val();
-        $.ajax({
-            type: "POST",
-            url: "http://localhost:9000/login",
-            contentType: "application/json",
-            data: JSON.stringify({
-                email, password
-            }),
-            dataType: "json"
-        })
-            .done(function (res) {
-                const resultado = tratarErro(res);
+$("#buttonLogin").on("click", function (e) {
+    e.preventDefault();
+    const email = $("#email").val();
+    const password = $("#password").val();
 
-                if (resultado.status === "error") {
-                    console.error("Erro tratado (log técnico):", resultado.mensagem);
+    mostrarLoader();
 
-                    // mensagem amigável para o usuário
-                    $("#saida").html(`
-                    <div style="padding:10px; border-radius:8px; background:#ffe0e0; color:#b00020;">
-                    ⚠️ ${resultado.mensagem}
-                    </div>`);
-                } else {
-                    console.log("Sucesso tratado:", resultado.resposta);
-                    $("#saida").html(`
-            <div style="padding:10px; border-radius:8px; background:#e0ffe0; color:#006400;">
-                ✅ Login realizado com sucesso!
-            </div>
-        `);
-                    // Redireciona após 2s
-                    setTimeout(() => {
-                        window.location.href = "/index.html";
-                    }, 2000);
-                }
-            })
-            .fail(function (xhr, status, error) {
-                const resultado = tratarErro(null, xhr);
-                console.error("Erro tratado (log técnico):", resultado.mensagem);
-
-                let mensagemUsuario = "Ocorreu um problema. Tente novamente.";
-
-                // mensagens mais amigáveis
-                if (xhr.status === 401) {
-                    mensagemUsuario = "Email ou senha incorretos.";
-                } else if (xhr.status === 404) {
-                    mensagemUsuario = "Servidor indisponível no momento. Tente mais tarde.";
-                } else if (xhr.status === 500) {
-                    mensagemUsuario = "Erro interno do sistema. Nossa equipe já foi notificada.";
-                }
-
-                $("#saida").html(`
-                    <div>
-                    ⚠️${mensagemUsuario}
-                    </div>`);
-            });
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:9000/login",
+        contentType: "application/json",
+        data: JSON.stringify({ email, password }),
+        dataType: "json"
     })
+        .done(function (res) {
+            const resultado = tratarErro(res);
+
+            if (resultado.status === "error") {
+                $("#saida").html(`
+              <div style="padding:10px; border-radius:8px; background:#ffe0e0; color:#b00020;">
+                ⚠️ ${resultado.mensagem}
+              </div>
+            `);
+            } else {
+                $("#saida").html(`
+              <div style="padding:10px; border-radius:8px; background:#e0ffe0; color:#006400;">
+                ✅ Login realizado com sucesso!
+              </div>
+            `);
+                setTimeout(() => window.location.href = "/index.html", 2000);
+            }
+
+            esconderLoader(); // <- só chama aqui no fim
+        })
+        .fail(function (xhr) {
+            const resultado = tratarErro(null, xhr);
+
+            let mensagemUsuario = "Ocorreu um problema. Tente novamente.";
+            if (xhr.status === 401) mensagemUsuario = "Email ou senha incorretos.";
+            else if (xhr.status === 404) mensagemUsuario = "Servidor indisponível no momento. Tente mais tarde.";
+            else if (xhr.status === 500) mensagemUsuario = "Erro interno do sistema.";
+
+            $("#saida").html(`
+          <div style="padding:10px; border-radius:8px; background:#ffe0e0; color:#b00020;">
+            ⚠️ ${mensagemUsuario}
+          </div>
+        `);
+
+            esconderLoader(); // <- idem aqui
+        });
 });

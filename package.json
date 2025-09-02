@@ -4,7 +4,7 @@
   "description": "Front End do nosso tcc.",
   "main": "index.js",
   "scripts": {
-    "test": "index.html"
+    "start": "index.html"
   },
   "author": "",
   "license": "ISC"
