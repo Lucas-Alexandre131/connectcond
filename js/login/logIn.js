@@ -4,7 +4,8 @@ let loaderStartTime = null;
 
 function mostrarLoader() {
     loaderStartTime = Date.now();
-    document.getElementById("loader").style.display = "flex";
+    const div = document.getElementById("loader");
+    div.style.display = "flex";
 }
 
 function esconderLoader() {
@@ -13,8 +14,9 @@ function esconderLoader() {
     const wait = Math.max(0, minTime - elapsed);
 
     setTimeout(() => {
-        document.getElementById("loader").style.display = "none";
-    }, wait);
+        const div = document.getElementById("loader");
+        div.style.display = "none";
+    },wait);
 }
 
 $("#buttonLogin").on("click", function (e) {
@@ -32,21 +34,25 @@ $("#buttonLogin").on("click", function (e) {
         dataType: "json"
     })
         .done(function (res) {
+            const resposta = res;
+            console.log(resposta);
             const resultado = handleHttpResponse(res);
 
-            if (resultado.status === "error") {
+            if (resposta.token === null) {
                 $("#saida").html(`
-                    <div style="padding:10px; border-radius:8px; background:#ffe0e0; color:#b00020;">
-                        ⚠️ ${resultado.mensagem}
+                    <div">
+                        ${resposta}
+                        ${resultado}
                     </div>
                 `);
             } else {
                 $("#saida").html(`
-                    <div style="padding:10px; border-radius:8px; background:#e0ffe0; color:#006400;">
+                    <div">
                         ✅ Login realizado com sucesso!
+                        ${resposta.token}
                     </div>
                 `);
-                setTimeout(() => window.location.href = "/index.html", 2000);
+                setTimeout(() => window.location.href = "/index.html", 2000); // 2 segundos até o redirecionamento para a pagina inicial
             }
 
             esconderLoader();
@@ -60,12 +66,7 @@ $("#buttonLogin").on("click", function (e) {
             else if (xhr.status === 404) mensagemUsuario = "Servidor indisponível no momento. Tente mais tarde.";
             else if (xhr.status === 500) mensagemUsuario = "Erro interno do sistema.";
 
-            $("#saida").html(`
-                <div style="padding:10px; border-radius:8px; background:#ffe0e0; color:#b00020;">
-                    ⚠️ ${mensagemUsuario}
-                </div>
-            `);
-
+            $("#saida").html(`${mensagemUsuario}`);
             esconderLoader();
         });
 });
