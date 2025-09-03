@@ -1,0 +1,1 @@
+// função responsável por verificar o token de acesso ao carregar a pagina html
