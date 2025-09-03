@@ -4,7 +4,7 @@
 body {
   display: flex;
   flex-direction: column;
-  
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   align-items: center;
   min-height: 100vh;
   /* altura da tela inteira */
