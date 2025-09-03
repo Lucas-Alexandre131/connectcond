@@ -65,8 +65,7 @@ const errorsHttp = {
   "511": "Network Authentication Required"
 };
 
-// Função genérica para tratar erro em AJAX (jQuery)
-function tratarErro(resposta, xhr = null) {
+function handleHttpResponse(resposta, xhr = null) {
   // Caso venha do servidor como objeto (resposta JSON)
   if (resposta && typeof resposta === "object" && resposta.status) {
     if (resposta.status === "error") {
