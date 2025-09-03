@@ -86,14 +86,6 @@ header h1 {
     background-color: #1b2733;
 }
 
-footer {
-    text-align: center;
-    padding: 1rem;
-    margin-top: 2rem;
-    background: #2d3e50;
-    color: #fff;
-}
-
 /* Logo */
 .logo img {
     height: 40px;
