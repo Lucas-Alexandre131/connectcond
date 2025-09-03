@@ -65,7 +65,7 @@ const errorsHttp = {
   "511": "Network Authentication Required"
 };
 
-function handleHttpResponse(resposta, xhr = null) {
+export function handleHttpResponse(resposta, xhr = null) {
   // Caso venha do servidor como objeto (resposta JSON)
   if (resposta && typeof resposta === "object" && resposta.status) {
     if (resposta.status === "error") {
