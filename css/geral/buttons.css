@@ -1,31 +1,3 @@
-.button-login,
-.button-sing {
-    background: white;
-    width: 180px;
-    padding: 10px;
-    border: 2px solid #c026d3;
-    color: #c026d3;
-    border-radius: 25px;
-    padding: 8px 24px;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-.button-login:hover,
-.button-sing:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    /* fundo branco claro */
-    color: #e59fec;
-}
-
-.button-login:active,
-.button-sing:active {
-    background-color: rgba(255, 255, 255, 0.35);
-    transform: scale(0.97);
-    /* sensação de afundar ao clicar */
-}
-
-
 .btn {
     padding: 8px 16px;
     border-radius: 8px;
