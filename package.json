@@ -1,8 +1,9 @@
 {
-  "name": "connectcondo",
+  "name": "ConnectCond",
   "version": "1.0.0",
   "description": "Front End do nosso tcc.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "index.html"
   },
