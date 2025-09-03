@@ -1,4 +1,5 @@
 import { handleHttpResponse } from "../errors/handleHttpResponse.js";
+import { getCookie, setCookie } from "../cookie/authCookie.js";
 
 let loaderStartTime = null;
 
@@ -16,7 +17,7 @@ function esconderLoader() {
     setTimeout(() => {
         const div = document.getElementById("loader");
         div.style.display = "none";
-    },wait);
+    }, wait);
 }
 
 $("#buttonLogin").on("click", function (e) {
@@ -34,29 +35,45 @@ $("#buttonLogin").on("click", function (e) {
         dataType: "json"
     })
         .done(function (res) {
-            const resposta = res;
-            console.log(resposta);
-            const resultado = handleHttpResponse(res);
+            try {
+                const resultado = handleHttpResponse(res);
 
-            if (resposta.token === null) {
+                if (!res.token) {
+                    $("#saida").html(`
+                <div>
+                    ${res}
+                    ${resultado}
+                </div>
+            `);
+                } else {
+                    $("#saida").html(`
+                <div>
+                    ✅ Login realizado com sucesso!
+                    ${res.token}
+                </div>
+            `);
+
+                    setCookie("authToken", res.token); // token com seu valor
+                    const token = getCookie("authToken");
+
+                    if (token) {
+                        setTimeout(() => {
+                            window.location.href = "/pages/syndic.html";
+                        }, 2000);
+                    }
+                }
+            } catch (error) {
+                console.error("Erro no processamento do login:", error);
                 $("#saida").html(`
-                    <div">
-                        ${resposta}
-                        ${resultado}
-                    </div>
-                `);
-            } else {
-                $("#saida").html(`
-                    <div">
-                        ✅ Login realizado com sucesso!
-                        ${resposta.token}
-                    </div>
-                `);
-                setTimeout(() => window.location.href = "/index.html", 2000); // 2 segundos até o redirecionamento para a pagina inicial
+            <div">
+                ⚠️ Ocorreu um erro inesperado. Tente novamente mais tarde.
+            </div>
+        `);
+            } finally {
+                esconderLoader();
             }
-
-            esconderLoader();
         })
+
         .fail(function (xhr) {
             const resultado = handleHttpResponse(null, xhr);
 
