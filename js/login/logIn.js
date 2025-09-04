@@ -1,5 +1,5 @@
 import { handleHttpResponse } from "../errors/handleHttpResponse.js";
-import { getCookie, setCookie } from "../cookie/authCookie.js";
+import { getItem, setItem } from "../cookie/authCookie.js";
 
 let loaderStartTime = null;
 
@@ -53,8 +53,8 @@ $("#buttonLogin").on("click", function (e) {
                 </div>
             `);
 
-                    setCookie("authToken", res.token); // token com seu valor
-                    const token = getCookie("authToken");
+                    setItem("authToken", res.token); // token com seu valor
+                    const token = getItem("authToken");
 
                     if (token) {
                         setTimeout(() => {
