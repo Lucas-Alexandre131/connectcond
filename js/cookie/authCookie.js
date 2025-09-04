@@ -1,11 +1,7 @@
-export function setCookie(name, value) {
-    document.cookie = name + "=" + value + "; path=/"; // cria um cookie e seu valor
+export function setItem(name, value) {
+    localStorage.setItem(name, value); // cria ou sobrescreve um item
 }
 
-export function getCookie(name) {
-    return (
-        document.cookie
-            .split('; ')
-            .find(row => row.startsWith(name + '='))?.split('=')[1] || null
-    );
+export function getItem(name) {
+    return localStorage.getItem(name); // retorna o valor ou null
 }
