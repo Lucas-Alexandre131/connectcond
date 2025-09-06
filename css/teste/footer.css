@@ -7,7 +7,7 @@
   --text: #1f2937;          /* Texto escuro, legível */
   --muted: #4b5563;         /* Texto secundário */
   --brand: #1d4ed8;         /* Azul vibrante */
-  --accent: #d97706;        /* Laranja para destaques */
+  --accent: white;        /* branco */
   --border: #e5e7eb;        /* Borda clara */
   --card: #ffffff;           /* Cards claros */
   --input: #f3f4f6;         /* Inputs claros */
@@ -21,7 +21,7 @@
   --text: #e6e9f2;
   --muted: #a8b0c3;
   --brand: #5b8cff;
-  --accent: #22c55e;
+  --accent: white;
   --border: #283046;
   --card: #11172c;
   --input: #1b2340;
