@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="shortcut icon" href="assets/icons/logotcc.ico" type="image/x-icon">
-    <link rel="stylesheet" href="/css/index/index.css">
+    <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/geral/header.css">
     <link rel="stylesheet" href="/css/geral/footer.css">
 </head>
@@ -17,7 +17,7 @@
             <!-- Logo -->
             <div class="head-start">
                 <a href="index.html" class="logo">
-                    <img src="assets/images/logotcc-50px.png" alt="Logo TCC">
+                    <img src="/assets/images/logotcc-50px.png" alt="Logo TCC">
                 </a>
             </div>
 
@@ -34,15 +34,45 @@
 
             <!-- Botões -->
             <div class="head-end">
-                <a href="/pages/login.html" class="btn">Login</a>
+                <a href="/pages/teste/login.html" class="btn">Login</a>
                 <a href="/pages/singUp.html" class="btn btn-primary">Sign Up</a>
+                <button class="theme-toggle" id="theme-btn">🌙</button>
             </div>
         </div>
     </header>
-    <!-- hero ainda não sei o que deixar aqui -->
     <section class="hero">
-        <h2>Gerencie seu condomínio com facilidade. Faça login para acessar todas as funções!</h2>
+        <div class="hero-content container">
+            <h1>Gerencie seu condomínio com facilidade</h1>
+            <p class="hero-subtitle">
+                Organize avisos, reservas, pets e finanças em um só lugar. Tudo de forma simples e segura.
+            </p>
+            <div class="hero-buttons">
+                <a href="/pages/login.html" class="btn">Login</a>
+                <a href="/pages/singUp.html" class="btn btn-primary">Sign Up</a>
+            </div>
+
+            <!-- Benefícios rápidos -->
+            <div class="hero-features">
+                <div class="feature-item">
+                    <span>📢</span>
+                    <p>Envio de avisos para moradores</p>
+                </div>
+                <div class="feature-item">
+                    <span>📅</span>
+                    <p>Reservas de espaços comuns</p>
+                </div>
+                <div class="feature-item">
+                    <span>🐾</span>
+                    <p>Cadastro de pets</p>
+                </div>
+                <div class="feature-item">
+                    <span>💰</span>
+                    <p>Controle financeiro seguro</p>
+                </div>
+            </div>
+        </div>
     </section>
+
 
     <div class="container">
         <h2>Principais Funções do Síndico</h2>
@@ -108,7 +138,7 @@
             <section class="footer__bottom">
                 <span>© <span id="year"></span> ConnectCond</span>
                 <div class="social">
-                    <a class="icon" href="https://github.com/ConnectCondoFrontEnd" aria-label="GitHub" >
+                    <a class="icon" href="https://github.com/ConnectCondoFrontEnd" aria-label="GitHub">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
                             stroke-linecap="round" stroke-linejoin="round">
                             <path
@@ -123,5 +153,29 @@
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
     </script>
+    <script>
+        const btn = document.getElementById("theme-btn");
+        const body = document.body;
+
+        // Carregar preferência salva
+        if (localStorage.getItem("theme") === "dark") {
+            body.setAttribute("data-theme", "dark");
+            btn.textContent = "☀️";
+        }
+
+        btn.addEventListener("click", () => {
+            if (body.getAttribute("data-theme") === "dark") {
+                body.removeAttribute("data-theme");
+                btn.textContent = "🌙";
+                localStorage.setItem("theme", "light");
+            } else {
+                body.setAttribute("data-theme", "dark");
+                btn.textContent = "☀️";
+                localStorage.setItem("theme", "dark");
+            }
+        });
+    </script>
+
 </body>
+
 </html>
