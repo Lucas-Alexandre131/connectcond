@@ -9,6 +9,7 @@
   --text: #1f2937;
   --muted: #6b7280;
   --brand: #2563eb;
+  --h1: blue;
 }
 
 /* === Tema Escuro === */
@@ -37,7 +38,7 @@ body {
 header h1 {
   margin: 0;
   font-size: 2rem;
-  color: var(--brand);
+  color: var(--h1);
 }
 
 /* Hero ajustado */
