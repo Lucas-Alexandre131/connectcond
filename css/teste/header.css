@@ -89,11 +89,6 @@
     flex-direction: row;
   }
 
-  .head-center {
-    display: none;
-    /* esconde menu no mobile */
-  }
-
   .menu-toggle {
     display: flex;
   }
@@ -111,5 +106,12 @@
     border-top: 1px solid var(--border);
     box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
     gap: 16px;
+  }
+}
+
+@media (max-width: 550px) {
+  .head-center {
+    display: none;
+    /* esconde menu no mobile */
   }
 }
