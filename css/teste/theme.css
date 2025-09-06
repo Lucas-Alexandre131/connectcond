@@ -1,4 +1,5 @@
 @import url('/css/geral/buttons.css');
+
 /* === Tema Claro (default) === */
 :root {
   --bg: #f9fafb;
@@ -41,11 +42,9 @@ header h1 {
 
 /* Hero ajustado */
 .hero {
-  background: linear-gradient(
-      135deg,
+  background: linear-gradient(135deg,
       rgba(37, 99, 235, 0.08),
-      rgba(34, 197, 94, 0.08)
-    ),
+      rgba(34, 197, 94, 0.08)),
     var(--bg);
   min-height: 500px;
   display: flex;
@@ -225,8 +224,8 @@ header h1 {
 
 .hero {
   background: radial-gradient(1200px 400px at 10% -10%, rgba(37, 99, 235, .08), transparent 55%),
-              radial-gradient(900px 300px at 90% 0%, rgba(217, 119, 6, .05), transparent 40%),
-              var(--bg-soft);
+    radial-gradient(900px 300px at 90% 0%, rgba(217, 119, 6, .05), transparent 40%),
+    var(--bg-soft);
   min-height: 400px;
   display: flex;
   align-items: center;
@@ -275,7 +274,6 @@ header h1 {
   padding: 20px;
   border-radius: 14px;
   min-width: 160px;
-  max-width: 220px;
   text-align: center;
 
   /* mais contraste */
@@ -284,7 +282,7 @@ header h1 {
 
   /* animação */
   transition: transform 0.25s ease, box-shadow 0.25s ease,
-              background 0.25s ease, border-color 0.25s ease;
+    background 0.25s ease, border-color 0.25s ease;
 }
 
 .feature-item span {
