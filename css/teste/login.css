@@ -1,0 +1,141 @@
+@import url('/css/geral/footer.css');
+@import url('/css/geral/buttons.css');
+
+/* === Container geral === */
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* === Container do login === */
+.container-login {
+  display: flex;
+  flex-direction: row;
+  border-radius: 20px;
+  overflow: hidden;
+  width: 460px;
+  height: 250px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  border: 2px solid var(--brand);
+  justify-content: center;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.container-login:hover {
+  box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+}
+
+/* === Painel esquerdo === */
+.left-panel-login {
+  background-color: var(--brand);
+  color: #fff;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  flex: 1;
+}
+
+/* Texto do painel esquerdo */
+.left-panel-login p {
+  width: 200px;
+  text-align: center;
+}
+
+/* === Painel direito === */
+.right-panel-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  margin: 0 20px;
+}
+
+.right-panel-login .form-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+/* Título */
+.right-panel-login h2 {
+  color: var(--brand);
+  font-size: 1.8rem;
+  margin-top: 10px;
+}
+
+/* Inputs */
+.input-login {
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.15);
+  width: 160px;
+  height: 36px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.input-login:focus {
+  outline: none;
+  box-shadow: 0 0 6px var(--brand);
+  transform: translateY(-1px);
+}
+
+/* Links */
+.register-link, .forget-link {
+  display: inline-block;
+  margin-top: 10px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.register-link {
+  color: #fff;
+}
+
+.register-link:hover {
+  color: #e59fec;
+  text-decoration: underline;
+}
+
+.forget-link {
+  color: var(--brand);
+}
+
+.forget-link:hover {
+  color: #e59fec;
+  text-decoration: underline;
+}
+
+/* Contador de registro escondido */
+.register-count {
+  display: none;
+}
+
+/* === Responsividade === */
+@media (max-width: 500px) {
+  .container-login {
+    flex-direction: column;
+    width: 90%;
+    height: auto;
+  }
+
+  .left-panel-login, .right-panel-login {
+    margin: 10px 0;
+  }
+
+  .input-login {
+    width: 90%;
+  }
+}

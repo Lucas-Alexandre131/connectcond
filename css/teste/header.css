@@ -1,0 +1,96 @@
+/* === Header Adaptado ao Tema Claro/Escuro === */
+
+/* Tema Claro / Moderno */
+:root {
+  --bg-soft: #ffffff;
+  --border: #e5e7eb;
+  --text: #1f2937;
+  --brand: #1d4ed8;
+}
+
+/* Tema Escuro */
+[data-theme="dark"] {
+  --bg-soft: #0f1530;
+  --border: #283046;
+  --text: #e6e9f2;
+  --brand: #5b8cff;
+}
+
+/* Header Principal */
+.mast-header {
+  width: 100%;
+  background: radial-gradient(1200px 400px at 10% -10%, rgba(29, 78, 216, .08), transparent 55%),
+              radial-gradient(900px 300px at 90% 0%, rgba(217, 119, 6, .05), transparent 40%),
+              var(--bg-soft);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  color: var(--text);
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Container do Header */
+.container-masthead {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* Logo */
+.logo img {
+  height: 42px;
+  filter: drop-shadow(0 2px 6px rgba(29, 78, 216, .35));
+  transition: filter 0.3s ease;
+}
+
+/* Centralização dos links */
+.head-center {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+}
+
+/* Área dos botões e toggle */
+.head-end {
+  display: flex;
+  gap: 12px;
+}
+
+/* Links de navegação */
+.nav-links {
+  display: flex;
+  gap: 22px;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--text);
+  opacity: .88;
+  transition: opacity .2s ease, transform .2s ease, color .3s ease;
+  font-size: 15px;
+}
+
+.nav-links a:hover {
+  opacity: 1;
+  color: var(--brand);
+  transform: translateY(-2px);
+}
+
+/* Responsividade */
+@media (max-width: 820px) {
+  .container-masthead {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .head-center {
+    justify-content: center;
+  }
+}
