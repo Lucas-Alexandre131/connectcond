@@ -2,15 +2,27 @@
 <html lang="pt-BR">
 
 <head>
+    <script>
+        // Verifica e aplica o tema salvo no localStorage ao carregar a página
+        window.addEventListener("DOMContentLoaded", () => {
+            const temaSalvo = localStorage.getItem("theme");
+            if (temaSalvo === "dark") {
+                document.body.setAttribute("data-theme", "dark");
+            } else {
+                document.body.removeAttribute("data-theme");
+            }
+        });
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sobre Nós - TCC</title>
-    <link rel="shortcut icon" href="assets/icons/logotcc.ico" type="image/x-icon">
-    <link rel="stylesheet" href="/css/normalize.css">
-    <link rel="stylesheet" href="/css/geral/header.css">
-    <link rel="stylesheet" href="/css/geral/buttons.css">
-    <link rel="stylesheet" href="/css/about/about.css">
-    <link rel="stylesheet" href="/css/geral/footer.css">
+    <link rel="shortcut icon" href="/assets/icons/logotcc.ico" type="image/x-icon">
+
+    <!-- Agora só um CSS unificado -->
+    <link rel="stylesheet" href="/css/teste/about.css">
+    <link rel="stylesheet" href="/css/teste/header.css">
+    <link rel="stylesheet" href="/css/teste/footer.css">
 </head>
 
 <body>
@@ -40,9 +52,8 @@
     <!-- Banner -->
     <section class="banner-about">
         <div class="banner-content">
-            <h1 style="color: #0073e6;">Sobre Nós</h1>
-            <p style="color: black;">Conheça nossa história, valores e equipe dedicada a oferecer soluções de qualidade.
-            </p>
+            <h1>Sobre Nós</h1>
+            <p>Conheça nossa história, valores e equipe dedicada a oferecer soluções de qualidade.</p>
         </div>
     </section>
 
@@ -66,7 +77,7 @@
 
     <!-- Equipe -->
     <section class="team-section">
-        <div class="container">
+        <div class="container-team">
             <h2>Nossa Equipe</h2>
             <div class="team-cards">
                 <div class="team-card">
@@ -108,10 +119,10 @@
 
     <!-- Contato rápido -->
     <section class="contact-section">
-        <div class="container">
+        <div class="container-contact">
             <h2>Entre em Contato</h2>
             <p>Tem dúvidas ou quer trabalhar conosco? Envie uma mensagem!</p>
-            <a href="/pages/contact.html" class="btn btn-primary">Fale Conosco</a>
+            <a href="/pages/contact.html" class="btn">Fale Conosco</a>
         </div>
     </section>
 
