@@ -2,16 +2,28 @@
 <html lang="pt-BR">
 
 <head>
+
+  <script>
+    // Verifica e aplica o tema salvo no localStorage ao carregar a página
+    window.addEventListener("DOMContentLoaded", () => {
+      const temaSalvo = localStorage.getItem("theme");
+      if (temaSalvo === "dark") {
+        document.body.setAttribute("data-theme", "dark");
+      } else {
+        document.body.removeAttribute("data-theme");
+      }
+    });
+  </script>
+
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login</title>
   <link rel="shortcut icon" href="/assets/icons/logotcc.ico" type="image/x-icon">
-  <link rel="stylesheet" href="/css/normalize.css">
-  <link rel="stylesheet" href="/css/login/variables.css">
   <link rel="stylesheet" href="/css/geral/header.css">
-  <link rel="stylesheet" href="/css/geral/loader.css">
-  <link rel="stylesheet" href="/css/geral/errorMessage.css">
+  <link rel="stylesheet" href="/css/teste/login.css">
   <link rel="stylesheet" href="/css/geral/footer.css">
+  <link rel="stylesheet" href="/css/geral/errorMessage.css">
 </head>
 
 <body>
@@ -29,7 +41,7 @@
         <nav>
           <ul class="nav-links">
             <li><a href="/index.html">Início</a></li>
-            <li><a href="/pages/aboutUs.html">Sobre</a></li>
+            <li><a href="/pages/about.html">Sobre</a></li>
             <li><a href="/pages/contact.html">Contato</a></li>
           </ul>
         </nav>
@@ -43,16 +55,6 @@
   </header>
   <div class="mensagem-erro" id="saida"></div>
   <div class="container">
-    <!-- Loader -->
-    <div id="loader" class="loader">
-      <svg fill="hsl(228, 50%, 50%)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M12,4a8,8,0,0,1,7.89,6.7A1.53,1.53,0,0,0,21.38,12h0a1.5,1.5,0,0,0,1.48-1.75,11,11,0,0,0-21.72,0A1.5,1.5,0,0,0,2.62,12h0a1.53,1.53,0,0,0,1.49-1.3A8,8,0,0,1,12,4Z">
-          <animateTransform attributeName="transform" type="rotate" dur="0.75s" values="0 12 12;360 12 12"
-            repeatCount="indefinite" />
-        </path>
-      </svg>
-    </div>
     <div class="container-login">
       <section class="left-panel-login">
         <h2>ConnectCondo</h2>
@@ -64,7 +66,7 @@
         <form id="loginForm" class="form-login">
           <input type="email" id="email" class="input-login" placeholder="email" required>
           <input type="text" id="password" class="input-login" placeholder="senha" required>
-          <button id="buttonLogin" type="button" class="btn btn-primary">Entrar</button>
+          <button id="buttonLogin" type="button" class="button-login">Entrar</button>
         </form>
         <small class="register-count">Não tem uma conta?<a class="register-link"
             aria-label="Ir para a página de cadastro" href="singUp.html">Cadastre-se</a></small>
