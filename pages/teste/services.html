@@ -2,6 +2,19 @@
 <html lang="pt-BR">
 
 <head>
+
+    <script>
+        // Verifica e aplica o tema salvo no localStorage ao carregar a página
+        window.addEventListener("DOMContentLoaded", () => {
+            const temaSalvo = localStorage.getItem("theme");
+            if (temaSalvo === "dark") {
+                document.body.setAttribute("data-theme", "dark");
+            } else {
+                document.body.removeAttribute("data-theme");
+            }
+        });
+    </script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Serviços do Condomínio</title>
