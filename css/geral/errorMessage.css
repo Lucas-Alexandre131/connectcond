@@ -1,19 +1,44 @@
+/* Variáveis extras para erro */
+:root {
+  --card: #ffffff;              /* fundo do card padrão */
+  --text: #1f2937;              /* texto padrão */
+  
+  --error-text: #ef4444;        /* vermelho forte */
+  --error-start: #ff4e50;       /* gradiente inicial */
+  --error-end: #f9d423;         /* gradiente final */
+  --error-bg-hover: #ffe6e6;    /* fundo no hover (claro) */
+  --error-icon: #ffffff;        /* cor do ícone */
+  --error-shadow: rgba(0, 0, 0, 0.12); /* sombra clara */
+}
+
+[data-theme="dark"] {
+  --card: #1f2937;              /* fundo do card no dark */
+  --text: #f9fafb;              /* texto claro */
+  
+  --error-text: #fca5a5;        /* vermelho mais claro */
+  --error-start: #dc2626;       /* gradiente inicial (escuro) */
+  --error-end: #f59e0b;         /* gradiente final (dourado) */
+  --error-bg-hover: rgba(239, 68, 68, 0.1); /* fundo no hover (escuro) */
+  --error-icon: #ffffff;        /* mantém ícone branco */
+  --error-shadow: rgba(0, 0, 0, 0.25); /* sombra mais intensa */
+}
+
 /* Container de erro premium */
 .mensagem-erro {
-  display: flex;
+  display: none;
   align-items: center;
   gap: 14px;
-  background: #ffffff;               /* fundo inicial suave */
-  color: #00cf56;                    /* texto vermelho forte */
+  background: var(--card);
+  color: var(--error-text);
   border-radius: 14px;
   padding: 16px 20px;
   font-size: 15px;
   font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 6px 18px var(--error-shadow);
   max-width: 100%;
   word-break: break-word;
   animation: shakeFadeIn 0.5s ease forwards;
-  transition: background 0.5s ease;
+  transition: background 0.5s ease, color 0.3s ease;
 }
 
 /* Ícone com gradiente animado */
@@ -27,10 +52,10 @@
   border-radius: 50%;
   font-size: 18px;
   flex-shrink: 0;
-  background: linear-gradient(135deg, #ff4e50, #f9d423);
+  background: linear-gradient(135deg, var(--error-start), var(--error-end));
   background-size: 200% 200%;
   animation: gradientShift 2s ease infinite;
-  color: white;
+  color: var(--error-icon);
 }
 
 /* Animação de gradiente no ícone */
@@ -51,8 +76,8 @@
 
 /* Hover leve para feedback */
 .mensagem-erro:hover {
-  background: #ffe6e6;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  background: var(--error-bg-hover);
+  box-shadow: 0 8px 20px var(--error-shadow);
 }
 
 /* Responsividade para mobile */
