@@ -83,6 +83,42 @@
   transform: translateY(-2px);
 }
 
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--brand);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+.btn:hover {
+  background: var(--brand);
+  color: #fff;
+  transform: translateY(-2px);
+  border-color: rgba(91, 140, 255, .6);
+}
+
+.btn-primary {
+  background: var(--brand);
+  color: #fff;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--brand);
+  color: #fff;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: #7aa6ff;
+  transform: translateY(-2px);
+}
+
 /* Responsividade */
 @media (max-width: 820px) {
   .container-masthead {
