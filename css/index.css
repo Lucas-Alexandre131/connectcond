@@ -1,7 +1,13 @@
 /* === Tema Claro (default) === */
 :root {
   --bg: #f9fafb;
+  /* fundo geral */
   --bg-soft: #ffffff;
+  /* fundo liso (cards, hero principal) */
+  --bg-section: #f3f4f6;
+  /* fundo alternativo para seções */
+  --bg-hero: #ffffff;
+  /* fundo exclusivo da hero */
   --card: #ffffff;
   --border: #e5e7eb;
   --text: #1f2937;
@@ -14,6 +20,8 @@
 [data-theme="dark"] {
   --bg: #111827;
   --bg-soft: #1f2937;
+  --bg-section: #1e293b;  /* um tom intermediário */
+  --bg-hero: #0f172a;     /* hero mais destacada */
   --card: #1f2937;
   --border: #374151;
   --text: #f9fafb;
@@ -41,10 +49,8 @@ header h1 {
 
 /* Hero ajustado */
 .hero {
-  background: linear-gradient(135deg,
-      rgba(37, 99, 235, 0.08),
-      rgba(34, 197, 94, 0.08)),
-    var(--bg);
+  background: linear-gradient(to bottom, #ffffff, #f8f9fb);
+  padding: 3rem 2rem;
   min-height: 500px;
   display: flex;
   flex-direction: column;
@@ -100,6 +106,8 @@ header h1 {
 
 /* Container */
 .container {
+  background: var(--bg-section); /* Contraste entre blocos */
+  border-radius: 14px;
   padding: 2rem;
   max-width: 1200px;
   margin: auto;
