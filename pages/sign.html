@@ -2,13 +2,24 @@
 <html lang="pt-BR">
 
 <head>
+    <script>
+        // Verifica e aplica o tema salvo no localStorage ao carregar a página
+        window.addEventListener("DOMContentLoaded", () => {
+            const temaSalvo = localStorage.getItem("theme");
+            if (temaSalvo === "dark") {
+                document.body.setAttribute("data-theme", "dark");
+            } else {
+                document.body.removeAttribute("data-theme");
+            }
+        });
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar</title>
     <link rel="shortcut icon" href="/assets/icons/logotcc.ico" type="image/x-icon">
-    <link rel="stylesheet" href="/css/normalize.css">
-    <link rel="stylesheet" href="/css/singIn/variables.css">
     <link rel="stylesheet" href="/css/geral/header.css">
+    <link rel="stylesheet" href="/css/teste/sign.css">
     <link rel="stylesheet" href="/css/geral/footer.css">
 </head>
 
@@ -35,8 +46,7 @@
 
             <!-- Botões -->
             <div class="head-end">
-                <a href="/pages/login.html" class="btn">Login</a>
-                <a href="/pages/sign.html" class="btn btn-primary">Sign Up</a>
+                <a href="/pages/login.html" class="btn btn-primary">Login</a>
             </div>
         </div>
     </header>
@@ -51,8 +61,8 @@
                 <h2 class="">Crie sua conta!</h2>
                 <form id="form" class="form-sing">
                     <input class="form-input-sing" type="text" placeholder="name" id="name" required>
-                    <input class="form-input-sing" type="text" placeholder="email" id="email" required>
-                    <input class="form-input-sing" type="text" placeholder="password" id="password" required>
+                    <input class="form-input-sing" type="email" placeholder="email" id="email" required>
+                    <input class="form-input-sing" type="password" placeholder="password" id="password" required>
                     <input class="form-input-sing" type="text" placeholder="cpf" id="cpf" required>
                     <input class="form-input-sing" type="text" placeholder="role" id="role" required>
                     <input class="form-input-sing" type="text" placeholder="condominio" id="condo_id" required>
