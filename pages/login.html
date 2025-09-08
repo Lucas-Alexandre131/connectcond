@@ -29,15 +29,15 @@
 
 <body>
   <!-- Loader -->
-    <div id="loader" class="loader">
-      <svg fill="hsl(228, 50%, 50%)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M12,4a8,8,0,0,1,7.89,6.7A1.53,1.53,0,0,0,21.38,12h0a1.5,1.5,0,0,0,1.48-1.75,11,11,0,0,0-21.72,0A1.5,1.5,0,0,0,2.62,12h0a1.53,1.53,0,0,0,1.49-1.3A8,8,0,0,1,12,4Z">
-          <animateTransform attributeName="transform" type="rotate" dur="0.75s" values="0 12 12;360 12 12"
-            repeatCount="indefinite" />
-        </path>
-      </svg>
-    </div>
+  <div id="loader" class="loader">
+    <svg fill="hsl(228, 50%, 50%)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M12,4a8,8,0,0,1,7.89,6.7A1.53,1.53,0,0,0,21.38,12h0a1.5,1.5,0,0,0,1.48-1.75,11,11,0,0,0-21.72,0A1.5,1.5,0,0,0,2.62,12h0a1.53,1.53,0,0,0,1.49-1.3A8,8,0,0,1,12,4Z">
+        <animateTransform attributeName="transform" type="rotate" dur="0.75s" values="0 12 12;360 12 12"
+          repeatCount="indefinite" />
+      </path>
+    </svg>
+  </div>
   <header class="mast-header">
     <div class="container-masthead">
       <!-- Logo -->
@@ -61,6 +61,35 @@
       <!-- Botões -->
       <div class="head-end">
         <a href="/pages/sign.html" class="btn btn-primary">Sign Up</a>
+        <!-- Dropdown no Header -->
+        <div class="menu">
+          <!-- Botão do menu -->
+          <button id="toggle" class="menu-btn" aria-label="Menu">≣</button>
+
+          <!-- Lista do dropdown -->
+          <div id="menu" class="menu-list">
+            <a href="/index.html" class="item">
+              <span class="icon">🏠</span>
+              <span class="title">Início</span>
+            </a>
+            <a href="/pages/about.html" class="item">
+              <span class="icon">ℹ️</span>
+              <span class="title">Sobre</span>
+            </a>
+            <a href="/pages/services.html" class="item">
+              <span class="icon">🛠️</span>
+              <span class="title">Serviços</span>
+            </a>
+            <a href="/pages/contact.html" class="item">
+              <span class="icon">📞</span>
+              <span class="title">Contato</span>
+            </a>
+            <a href="/pages/settings.html" class="item">
+              <span class="icon">⚙️</span>
+              <span class="title">Configurações</span>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </header>
