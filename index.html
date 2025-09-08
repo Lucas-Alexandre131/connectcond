@@ -38,6 +38,19 @@
                 <a href="/pages/login.html" class="btn">Login</a>
                 <a href="/pages/sign.html" class="btn btn-primary">Sign Up</a>
                 <button class="theme-toggle" id="theme-btn">🌙</button>
+                    <div class="menu"><!-- Dropdown visível apenas em 550px -->
+                        <button id="toggle" class="menu-btn">≣</button>
+                        <div id="menu" class="menu-list">
+                            <div class="item">
+                                <div class="icon a">A</div>
+                                <div>
+                                    <div class="title">Teste</div>
+                                    <div class="subtitle">Capa</div>
+                                    <div class="meta">ID #001</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </div>
         </div>
     </header>
@@ -157,6 +170,12 @@
     <script>
         const btn = document.getElementById("theme-btn");
         const body = document.body;
+        const btnD = document.getElementById('toggle');
+        const menu = document.getElementById('menu');
+        btnD.addEventListener('click', () => menu.classList.toggle('show'));
+        document.addEventListener('click', e => {
+            if (!e.target.closest('.menu')) menu.classList.remove('show');
+        });
 
         // Carregar preferência salva
         if (localStorage.getItem("theme") === "dark") {
@@ -173,6 +192,13 @@
                 body.setAttribute("data-theme", "dark");
                 btn.textContent = "☀️";
                 localStorage.setItem("theme", "dark");
+            }
+        });
+        // alternar tema com a tecla "T"
+        document.addEventListener('keydown', e => {
+            if (e.key.toLowerCase() === 't') {
+                const root = document.documentElement;
+                root.dataset.theme = root.dataset.theme === "dark" ? "light" : "dark";
             }
         });
     </script>
