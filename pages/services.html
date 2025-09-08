@@ -211,6 +211,12 @@
     </script>
 
     <script>
+        const btnD = document.getElementById('toggle');
+        const menu = document.getElementById('menu');
+        btnD.addEventListener('click', () => menu.classList.toggle('show'));
+        document.addEventListener('click', e => {
+            if (!e.target.closest('.menu')) menu.classList.remove('show');
+        });
         // Fade-in cards
         const cards = document.querySelectorAll('.service-card');
         const observer = new IntersectionObserver(entries => {

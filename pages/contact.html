@@ -226,6 +226,12 @@
     </footer>
 
     <script>
+        const btnD = document.getElementById('toggle');
+        const menu = document.getElementById('menu');
+        btnD.addEventListener('click', () => menu.classList.toggle('show'));
+        document.addEventListener('click', e => {
+            if (!e.target.closest('.menu')) menu.classList.remove('show');
+        });
         document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 </body>
