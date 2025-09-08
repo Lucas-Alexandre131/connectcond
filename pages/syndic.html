@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 
 <head>
+
     <script type="module">
         import { getItem } from "/js/cookie/authCookie.js";
 
@@ -14,15 +15,27 @@
             console.log("🔎 Token encontrado:", token);
         }
     </script>
+
+    <script>
+        // Verifica e aplica o tema salvo no localStorage ao carregar a página
+        window.addEventListener("DOMContentLoaded", () => {
+            const temaSalvo = localStorage.getItem("theme");
+            if (temaSalvo === "dark") {
+                document.body.setAttribute("data-theme", "dark");
+            } else {
+                document.body.removeAttribute("data-theme");
+            }
+        });
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel do Síndico</title>
     <link rel="shortcut icon" href="/assets/icons/logotcc.ico" type="image/x-icon">
     <link rel="stylesheet" href="/css/geral/header.css">
     <link rel="stylesheet" href="/css/syndic.css">
-    <link rel="stylesheet" href="/css/geral/dropdown.css">
     <link rel="stylesheet" href="/css/geral/footer.css">
-    
+
 </head>
 
 <body>
@@ -48,17 +61,25 @@
 
             <!-- Botões -->
             <div class="head-end">
-                <div class="dropdown">
-                    <button class="dropbtn"><i class='bx bx-cog'></i> Configurações</button>
-                    <div class="dropdown-content">
-                        <a href="#"><i class='bx bx-user'></i> Gerenciar Moradores</a>
-                        <a href="#"><i class='bx bx-check-circle'></i> Aprovar Solicitações</a>
-                        <a href="#"><i class='bx bx-bell'></i> Enviar Comunicados</a>
-                        <a href="#"><i class='bx bx-line-chart'></i> Relatórios Financeiros</a>
-                        <a href="#"><i class='bx bx-sliders'></i> Configurações do Sistema</a>
+                <div class="menu"><!-- Dropdown visível apenas em 550px -->
+                    <button id="toggle" class="menu-btn">≣</button>
+                    <div id="menu" class="menu-list">
+                        <div class="item">
+                            <div class="icon a">A</div>
+                            <div>
+                                <div class="title">Teste</div>
+                                <div class="subtitle">Capa</div>
+                                <div class="meta">ID #001</div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="icon a">A</div>
+                            <div>
+                                <button class="logout-btn">🚪 Deslogar</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <button class="logout-btn">🚪 Deslogar</button>
             </div>
         </div>
     </header>
@@ -250,6 +271,12 @@
     </footer>
 
     <script>
+        const btnD = document.getElementById('toggle');
+        const menu = document.getElementById('menu');
+        btnD.addEventListener('click', () => menu.classList.toggle('show'));
+        document.addEventListener('click', e => {
+            if (!e.target.closest('.menu')) menu.classList.remove('show');
+        });
         document.getElementById('year').textContent = new Date().getFullYear();
 
         function openModal(id) {
