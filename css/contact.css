@@ -39,7 +39,6 @@ body {
 
 /* Banner */
 .banner-contact {
-  background: url('../images/banner-contact.jpg') center/cover no-repeat;
   height: 300px;
   display: flex;
   justify-content: center;
@@ -99,7 +98,6 @@ body {
 /* Formulário */
 .contact-form {
   flex: 2;
-  min-width: 300px;
   max-width: 600px;
   background: var(--card);
   padding: 30px;
@@ -281,7 +279,11 @@ body {
 
   .contact-info{
     width: 90%;
-  } .contact-form {
-    max-width: 60%;
+  }
+  .contact-form input{
+    max-width: 70%;
+  }
+  .contact-form textarea{
+    max-width: 70%;
   }
 }
