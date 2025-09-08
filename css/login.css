@@ -1,8 +1,11 @@
 /* === Tema Claro (padrão) === */
 :root {
   --bg: #f9fafb;
+  --border-color: #2563eb;
+  --panel-left-bg: hsl(221, 83%, 53%);
   --card: #ffffff;
   --text: #1f2937;
+  --text-h2-color: #1847c9;
   --muted: #6b7280;
   --brand: #2563eb;
   --brand-hover: #1d4ed8;
@@ -15,8 +18,11 @@
 /* === Tema Escuro === */
 [data-theme="dark"] {
   --bg: #111827;
+  --border-color: #2563eb;
+  --panel-left-bg: #2563eb;
   --card: #1f2937;
   --text: #f9fafb;
+  --text-h2-color: #4174ff;
   --muted: #9ca3af;
   --brand: #3b82f6;
   --brand-hover: #60a5fa;
@@ -68,7 +74,7 @@ body {
 
 /* === Painel esquerdo === */
 .left-panel-login {
-  background-color: var(--brand);
+  background-color: var(--panel-left-bg);
   color: #fff;
   padding: 40px 20px;
   display: flex;
@@ -103,9 +109,10 @@ body {
 
 /* Título */
 .right-panel-login h2 {
-  color: var(--brand);
-  font-size: 1.8rem;
-  margin-top: 10px;
+  width: var(--text-h2-weidth);
+  color: var(--text-h2-color);
+  height: var(--text-h2-height);
+  margin: 10px;
 }
 
 /* Inputs */
@@ -158,22 +165,6 @@ body {
 /* Contador de registro escondido */
 .register-count {
   display: none;
-}
-
-.button-login {
-  padding: 8px 16px;
-  border-radius: 8px;
-  border: 1px solid #2980b9;
-  background: transparent;
-  /*color: ;*/
-  text-decoration: none;
-  font-weight: 500;
-  transition: all 0.2s ease;
-}
-
-.button-login:hover {
-  background: #0073e6;
-  color: #fff;
 }
 
 /* === Responsividade === */
