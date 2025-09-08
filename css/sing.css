@@ -1,0 +1,215 @@
+/* === Tema Claro (padrão) === */
+:root {
+  --bg: #f9fafb;
+  --border-color: #2563eb;
+  --panel-left-bg: hsl(221, 83%, 53%);
+  --card: #ffffff;
+  --text: white;
+  --text-h2-color: #1847c9;
+  --muted: #6b7280;
+  --brand: #2563eb;
+  --brand-hover: #1d4ed8;
+  --input-bg: #ffffff;
+  --input-border: #e5e7eb;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --shadow-hover: rgba(0, 0, 0, 0.15);
+}
+
+/* === Tema Escuro === */
+[data-theme="dark"] {
+  --bg: #111827;
+  --border-color: #2563eb;
+  --panel-left-bg: #2563eb;
+  --card: #1f2937;
+  --text: #f9fafb;
+  --text-h2-color: #4174ff;
+  --muted: #9ca3af;
+  --brand: #3b82f6;
+  --brand-hover: #60a5fa;
+  --input-bg: #111827;
+  --input-border: #374151;
+  --shadow: rgba(0, 0, 0, 0.5);
+  --shadow-hover: rgba(0, 0, 0, 0.6);
+}
+
+/* === Base === */
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  height: 100vh;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+.container-sing {
+  display: flex;
+  flex-direction: row;
+  margin: 60px;
+  border-radius: 20px;
+  overflow: hidden;
+  width: auto;
+  height: auto;
+  box-shadow: 0 8px 24px var(--shadow);
+  border: 2px solid var(--border-color);
+  justify-content: center;
+}
+
+.left-panel-sing {
+  background-color: var(--panel-left-bg);
+  color: white;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  gap: 30px;
+}
+
+.right-panel-sing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.register-login {
+  display: none;
+}
+
+.right-panel-sing h2 {
+  width: var(--text-h2-weidth);
+  color: var(--text-h2-color);
+  height: var(--text-h2-height);
+  margin: 10px;
+}
+
+.right-panel-sing .form-sing {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* Inputs */
+.form-input-sing {
+  padding: 10px;
+  border: 1px solid var(--input-border);
+  border-radius: 20px;
+  background: var(--input-bg);
+  box-shadow: 2px 2px 6px var(--shadow);
+  width: 160px;
+  height: 36px;
+  color: var(--text);
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.form-input-sing:focus {
+  outline: none;
+  border-color: var(--brand);
+  box-shadow: 0 0 6px var(--brand);
+  transform: translateY(-1px);
+}
+
+.button-sing {
+  width: auto !important;
+  margin-top: none !important;
+}
+
+/* Links */
+.register-link,
+.forget-link {
+  display: inline-block;
+  margin-top: 10px;
+  font-weight: 500;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.register-link {
+  color: #fff;
+}
+
+.register-link:hover {
+  color: #0073e6;
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .container-sing {
+    padding: 40px 0 !important;
+    /* ajusta o espaçamento interno */
+  }
+
+  .right-panel-sing {
+    width: 300px;
+  }
+}
+
+@media (max-width: 800px) {
+  .container-sing {
+    flex-direction: column;
+    width: 90%;
+    max-width: 350px;
+    height: auto;
+    border: 2px solid var(--border-color);
+    padding: 40px 30px;
+  }
+
+  .left-panel-sing {
+    display: none;
+  }
+
+  .right-panel-sing {
+    margin: 0;
+    width: auto;
+    height: auto;
+    padding: 10px;
+  }
+
+  .right-panel-sing h2 {
+    color: var(--text-h2-color);
+    margin-bottom: 20px;
+  }
+
+  .button-sing {
+    border-radius: 5px !important;
+    width: 100%;
+  }
+
+  .button-sing:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+  }
+
+  .button-sing:active {
+    background-color: rgba(255, 255, 255, 0.35);
+    transform: scale(0.97);
+  }
+
+  .right-panel-sing .form-sing {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .form-input-sing {
+    width: auto;
+    border-radius: 3px;
+    font-size: 14px;
+  }
+
+  .register-login {
+    display: block;
+  }
+}
+
+/* modelos padrão e grandes de smartphones, além de tablets pequenos até 800px */
