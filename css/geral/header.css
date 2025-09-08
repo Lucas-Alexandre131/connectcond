@@ -6,7 +6,7 @@
   --border: #e5e7eb;
   --text: #1f2937;
   --brand: #1d4ed8;
-  --hover:#5b8cff;
+  --hover: #5b8cff;
 }
 
 /* Tema Escuro */
@@ -15,7 +15,7 @@
   --border: #283046;
   --text: #e6e9f2;
   --brand: #5b8cff;
-  --hover:#5b8cff;
+  --hover: #5b8cff;
 }
 
 /* Header Principal */
@@ -122,7 +122,8 @@
 }
 
 .menu {
-  display: flex;
+  position: relative; /* importante para que o dropdown se posicione em relação ao container */
+  display: inline-block;
 }
 
 .menu-btn {
@@ -140,7 +141,8 @@
 
 /* Hover: destaque visual */
 .menu-btn:hover {
-  background: var(--hover);/* usa var se tiver, senão fallback */
+  background: var(--hover);
+  /* usa var se tiver, senão fallback */
   transform: translateY(-1px);
   box-shadow: 0 3px 6px rgba(0, 0, 0, .08);
 }
@@ -158,11 +160,13 @@
   box-shadow: 0 0 0 3px rgba(59, 130, 246, .4);
 }
 
-
 .menu-list {
   position: absolute;
   right: 0;
-  margin: 20px;
+  top: 110%;
+  /* joga a lista um pouco abaixo do botão */
+  margin: 0;
+  /* evita deslocar */
   width: 280px;
   background: var(--bg);
   border-radius: 10px;
