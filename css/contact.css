@@ -116,7 +116,7 @@ body {
 
 .contact-form input,
 .contact-form textarea {
-  width: 100%;
+  width: 90%;
   padding: 12px 15px;
   margin-bottom: 15px;
   border: 1px solid var(--border);
@@ -270,5 +270,18 @@ body {
 
   .contact-info, .contact-form {
     max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-info{
+    width: 90%;
+  } .contact-form {
+    max-width: 60%;
   }
 }
