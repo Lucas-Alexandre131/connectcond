@@ -1,0 +1,770 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Configurações — ConnectCond</title>
+    <style>
+        :root {
+            --bg: #f5f7fb;
+            --panel: #ffffff;
+            --text: #111827;
+            --muted: #6b7280;
+            --accent: #2563eb;
+            --card-bg: #f9fafb;
+            --glass: rgba(0, 0, 0, 0.03);
+            --radius: 14px;
+            --card-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+
+        /* Dark theme */
+        :root[data-theme='dark'] {
+            --bg: #071227;
+            --panel: #0b1220;
+            --text: #e6eef8;
+            --muted: #9aa4b2;
+            --accent: #6ee7b7;
+            --card-bg: #071a2a;
+            --glass: rgba(255, 255, 255, 0.04);
+            --card-shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
+        }
+
+        html,
+        body {
+            height: 100%
+        }
+
+        body {
+            margin: 0;
+            font-family: var(--font-sans);
+            background: var(--bg);
+            color: var(--text);
+            padding: 40px;
+        }
+
+        .wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 28px;
+        }
+
+        .sidebar {
+            background: var(--panel);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .brand {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 12px
+        }
+
+        .logo {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: grid;
+            place-items: center;
+            background: var(--accent);
+            color: #fff;
+            font-weight: 700
+        }
+
+        h1 {
+            font-size: 16px;
+            margin: 0
+        }
+
+        p.sub {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        .nav {
+            margin-top: 20px
+        }
+
+        .nav button {
+            width: 100%;
+            display: block;
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 0;
+            background: transparent;
+            color: inherit;
+            cursor: pointer;
+            transition: .12s;
+            text-align: left
+        }
+
+        .nav button:hover {
+            background: var(--glass)
+        }
+
+        .nav button.active {
+            background: rgba(37, 99, 235, 0.08);
+            font-weight: 600;
+            color: var(--accent)
+        }
+
+        .panel {
+            background: var(--panel);
+            border-radius: var(--radius);
+            padding: 26px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .panel h2 {
+            margin: 0;
+            font-size: 20px
+        }
+
+        .description {
+            color: var(--muted);
+            font-size: 14px
+        }
+
+        .status {
+            margin-top: 8px;
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        .grid {
+            display: grid;
+            gap: 16px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            margin-top: 18px
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 0, 0, 0.04)
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px
+        }
+
+        .muted {
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px
+        }
+
+        .toggle {
+            width: 50px;
+            height: 26px;
+            background: #d1d5db;
+            border-radius: 999px;
+            padding: 3px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: .12s
+        }
+
+        .knob {
+            width: 20px;
+            height: 20px;
+            border-radius: 999px;
+            background: #fff;
+            transform: translateX(0);
+            transition: .12s
+        }
+
+        .toggle.on {
+            background: var(--accent)
+        }
+
+        .toggle.on .knob {
+            transform: translateX(24px)
+        }
+
+        .btn {
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: 0;
+            cursor: pointer;
+            font-weight: 600
+        }
+
+        .btn.primary {
+            background: var(--accent);
+            color: #04212a
+        }
+
+        .btn.ghost {
+            background: transparent;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            color: var(--muted)
+        }
+
+        footer {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: var(--muted)
+        }
+
+        @media (max-width:960px) {
+            .wrap {
+                grid-template-columns: 1fr;
+                padding: 20px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="logo">CC</div>
+                <div>
+                    <h1>ConnectCond</h1>
+                    <p class="sub" id="subTitulo">Painel de Configurações</p>
+                </div>
+            </div>
+
+            <div class="nav">
+                <button class="active" data-tab="geral" id="tabGeral">Geral</button>
+                <button data-tab="notificacoes" id="tabNotificacoes">Notificações</button>
+                <button data-tab="unidade" id="tabUnidade">Minha Unidade</button>
+                <button data-tab="seguranca" id="tabSeguranca">Segurança</button>
+                <button data-tab="privacidade" id="tabPrivacidade">Privacidade</button>
+            </div>
+        </aside>
+
+        <main class="panel">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:16px;">
+                <div>
+                    <h2 id="title">Geral</h2>
+                    <div class="description" id="descricaoPainel">Gerencie suas preferências dentro do ConnectCond.
+                    </div>
+                    <div id="status" class="status">Nenhuma mudança</div>
+                </div>
+                <div style="display:flex; gap:8px; align-items:center;">
+                    <!-- quick controls -->
+                    <select id="idioma" title="Idioma"
+                        style="padding:8px; border-radius:8px; border:1px solid rgba(0,0,0,0.06); background:transparent;">
+                        <option value="pt">Português (Brasil)</option>
+                        <option value="en">English (US)</option>
+                        <option value="es">Español</option>
+                    </select>
+                </div>
+            </div>
+
+            <section id="geral" class="tabcontent">
+                <div class="grid">
+                    <div class="card">
+                        <label id="labelIdioma">Idioma</label>
+                        <!-- o select 'idioma' já está acima; deixamos este duplicado para acessibilidade -->
+                        <select id="idioma2"
+                            style="width:100%; padding:8px; border-radius:8px; border:1px solid rgba(0,0,0,0.06)">
+                            <option value="pt">Português (Brasil)</option>
+                            <option value="en">English (US)</option>
+                            <option value="es">Español</option>
+                        </select>
+                    </div>
+
+                    <div class="card">
+                        <label id="labelDarkMode">Modo escuro</label>
+                        <div class="row">
+                            <div class="muted" id="darkDesc">Ativar tema escuro</div>
+                            <div class="toggle" id="darkToggle" role="switch" aria-checked="false">
+                                <div class="knob"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="notificacoes" class="tabcontent" style="display:none">
+                <div class="grid">
+                    <div class="card">
+                        <label id="labelAssembleias">Assembleias</label>
+                        <div class="row">
+                            <div class="muted" id="descAssembleias">Avisar sobre convocações</div>
+                            <div class="toggle" data-key="assembleias">
+                                <div class="knob"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <label id="labelBoletos">Boletos</label>
+                        <div class="row">
+                            <div class="muted" id="descBoletos">Lembrete de vencimento</div>
+                            <div class="toggle" data-key="boletos">
+                                <div class="knob"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <label id="labelComunicados">Comunicados</label>
+                        <div class="row">
+                            <div class="muted" id="descComunicados">Receber alertas gerais</div>
+                            <div class="toggle" data-key="comunicados">
+                                <div class="knob"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="unidade" class="tabcontent" style="display:none">
+                <div class="grid">
+                    <div class="card">
+                        <label id="labelApartamento">Apartamento</label>
+                        <input id="apartamento" placeholder="Ex: Bloco A - 203"
+                            style="width:100%; padding:8px; border-radius:8px; border:1px solid rgba(0,0,0,0.06)">
+                    </div>
+                    <div class="card">
+                        <label id="labelVagas">Vagas de garagem</label>
+                        <input id="vagas" placeholder="Ex: 12 e 13"
+                            style="width:100%; padding:8px; border-radius:8px; border:1px solid rgba(0,0,0,0.06)">
+                    </div>
+                </div>
+            </section>
+
+            <section id="seguranca" class="tabcontent" style="display:none">
+                <div class="grid">
+                    <div class="card">
+                        <label id="labelSenha">Trocar senha</label>
+                        <div class="row">
+                            <input id="senha" type="password" placeholder="Nova senha"
+                                style="flex:1; padding:8px; border-radius:8px; border:1px solid rgba(0,0,0,0.06)">
+                            <button class="btn ghost" id="btnAlterarSenha">Alterar</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <label id="label2fa">Autenticação 2FA</label>
+                        <div class="row">
+                            <div class="muted" id="desc2fa">Proteção extra</div>
+                            <div class="toggle" data-key="2fa">
+                                <div class="knob"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="privacidade" class="tabcontent" style="display:none">
+                <div class="grid">
+                    <div class="card">
+                        <label id="labelCompartilhar">Compartilhar dados</label>
+                        <div class="row">
+                            <div class="muted" id="descCompartilhar">Mostrar telefone para vizinhos</div>
+                            <div class="toggle" data-key="compartilharDados">
+                                <div class="knob"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <label id="labelEmail">Exibir email</label>
+                        <div class="row">
+                            <div class="muted" id="descEmail">Permitir que síndico veja</div>
+                            <div class="toggle" data-key="exibirEmail">
+                                <div class="knob"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer>
+                <div id="footerText">Configurações locais — não afeta outros moradores</div>
+                <div style="display:flex; gap:8px">
+                    <button class="btn ghost" id="reset">Resetar</button>
+                    <button class="btn primary" id="save">Salvar</button>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        /***** Traduções (labels, placeholders, status) *****/
+        const traducoes = {
+            pt: {
+                subTitulo: "Painel de Configurações",
+                geral: "Geral",
+                notificacoes: "Notificações",
+                unidade: "Minha Unidade",
+                seguranca: "Segurança",
+                privacidade: "Privacidade",
+                descricaoPainel: "Gerencie suas preferências dentro do ConnectCond.",
+                labelIdioma: "Idioma",
+                labelDarkMode: "Modo escuro",
+                darkDesc: "Ativar tema escuro",
+                labelAssembleias: "Assembleias",
+                descAssembleias: "Avisar sobre convocações",
+                labelBoletos: "Boletos",
+                descBoletos: "Lembrete de vencimento",
+                labelComunicados: "Comunicados",
+                descComunicados: "Receber alertas gerais",
+                labelApartamento: "Apartamento",
+                placeholderApartamento: "Ex: Bloco A - 203",
+                labelVagas: "Vagas de garagem",
+                placeholderVagas: "Ex: 12 e 13",
+                labelSenha: "Trocar senha",
+                placeholderSenha: "Nova senha",
+                btnAlterarSenha: "Alterar",
+                label2fa: "Autenticação 2FA",
+                desc2fa: "Proteção extra",
+                labelCompartilhar: "Compartilhar dados",
+                descCompartilhar: "Mostrar telefone para vizinhos",
+                labelEmail: "Exibir email",
+                descEmail: "Permitir que síndico veja",
+                footer: "Configurações locais — não afeta outros moradores",
+                salvar: "Salvar",
+                resetar: "Resetar",
+                noChanges: "Nenhuma mudança",
+                unsavedChanges: "Alterações não salvas",
+                saved: "Configurações salvas",
+                pwdChanged: "Senha alterada",
+                enterPassword: "Digite a nova senha"
+            },
+            en: {
+                subTitulo: "Settings Panel",
+                geral: "General",
+                notificacoes: "Notifications",
+                unidade: "My Unit",
+                seguranca: "Security",
+                privacidade: "Privacy",
+                descricaoPainel: "Manage your preferences inside ConnectCond.",
+                labelIdioma: "Language",
+                labelDarkMode: "Dark Mode",
+                darkDesc: "Enable dark theme",
+                labelAssembleias: "Meetings",
+                descAssembleias: "Notify about convocations",
+                labelBoletos: "Invoices",
+                descBoletos: "Due date reminder",
+                labelComunicados: "Announcements",
+                descComunicados: "Receive general alerts",
+                labelApartamento: "Apartment",
+                placeholderApartamento: "e.g. Block A - 203",
+                labelVagas: "Parking Spots",
+                placeholderVagas: "e.g. 12 and 13",
+                labelSenha: "Change password",
+                placeholderSenha: "New password",
+                btnAlterarSenha: "Change",
+                label2fa: "2FA Authentication",
+                desc2fa: "Extra protection",
+                labelCompartilhar: "Share data",
+                descCompartilhar: "Show phone to neighbors",
+                labelEmail: "Show email",
+                descEmail: "Allow manager to view",
+                footer: "Local settings — does not affect other residents",
+                salvar: "Save",
+                resetar: "Reset",
+                noChanges: "No changes",
+                unsavedChanges: "Unsaved changes",
+                saved: "Settings saved",
+                pwdChanged: "Password changed",
+                enterPassword: "Enter new password"
+            },
+            es: {
+                subTitulo: "Panel de Configuración",
+                geral: "General",
+                notificacoes: "Notificaciones",
+                unidade: "Mi Unidad",
+                seguranca: "Seguridad",
+                privacidade: "Privacidad",
+                descricaoPainel: "Administra tus preferencias dentro de ConnectCond.",
+                labelIdioma: "Idioma",
+                labelDarkMode: "Modo oscuro",
+                darkDesc: "Activar tema oscuro",
+                labelAssembleias: "Asambleas",
+                descAssembleias: "Avisar sobre convocatorias",
+                labelBoletos: "Facturas",
+                descBoletos: "Recordatorio de vencimiento",
+                labelComunicados: "Comunicados",
+                descComunicados: "Recibir alertas generales",
+                labelApartamento: "Apartamento",
+                placeholderApartamento: "Ej: Bloque A - 203",
+                labelVagas: "Plazas de aparcamiento",
+                placeholderVagas: "Ej: 12 y 13",
+                labelSenha: "Cambiar contraseña",
+                placeholderSenha: "Nueva contraseña",
+                btnAlterarSenha: "Cambiar",
+                label2fa: "Autenticación 2FA",
+                desc2fa: "Protección adicional",
+                labelCompartilhar: "Compartir datos",
+                descCompartilhar: "Mostrar teléfono a los vecinos",
+                labelEmail: "Mostrar correo electrónico",
+                descEmail: "Permitir que el administrador lo vea",
+                footer: "Configuración local — no afecta a otros residentes",
+                salvar: "Guardar",
+                resetar: "Restablecer",
+                noChanges: "Ningún cambio",
+                unsavedChanges: "Cambios no guardados",
+                saved: "Configuración guardada",
+                pwdChanged: "Contraseña cambiada",
+                enterPassword: "Ingrese nueva contraseña"
+            }
+        };
+
+        /* estado atual do idioma */
+        let currentLang = localStorage.getItem('connectCondLang') || 'pt';
+
+        /* aplica idioma nas labels / placeholders / botões */
+        function aplicarIdioma(lang) {
+            if (!traducoes[lang]) lang = 'pt';
+            currentLang = lang;
+            const t = traducoes[lang];
+
+            // textos visíveis
+            document.getElementById("subTitulo").textContent = t.subTitulo;
+            document.getElementById("tabGeral").textContent = t.geral;
+            document.getElementById("tabNotificacoes").textContent = t.notificacoes;
+            document.getElementById("tabUnidade").textContent = t.unidade;
+            document.getElementById("tabSeguranca").textContent = t.seguranca;
+            document.getElementById("tabPrivacidade").textContent = t.privacidade;
+            document.getElementById("title").textContent = t.geral;
+            document.getElementById("descricaoPainel").textContent = t.descricaoPainel;
+            document.getElementById("labelIdioma").textContent = t.labelIdioma;
+            document.getElementById("labelDarkMode").textContent = t.labelDarkMode;
+            document.getElementById("darkDesc").textContent = t.darkDesc;
+            document.getElementById("labelAssembleias").textContent = t.labelAssembleias;
+            document.getElementById("descAssembleias").textContent = t.descAssembleias;
+            document.getElementById("labelBoletos").textContent = t.labelBoletos;
+            document.getElementById("descBoletos").textContent = t.descBoletos;
+            document.getElementById("labelComunicados").textContent = t.labelComunicados;
+            document.getElementById("descComunicados").textContent = t.descComunicados;
+            document.getElementById("labelApartamento").textContent = t.labelApartamento;
+            document.getElementById("labelVagas").textContent = t.labelVagas;
+            document.getElementById("labelSenha").textContent = t.labelSenha;
+            document.getElementById("btnAlterarSenha").textContent = t.btnAlterarSenha;
+            document.getElementById("label2fa").textContent = t.label2fa;
+            document.getElementById("desc2fa").textContent = t.desc2fa;
+            document.getElementById("labelCompartilhar").textContent = t.labelCompartilhar;
+            document.getElementById("descCompartilhar").textContent = t.descCompartilhar;
+            document.getElementById("labelEmail").textContent = t.labelEmail;
+            document.getElementById("descEmail").textContent = t.descEmail;
+            document.getElementById("footerText").textContent = t.footer;
+            document.getElementById("save").textContent = t.salvar;
+            document.getElementById("reset").textContent = t.resetar;
+
+            // placeholders
+            document.getElementById("apartamento").placeholder = t.placeholderApartamento || '';
+            document.getElementById("vagas").placeholder = t.placeholderVagas || '';
+            document.getElementById("senha").placeholder = t.placeholderSenha || '';
+
+            // selects (existem dois selects de idioma para acessibilidade)
+            const idiomaSelects = [document.getElementById('idioma'), document.getElementById('idioma2')];
+            idiomaSelects.forEach(s => {
+                if (s) s.value = lang;
+            });
+
+            // status inicial
+            document.getElementById('status').textContent = traducoes[currentLang].noChanges;
+        }
+
+        /* Mostrar status temporário (usa traduções) */
+        let statusTimer = null;
+        function statusShow(keyOrText, timeout = 2200) {
+            const t = traducoes[currentLang] && traducoes[currentLang][keyOrText] ? traducoes[currentLang][keyOrText] : keyOrText;
+            const el = document.getElementById('status');
+            el.textContent = t;
+            if (statusTimer) clearTimeout(statusTimer);
+            statusTimer = setTimeout(() => { el.textContent = traducoes[currentLang].noChanges; statusTimer = null; }, timeout);
+        }
+
+        /***** Manipulação de abas *****/
+        const tabs = document.querySelectorAll('.nav button');
+        const contents = document.querySelectorAll('.tabcontent');
+
+        function setActive(tab) {
+            tabs.forEach(b => b.classList.remove('active'));
+            tab.classList.add('active');
+            contents.forEach(c => c.style.display = 'none');
+            document.getElementById(tab.dataset.tab).style.display = 'block';
+            document.getElementById('title').textContent = tab.textContent;
+        }
+        tabs.forEach(t => t.addEventListener('click', () => setActive(t)));
+
+        /* Inicializa a aba ativa (aquela com class active no HTML) */
+        (function initTab() {
+            const defaultTab = document.querySelector('.nav button.active') || tabs[0];
+            setActive(defaultTab);
+        })();
+
+        /***** toggles *****/
+        function initToggles() {
+            document.querySelectorAll('.toggle').forEach(t => {
+                t.addEventListener('click', () => {
+                    t.classList.toggle('on');
+                    t.setAttribute('aria-checked', t.classList.contains('on') ? 'true' : 'false');
+                    statusShow('unsavedChanges');
+                });
+            });
+        }
+
+        /***** salvar / carregar / reset no LocalStorage *****/
+        function saveConfig() {
+            // pegar toggles com data-key
+            const toggles = {};
+            document.querySelectorAll('.toggle[data-key]').forEach(el => {
+                toggles[el.dataset.key] = el.classList.contains('on');
+            });
+
+            const config = {
+                idioma: document.getElementById('idioma').value || currentLang,
+                darkMode: document.getElementById('darkToggle').classList.contains('on'),
+                toggles,
+                apartamento: document.getElementById('apartamento').value || '',
+                vagas: document.getElementById('vagas').value || ''
+            };
+            localStorage.setItem('connectCondConfig', JSON.stringify(config));
+            localStorage.setItem('connectCondLang', config.idioma);
+            aplicarTema(config.darkMode);
+            statusShow('saved');
+        }
+
+        function loadConfig() {
+            // language first (separado ou dentro do config)
+            const langSaved = localStorage.getItem('connectCondLang');
+            let config = null;
+            try {
+                config = JSON.parse(localStorage.getItem('connectCondConfig'));
+            } catch (e) { }
+            if (config && config.idioma) currentLang = config.idioma;
+            else if (langSaved) currentLang = langSaved;
+
+            // aplicar idioma
+            aplicarIdioma(currentLang);
+
+            // aplicar selects
+            const idiomaSelects = [document.getElementById('idioma'), document.getElementById('idioma2')];
+            idiomaSelects.forEach(s => { if (s) s.value = currentLang; });
+
+            // se não houver config salvo, nada mais a fazer
+            if (!config) return;
+
+            // toggles
+            if (config.darkMode) document.getElementById('darkToggle').classList.add('on');
+            if (config.toggles) {
+                Object.keys(config.toggles).forEach(k => {
+                    const el = document.querySelector(`.toggle[data-key="${k}"]`);
+                    if (el) {
+                        if (config.toggles[k]) el.classList.add('on'); else el.classList.remove('on');
+                        el.setAttribute('aria-checked', config.toggles[k] ? 'true' : 'false');
+                    }
+                });
+            }
+
+            // inputs
+            document.getElementById('apartamento').value = config.apartamento || '';
+            document.getElementById('vagas').value = config.vagas || '';
+
+            // aplicar tema se necessário
+            aplicarTema(!!config.darkMode);
+        }
+
+        function resetConfig() {
+            if (confirm(traducoes[currentLang].resetar + '?')) {
+                localStorage.removeItem('connectCondConfig');
+                localStorage.removeItem('connectCondLang');
+                location.reload();
+            }
+        }
+
+        /***** theme helper *****/
+        function aplicarTema(on) {
+            if (on) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                document.getElementById('darkToggle').classList.add('on');
+                document.getElementById('darkToggle').setAttribute('aria-checked', 'true');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+                document.getElementById('darkToggle').classList.remove('on');
+                document.getElementById('darkToggle').setAttribute('aria-checked', 'false');
+            }
+        }
+
+        /***** eventos UI *****/
+        document.addEventListener('DOMContentLoaded', () => {
+            // inicializa toggles
+            initToggles();
+
+            // load config
+            loadConfig();
+
+            // idioma selects (existem dois para acessibilidade)
+            [document.getElementById('idioma'), document.getElementById('idioma2')].forEach(s => {
+                if (!s) return;
+                s.addEventListener('change', (e) => {
+                    const lang = e.target.value;
+                    aplicarIdioma(lang);
+                    // manter ambos selects com mesmo valor
+                    [document.getElementById('idioma'), document.getElementById('idioma2')].forEach(x => { if (x) x.value = lang; });
+                    localStorage.setItem('connectCondLang', lang);
+                    statusShow('unsavedChanges');
+                });
+            });
+
+            // save / reset
+            document.getElementById('save').addEventListener('click', saveConfig);
+            document.getElementById('reset').addEventListener('click', resetConfig);
+
+            // change password (simulação)
+            document.getElementById('btnAlterarSenha').addEventListener('click', () => {
+                const pwd = document.getElementById('senha').value.trim();
+                if (!pwd) {
+                    statusShow('enterPassword');
+                    return;
+                }
+                // Aqui você chamaria seu endpoint de mudança de senha (API).
+                // Simulação:
+                document.getElementById('senha').value = '';
+                statusShow('pwdChanged');
+            });
+
+            // dark toggle já tratado em initToggles (aplicar tema no clique)
+            document.getElementById('darkToggle').addEventListener('click', () => {
+                const isOn = document.getElementById('darkToggle').classList.contains('on');
+                aplicarTema(isOn);
+                statusShow('unsavedChanges');
+            });
+
+            // quando qualquer input/textarea mudar, sinaliza não salvo
+            ['input', 'textarea', 'select'].forEach(evt => {
+                document.querySelectorAll('input, textarea, select').forEach(el => {
+                    el.addEventListener('input', () => statusShow('unsavedChanges'));
+                });
+            });
+
+            // acessibilidade: trocar abas com teclado
+            tabs.forEach((t, i) => t.addEventListener('keydown', e => {
+                if (e.key === 'ArrowDown') { e.preventDefault(); tabs[(i + 1) % tabs.length].focus(); }
+                if (e.key === 'ArrowUp') { e.preventDefault(); tabs[(i - 1 + tabs.length) % tabs.length].focus(); }
+            }));
+        });
+    </script>
+</body>
+
+</html>
