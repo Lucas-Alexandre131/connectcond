@@ -1,11 +1,10 @@
-/* Reset básico */
+/* padrão body */
 body {
-    background: #f4f6f9;
-    height: auto;
-    color: #333;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    display: flex;
-    flex-direction: column;
+  line-height: 1.6;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* Conteúdo principal */
