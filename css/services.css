@@ -14,6 +14,7 @@
     --color-chat-bg: #0073e6;
     --color-chat-box-bg: #fff;
     --color-chat-text: #fff;
+    --how-it-works: #e6f7ff;
 }
 
 /* Tema Escuro */
@@ -32,6 +33,7 @@
     --color-chat-bg: #1e88e5;
     --color-chat-box-bg: #1f1f1f;
     --color-chat-text: #fff;
+    --how-it-works: transparent;
 }
 
 body {
@@ -201,7 +203,7 @@ body {
 /* Como Funciona */
 .how-it-works {
     padding: 80px 20px;
-    background: #e6f7ff;
+    background: var(--how-it-works);
 }
 
 .how-it-works h2 {
