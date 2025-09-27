@@ -36,6 +36,19 @@
     <link rel="stylesheet" href="/css/syndic.css">
     <link rel="stylesheet" href="/css/geral/footer.css">
 
+    <script type="module">
+        import { setItem } from "/js/cookie/authCookie.js";
+
+        window.logout = function () {
+            try {
+                setItem("authToken", "");
+                window.location.replace("/index.html");
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    </script>
+
 </head>
 
 <body>
@@ -68,26 +81,7 @@
 
                     <!-- Lista do dropdown -->
                     <div id="menu" class="menu-list">
-                        <a href="/index.html" class="item">
-                            <span class="icon">🏠</span>
-                            <span class="title">Início</span>
-                        </a>
-                        <a href="/pages/about.html" class="item">
-                            <span class="icon">ℹ️</span>
-                            <span class="title">Sobre</span>
-                        </a>
-                        <a href="/pages/services.html" class="item">
-                            <span class="icon">🛠️</span>
-                            <span class="title">Serviços</span>
-                        </a>
-                        <a href="/pages/contact.html" class="item">
-                            <span class="icon">📞</span>
-                            <span class="title">Contato</span>
-                        </a>
-                        <a href="/pages/settings.html" class="item">
-                            <span class="icon">⚙️</span>
-                            <span class="title">Configurações</span>
-                        </a>
+                        <button onclick="logout()"> Deslogar</button>
                     </div>
                 </div>
             </div>
