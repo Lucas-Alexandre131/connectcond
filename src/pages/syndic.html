@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <script type="module">
+        import { getItem } from "/js/cookie/authCookie.js";
+
+        const token = getItem("authToken");
+
+        if (!token) {
+            // Redireciona imediatamente se não houver token
+            window.location.replace("/pages/login.html");
+        } else {
+            console.log("🔎 Token encontrado:", token);
+        }
+    </script>
+
+    <script>
+        // Verifica e aplica o tema salvo no localStorage ao carregar a página
+        window.addEventListener("DOMContentLoaded", () => {
+            const temaSalvo = localStorage.getItem("theme");
+            if (temaSalvo === "dark") {
+                document.body.setAttribute("data-theme", "dark");
+            } else {
+                document.body.removeAttribute("data-theme");
+            }
+        });
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Síndico</title>
+    <link rel="shortcut icon" href="/assets/icons/logotcc.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/geral/header.css">
+    <link rel="stylesheet" href="/css/syndic.css">
+    <link rel="stylesheet" href="/css/geral/footer.css">
+
+    <script type="module">
+        import { setItem } from "/js/cookie/authCookie.js";
+
+        window.logout = function () {
+            try {
+                setItem("authToken", "");
+                window.location.replace("/index.html");
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+    <header class="mast-header">
+        <div class="container-masthead">
+            <!-- Logo -->
+            <div class="head-start">
+                <a href="/index.html" class="logo">
+                    <img src="/assets/images/logotcc-50px.png" alt="Logo TCC">
+                </a>
+            </div>
+
+            <!-- Centro (links ou título) -->
+            <div class="head-center">
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="/index.html">Início</a></li>
+                        <li><a href="/pages/aboutUs.html">Sobre</a></li>
+                        <li><a href="/pages/contact.html">Contato</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Botões -->
+            <div class="head-end">
+                <!-- Dropdown no Header -->
+                <div class="menu">
+                    <!-- Botão do menu -->
+                    <button id="toggle" class="menu-btn" aria-label="Menu">≣</button>
+
+                    <!-- Lista do dropdown -->
+                    <div id="menu" class="menu-list">
+                        <button onclick="logout()"> Deslogar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="content">
+            <header>
+                <h1>Painel do Síndico</h1>
+            </header>
+
+            <div class="cards">
+                <div class="card">
+                    <h3>👤 Criar Usuário</h3>
+                    <p>Adicione novos moradores ou administradores.</p>
+                    <button onclick="openModal('userModal')">+ Novo Usuário</button>
+                </div>
+
+                <div class="card">
+                    <h3>📅 Criar Reunião</h3>
+                    <p>Agende reuniões com os condôminos.</p>
+                    <button onclick="openModal('meetingModal')">+ Nova Reunião</button>
+                </div>
+
+                <div class="card">
+                    <h3>🛒 Publicar Produto</h3>
+                    <p>Gerencie o mercado do condomínio.</p>
+                    <button onclick="openModal('marketModal')">+ Novo Produto</button>
+                </div>
+                <div class="card">
+                    <h3>💬 Chat Público</h3>
+                    <p>Converse com os moradores em um chat aberto.</p>
+                    <button onclick="openModal('chatModal')">Entrar no Chat</button>
+                </div>
+
+                <div class="card">
+                    <h3>🐶 Cadastro de Pet</h3>
+                    <p>Cadastre os animais de estimação do condomínio.</p>
+                    <button onclick="openModal('petModal')">+ Novo Pet</button>
+                </div>
+
+                <div class="card">
+                    <h3>🛠️ Solicitar Manutenção</h3>
+                    <p>Registre solicitações de reparos ou melhorias.</p>
+                    <button onclick="openModal('maintenanceModal')">+ Nova Solicitação</button>
+                </div>
+
+                <div class="card">
+                    <h3>💬 Chat Público</h3>
+                    <p>Converse com os moradores em um chat aberto.</p>
+                    <button onclick="openModal('chatModal')">Entrar no Chat</button>
+                </div>
+
+                <div class="card">
+                    <h3>💬 Chat Público</h3>
+                    <p>Converse com os moradores em um chat aberto.</p>
+                    <button onclick="openModal('chatModal')">Entrar no Chat</button>
+                </div>
+
+                <div class="card">
+                    <h3>👤 Criar Usuário</h3>
+                    <p>Adicione novos moradores ou administradores.</p>
+                    <button onclick="openModal('userModal')">+ Novo Usuário</button>
+                </div>
+            </div>
+        </div>
+        <div id="modals">
+            <!-- Modal Criar Usuário -->
+            <div id="userModal" class="modal">
+                <div class="modal-content">
+                    <button class="close" onclick="closeModal('userModal')">X</button>
+                    <h2>Novo Usuário</h2>
+                    <input type="text" placeholder="Nome do Usuário">
+                    <input type="email" placeholder="Email">
+                    <input type="password" placeholder="Senha">
+                    <button>Salvar</button>
+                </div>
+            </div>
+
+            <!-- Modal Criar Reunião -->
+            <div id="meetingModal" class="modal">
+                <div class="modal-content">
+                    <button class="close" onclick="closeModal('meetingModal')">X</button>
+                    <h2>Nova Reunião</h2>
+                    <input type="text" placeholder="Título da Reunião">
+                    <input type="date">
+                    <textarea placeholder="Descrição"></textarea>
+                    <button>Agendar</button>
+                </div>
+            </div>
+
+            <!-- Modal Publicar Produto -->
+            <div id="marketModal" class="modal">
+                <div class="modal-content">
+                    <button class="close" onclick="closeModal('marketModal')">X</button>
+                    <h2>Novo Produto</h2>
+                    <input type="text" placeholder="Nome do Produto">
+                    <input type="number" placeholder="Preço">
+                    <textarea placeholder="Descrição"></textarea>
+                    <button>Publicar</button>
+                </div>
+            </div>
+            <!-- Modal Chat Público -->
+            <div id="chatModal" class="modal">
+                <div class="modal-content">
+                    <button class="close" onclick="closeModal('chatModal')">X</button>
+                    <h2>💬 Chat Público</h2>
+                    <div id="chatBox"
+                        style="height:200px; overflow-y:auto; border:1px solid #ccc; padding:10px; border-radius:8px; margin-bottom:10px;">
+                        <p><b>Síndico:</b> Bem-vindos ao chat do condomínio!</p>
+                    </div>
+                    <input type="text" id="chatInput" placeholder="Digite sua mensagem...">
+                    <button onclick="sendMessage()">Enviar</button>
+                </div>
+            </div>
+
+            <!-- Modal Cadastro de Pet -->
+            <div id="petModal" class="modal">
+                <div class="modal-content">
+                    <button class="close" onclick="closeModal('petModal')">X</button>
+                    <h2>🐶 Cadastro de Pet</h2>
+                    <input type="text" id="petName" placeholder="Nome do Pet">
+                    <input type="text" id="petType" placeholder="Espécie (Cachorro, Gato, etc.)">
+                    <input type="text" id="petBreed" placeholder="Raça">
+                    <button onclick="registerPet()">Cadastrar</button>
+                </div>
+            </div>
+
+            <!-- Modal Solicitação de Manutenção -->
+            <div id="maintenanceModal" class="modal">
+                <div class="modal-content">
+                    <button class="close" onclick="closeModal('maintenanceModal')">X</button>
+                    <h2>🛠️ Solicitar Manutenção</h2>
+                    <input type="text" id="maintenanceTitle" placeholder="Título da Solicitação">
+                    <textarea id="maintenanceDesc" placeholder="Descreva o problema"></textarea>
+                    <button onclick="">Enviar Solicitação</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer__wrapper">
+            <section class="footer__top">
+                <div class="brand">
+                    <div class="brand__logo">
+                        <span class="logo__mark"><span class="logo__spark"></span></span>
+                        <span>ConnectCond</span>
+                    </div>
+                    <p class="brand__text">Gerencie seu condomínio com praticidade e segurança em uma única plataforma.
+                    </p>
+                </div>
+
+                <nav class="col">
+                    <h4>Links Rápidos</h4>
+                    <a href="/index.html">Início</a>
+                    <a href="/pages/about.html">Sobre</a>
+                    <a href="/pages/contact.html">Contato</a>
+                    <a href="/pages/services.html">Serviços</a>
+                </nav>
+
+                <nav class="col">
+                    <h4>Serviços</h4>
+                    <a href="/pages/services.html">Serviços</a>
+                </nav>
+
+                <div class="col">
+                    <h4>Ajuda</h4>
+                    <a href="/pages/contact.html">Entre em contato</a>
+                </div>
+            </section>
+
+            <section class="footer__bottom">
+                <span> <span id="year"></span> ConnectCond</span>
+                <div class="social">
+                    <a class="icon" href="https://github.com/ConnectCondoFrontEnd" aria-label="GitHub">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M15 22v-3.9a3.4 3.4 0 0 0-.9-2.6c3.1-.3 6.3-1.5 6.3-7a5.4 5.4 0 0 0-1.5-3.7a4.9 4.9 0 0 0-.1-3.7s-1.2-.3-3.9 1.5a13.5 13.5 0 0 0-7 0C5.2.8 4 .9 4 .9a4.9 4.9 0 0 0-.1 3.7A5.4 5.4 0 0 0 2.4 8.5c0 5.4 3.3 6.7 6.3 7a3.4 3.4 0 0 0-.9 2.6V22" />
+                        </svg>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </footer>
+
+    <script>
+        const btnD = document.getElementById('toggle');
+        const menu = document.getElementById('menu');
+        btnD.addEventListener('click', () => menu.classList.toggle('show'));
+        document.addEventListener('click', e => {
+            if (!e.target.closest('.menu')) menu.classList.remove('show');
+        });
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+    </script>
+</body>
+
+</html>
