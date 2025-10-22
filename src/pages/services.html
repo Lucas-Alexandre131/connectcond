@@ -19,6 +19,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Serviços do Condomínio</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="shortcut icon" href="/src/assets/icons/logotcc.ico" type="image/x-icon">
     <link rel="stylesheet" href="/src/css/geral/header.css">
     <link rel="stylesheet" href="/src/css/services.css">
     <link rel="stylesheet" href="/src/css/geral/footer.css">
@@ -35,43 +36,31 @@
     </div>
 
     <!-- Serviços -->
-    <section class="services-section" id="services">
+    <section class="services-section">
         <h2>Nossos Serviços</h2>
         <div class="services-grid">
             <div class="service-card" data-service="Cadastro de Moradores">
                 <img src="/src/assets/images/user-male-circle.png" alt="Cadastro de Moradores">
                 <h3>Cadastro de Moradores</h3>
                 <p>Registre moradores e visitantes, garantindo segurança e controle do condomínio.</p>
-                <button>Saiba Mais</button>
             </div>
 
             <div class="service-card" data-service="Agendamento de Reuniões">
                 <img src="/src/assets/images/calendar.png" alt="Agendamento de Reuniões">
                 <h3>Agendamento de Reuniões</h3>
                 <p>Fique por dentro das reuniões e decisões importantes do condomínio.</p>
-                <button>Saiba Mais</button>
             </div>
 
             <div class="service-card" data-service="Mercado do Condomínio">
                 <img src="/src/assets/images/shopping-cart.png" alt="Mercado do Condomínio">
                 <h3>Mercado do Condomínio</h3>
                 <p>Confira produtos e serviços disponíveis dentro do condomínio com rapidez e segurança.</p>
-                <button>Saiba Mais</button>
             </div>
         </div>
     </section>
 
     <!-- Como Funciona -->
     <section class="how-it-works"></section>
-
-    <!-- Modal -->
-    <div class="modal" id="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h3 id="modal-title"></h3>
-            <p id="modal-description">Aqui você verá mais informações detalhadas sobre o serviço selecionado.</p>
-        </div>
-    </div>
 
     <!-- Footer -->
     <footer class="footer"></footer>
@@ -81,6 +70,28 @@
     <script src="/src/services/theme.js"></script>
 
     <!-- Executa a função -->
+    <!-- Ativa animação de entrada dos cards com IntersectionObserver -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const cards = document.querySelectorAll('.service-card');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.2
+            });
+
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+
     <script>
         // Carrega os componentes em sequência e garante que o tema só execute após o header
         loadComponentByClass("mast-header", "/src/components/head.html")
