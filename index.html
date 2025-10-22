@@ -42,13 +42,20 @@
 
   <!-- Carrega a função -->
   <script src="/src/services/loader.js"></script>
+  <script src="src/services/theme.js"></script>
 
   <!-- Executa a função -->
   <script>
-    loadComponentByClass("mast-header", "/src/components/head.html");
+    // Carrega os componentes em sequência e garante que o tema só execute após o header
+    loadComponentByClass("mast-header", "/src/components/head.html")
+      .then(() => {
+        theme();
+      });
+
     loadComponentByClass("hero", "/src/components/geral.html");
     loadComponentByClass("footer", "/src/components/footer.html");
   </script>
+
 </body>
 
 </html>
