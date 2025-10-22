@@ -1,6 +1,13 @@
 function loadComponentByClass(className, filePath) {
-  $(function () {
+  return new Promise((resolve, reject) => {
     const selector = `.${className}`;
-    $(selector).load(`${filePath} ${selector}`);
+    $(selector).load(`${filePath} ${selector}`, function (response, status, xhr) {
+      if (status === "error") {
+        console.error(`Erro ao carregar ${filePath}:`, xhr.status, xhr.statusText);
+        reject(xhr);
+      } else {
+        resolve();
+      }
+    });
   });
 }
