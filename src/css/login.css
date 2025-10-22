@@ -49,13 +49,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 600px;
 }
 
 /* === Container do login === */
 .container-login {
   display: flex;
   flex-direction: row;
-  margin: 60px;
   /* distância do header */
   border-radius: 20px;
   overflow: hidden;
@@ -180,15 +180,15 @@ body {
 
   .input-login,
   .button-login {
-    width: 90%;
-    /* ocupa quase toda a tela */
-    max-width: none;
-    /* remove limite máximo */
+    width: 70% !important;
+    max-width: 220px;
     border-radius: 6px;
-    /* borda mais suave para mobile */
-    font-size: 14px;
-    /* tamanho da fonte menor */
+    font-size: 13px;
+    margin: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
   }
+
 
   .form-login .button-login {
     padding: 10px 0;

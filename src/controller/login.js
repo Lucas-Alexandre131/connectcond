@@ -1,5 +1,6 @@
 import { handleHttpResponse } from "../controller/errors/handleHttpResponse.js";
 import { getItem, setItem } from "../controller/cookie/authCookie.js";
+import { errorMessage } from "../services/errorMessage.js";
 
 let loaderStartTime = null;
 
@@ -75,15 +76,7 @@ $("#buttonLogin").on("click", function (e) {
         })
 
         .fail(function (xhr) {
-            const resultado = handleHttpResponse(null, xhr);
-
-            // Fallback com mensagens mais amigáveis ao usuário
-            let mensagemUsuario = resultado.mensagem;
-            if (xhr.status === 401) mensagemUsuario = "Email ou senha incorretos.";
-            else if (xhr.status === 404) mensagemUsuario = "Servidor indisponível no momento. Tente mais tarde.";
-            else if (xhr.status === 500) mensagemUsuario = "Erro interno do sistema.";
-
-            $(".mensagem-erro").html(`${mensagemUsuario}`);
+            errorMessage(xhr.status);
             esconderLoader();
         });
 });

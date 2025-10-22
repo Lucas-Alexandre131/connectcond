@@ -2,19 +2,6 @@
 <html lang="pt-BR">
 
 <head>
-    <script type="module">
-        import { getItem } from "/src/controller/cookie/authCookie.js";
-
-        const token = getItem("authToken");
-
-        if (!token) {
-            // Redireciona imediatamente se não houver token
-            window.location.replace("/src/pages/login.html");
-        } else {
-            console.log("🔎 Token encontrado:", token);
-        }
-    </script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar</title>
