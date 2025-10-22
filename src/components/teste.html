@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Importar Componente</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="/src/css/geral/header.css">
+  <link rel="stylesheet" href="/src/css/geral/footer.css">
+</head>
+
+<body>
+  <div class="mast-header"></div>
+  <div class="footer"></div>
+
+  <!-- Carrega a função -->
+  <script src="/src/services/loader.js"></script>
+  
+  <!-- Executa a função -->
+  <script>
+    loadComponentByClass("mast-header", "/src/components/head.html");
+    loadComponentByClass("footer", "/src/components/footer.html");
+  </script>
+</body>
+
+</html>
