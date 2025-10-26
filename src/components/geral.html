@@ -124,15 +124,15 @@
             </div>
 
             <div class="card">
-                <h3>📅 Criar Reunião</h3>
-                <p>Agende reuniões com os condôminos.</p>
-                <button onclick="openModal('meetingModal')">+ Nova Reunião</button>
+                <h3>🛒 Publicar produto</h3>
+                <p>Gerencie o mercado do condomínio</p>
+                <button onclick="openModal('marketModal')">+ Novo Produto</button>
             </div>
 
             <div class="card">
-                <h3>🛒 Publicar Produto</h3>
-                <p>Gerencie o mercado do condomínio.</p>
-                <button onclick="openModal('marketModal')">+ Novo Produto</button>
+                <h3>📅 Agendar Reunião</h3>
+                <p>Agende reuniões com os condôminos..</p>
+                <button onclick="openModal('meetingModal')">+ Nova Reunião</button>
             </div>
 
             <div class="card">
@@ -158,11 +158,20 @@
                 <p>Converse com os moradores em um chat aberto.</p>
                 <button onclick="openModal('chatModal')">Entrar no Chat</button>
             </div>
-
             <div class="card">
-                <h3>👤 Criar Usuário</h3>
-                <p>Adicione novos moradores ou administradores.</p>
-                <button onclick="openModal('userModal')">+ Novo Usuário</button>
+                <h3>📘 Regras</h3>
+                <p>Verifique as regras</p>
+                <button onclick="openModal('rulesModal')">Regras</button>
+            </div>
+            <div class="card">
+                <h3>📘 Novas Regras</h3>
+                <p>Crie uma nova regra</p>
+                <button onclick="openModal('newRuleModal')">Nova regra</button>
+            </div>
+            <div class="card">
+                <h3>📘 Deletar regra Regras</h3>
+                <p>Retirar as regras</p>
+                <button onclick="openModal('deleteRuleModal')">Regras</button>
             </div>
         </div>
     </div>
@@ -172,22 +181,51 @@
             <div class="modal-content">
                 <button class="close" onclick="closeModal('userModal')">X</button>
                 <h2>Novo Usuário</h2>
-                <input type="text" placeholder="Nome do Usuário">
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Senha">
-                <button>Salvar</button>
+                <form>
+                    <input id="name" type="text" placeholder="Nome do Usuário">
+                    <input id="email" type="email" placeholder="Email">
+                    <input id="password" type="password" placeholder="Senha">
+                    <input id="picture" type="text" placeholder="Foto">
+                    <input id="cpf" type="text" placeholder="Cpf">
+                    <input id="condo_id" type="text" placeholder="Condomínio">
+                    <input id="role" type="text" placeholder="Role">
+                    <button id="btnCadastro">Salvar</button>
+                </form>
+            </div>
+        </div>
+        <div id="rulesModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('rulesModal')">X</button>
+                <h2>Regras</h2>
+                <div id="rulesList"></div>
+                <button id="buttonRules">Regras</button>
             </div>
         </div>
 
+        <div id="newRuleModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('newRuleModal')">X</button>
+                <h2>Regras</h2>
+                <input id="ruleDescription" type="text" placeholder="Descrição da regra">
+                <button id="buttonAddRule">Nova Regra</button>
+            </div>
+        </div>
+        <div id="deleteRuleModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('deleteRuleModal')">X</button>
+                <h2>Regras</h2>
+                <input id="ruleId" type="text" placeholder="Número da regra">
+                <button id="buttonDeleteRule">Nova Regra</button>
+            </div>
+        </div>
         <!-- Modal Criar Reunião -->
         <div id="meetingModal" class="modal">
             <div class="modal-content">
-                <button class="close" onclick="closeModal('meetingModal')">X</button>
                 <h2>Nova Reunião</h2>
-                <input type="text" placeholder="Título da Reunião">
-                <input type="date">
-                <textarea placeholder="Descrição"></textarea>
-                <button>Agendar</button>
+                <input id="nameMetting" type="text" placeholder="Nome da Reunião">
+                <input id="" type="text" placeholder="cnpj">
+                <button id="">Novo</button>
+                <button class="close" onclick="closeModal('meetingModal')">X</button>
             </div>
         </div>
 
@@ -196,10 +234,9 @@
             <div class="modal-content">
                 <button class="close" onclick="closeModal('marketModal')">X</button>
                 <h2>Novo Produto</h2>
-                <input type="text" placeholder="Nome do Produto">
-                <input type="number" placeholder="Preço">
-                <textarea placeholder="Descrição"></textarea>
-                <button>Publicar</button>
+                <input id="nameProduto" type="text" placeholder="Nome do Produto">
+                <input id="cnpj" type="text" placeholder="cnpj">
+                <button id="buttonMarket">Publicar</button>
             </div>
         </div>
         <!-- Modal Chat Público -->

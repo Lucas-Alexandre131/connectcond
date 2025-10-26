@@ -2,10 +2,19 @@
 <html lang="pt-BR">
 
 <head>
-
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Síndico</title>
+    <link rel="shortcut icon" href="/src/assets/icons/logotcc.ico" type="image/x-icon">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="/src/css/geral/header.css">
+    <link rel="stylesheet" href="/src/css/syndic.css">
+    <link rel="stylesheet" href="/src/css/geral/loader.css">
+    <link rel="stylesheet" href="/src/css/geral/footer.css">
+    <!-- Tema ao carregar -->
     <script>
-        // Verifica e aplica o tema salvo no localStorage ao carregar a página
         window.addEventListener("DOMContentLoaded", () => {
             const temaSalvo = localStorage.getItem("theme");
             if (temaSalvo === "dark") {
@@ -15,50 +24,25 @@
             }
         });
     </script>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel do Síndico</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="shortcut icon" href="/src/assets/icons/logotcc.ico" type="image/x-icon">
-    <link rel="stylesheet" href="/src/css/geral/header.css">
-    <link rel="stylesheet" href="/src/css/syndic.css">
-    <link rel="stylesheet" href="/src/css/geral/footer.css">
 </head>
 
 <body>
-    <header class="master-header"></header>
-    <!-- Container -->
+    <!-- Header dinâmico -->
+    <header class="mast-header"></header>
+
+    <div class="loader"></div>
+
+    <!-- Container onde o formulário será carregado -->
     <div class="container-syndic"></div>
 
-    <!-- Footer -->
+    <!-- Saída de mensagens -->
+    <div id="saida"></div>
+
+    <!-- Footer dinâmico -->
     <footer class="footer"></footer>
-
-    <!-- Carrega a função -->
-    <script src="/src/services/loader.js"></script>
-    <script src="/src/services/theme.js"></script>
-
-    <!-- Executa a função -->
+    
+    <!-- Modais -->
     <script>
-        // Carrega os componentes em sequência e garante que o tema só execute após o header
-        loadComponentByClass("master-header", "/src/components/syndic.html")
-            .then(() => {
-                theme();
-            });
-        loadComponentByClass("hero", "/src/components/geral.html");
-        loadComponentByClass("container-syndic", "/src/components/geral.html");
-        loadComponentByClass("footer", "/src/components/footer.html");
-    </script>
-
-    <script>
-        const btnD = document.getElementById('toggle');
-        const menu = document.getElementById('menu');
-        btnD.addEventListener('click', () => menu.classList.toggle('show'));
-        document.addEventListener('click', e => {
-            if (!e.target.closest('.menu')) menu.classList.remove('show');
-        });
-        document.getElementById('year').textContent = new Date().getFullYear();
-
         function openModal(id) {
             document.getElementById(id).classList.add('active');
         }
@@ -66,6 +50,28 @@
         function closeModal(id) {
             document.getElementById(id).classList.remove('active');
         }
+    </script>
+
+    <!-- Loader e tema -->
+    <script src="/src/services/loader.js"></script>
+    <script src="/src/services/theme.js"></script>
+
+    <!-- Componentes dinâmicos + carregamento do JS correto na ordem -->
+    <script>
+        // Primeiro carrega o header, depois aplica tema
+        loadComponentByClass("mast-header", "/src/components/head.html")
+            .then(() => {
+                theme();
+            });
+        loadComponentByClass("container-syndic", "/src/components/geral.html")
+            .then(() => {
+                import("/src/controller/newUser.js"), import("/src/controller/rules.js",
+                    import("/src/controller/shops.js")
+                );
+            });
+            loadComponentByClass("loader", "/src/components/loader.html")
+        // Carrega o footer
+        loadComponentByClass("footer", "/src/components/footer.html");
     </script>
 </body>
 

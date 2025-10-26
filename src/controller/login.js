@@ -30,7 +30,7 @@ $("#buttonLogin").on("click", function (e) {
 
     $.ajax({
         type: "POST",
-        url: "http://localhost:9000/login",
+        url: "https://connectcond-backend.onrender.com/login",
         contentType: "application/json",
         data: JSON.stringify({ email, password }),
         dataType: "json"
@@ -59,7 +59,7 @@ $("#buttonLogin").on("click", function (e) {
 
                     if (token) {
                         setTimeout(() => {
-                            window.location.href = "/pages/syndic.html";
+                            window.location.href = "/src/pages/syndic.html";
                         }, 2000);
                     }
                 }
