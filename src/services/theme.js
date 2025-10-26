@@ -31,7 +31,7 @@ function theme() {
 
     // Alternar tema com tecla "T"
     document.addEventListener('keydown', e => {
-        if (e.key.toLowerCase() === 't') {
+        if (e.key && e.key.toLowerCase() === 't') {
             const root = document.documentElement;
             const currentTheme = root.dataset.theme === "dark" ? "light" : "dark";
             root.dataset.theme = currentTheme;
