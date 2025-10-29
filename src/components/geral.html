@@ -117,6 +117,7 @@
         </header>
 
         <div class="cards">
+            <!-- Cards Existentes -->
             <div class="card">
                 <h3>👤 Criar Usuário</h3>
                 <p>Adicione novos moradores ou administradores.</p>
@@ -124,59 +125,53 @@
             </div>
 
             <div class="card">
-                <h3>🛒 Publicar produto</h3>
-                <p>Gerencie o mercado do condomínio</p>
-                <button onclick="openModal('marketModal')">+ Novo Produto</button>
-            </div>
-
-            <div class="card">
-                <h3>📅 Agendar Reunião</h3>
-                <p>Agende reuniões com os condôminos..</p>
-                <button onclick="openModal('meetingModal')">+ Nova Reunião</button>
-            </div>
-
-            <div class="card">
-                <h3>🐶 Cadastro de Pet</h3>
-                <p>Cadastre os animais de estimação do condomínio.</p>
-                <button onclick="openModal('petModal')">+ Novo Pet</button>
-            </div>
-
-            <div class="card">
-                <h3>🛠️ Solicitar Manutenção</h3>
-                <p>Registre solicitações de reparos ou melhorias.</p>
-                <button onclick="openModal('maintenanceModal')">+ Nova Solicitação</button>
-            </div>
-
-            <div class="card">
                 <h3>💬 Chat Público</h3>
                 <p>Converse com os moradores em um chat aberto.</p>
-                <button onclick="openModal('chatModal')">Entrar no Chat</button>
+                <button onclick="openModal('chatGeneralModal')">Entrar no Chat</button>
             </div>
 
             <div class="card">
                 <h3>💬 Chat Privado</h3>
-                <p>Converse com os moradores em um chat aberto.</p>
-                <button onclick="openModal('chatModal')">Entrar no Chat</button>
+                <p>Converse de forma reservada com os moradores.</p>
+                <button onclick="openModal('privateChatModal')">Entrar no Chat</button>
             </div>
+
             <div class="card">
                 <h3>📘 Regras</h3>
-                <p>Verifique as regras</p>
+                <p>Verifique as regras do condomínio.</p>
                 <button onclick="openModal('rulesModal')">Regras</button>
             </div>
+
+            <!-- NOVOS CARDS -->
             <div class="card">
-                <h3>📘 Novas Regras</h3>
-                <p>Crie uma nova regra</p>
-                <button onclick="openModal('newRuleModal')">Nova regra</button>
+                <h3>📅 Reservas</h3>
+                <p>Gerencie reservas de áreas comuns.</p>
+                <button onclick="openModal('reservationsModal')">Ver Reservas</button>
             </div>
+
             <div class="card">
-                <h3>📘 Deletar regra Regras</h3>
-                <p>Retirar as regras</p>
-                <button onclick="openModal('deleteRuleModal')">Regras</button>
+                <h3>🐾 Pets</h3>
+                <p>Visualize e gerencie os pets cadastrados.</p>
+                <button onclick="openModal('petsModal')">Ver Pets</button>
             </div>
+
+            <div class="card">
+                <h3>🏛️ Salão de Festas</h3>
+                <p>Gerencie reservas do salão especial.</p>
+                <button onclick="openModal('specialHallModal')">Gerenciar Salão</button>
+            </div>
+
+            <div class="card">
+                <h3>📊 Relatórios</h3>
+                <p>Acompanhe dados e estatísticas do condomínio.</p>
+                <button onclick="openModal('reportsModal')">Ver Relatórios</button>
+            </div>
+
         </div>
     </div>
+
     <div id="modals">
-        <!-- Modal Criar Usuário -->
+        <!-- Modal Usuário -->
         <div id="userModal" class="modal">
             <div class="modal-content">
                 <button class="close" onclick="closeModal('userModal')">X</button>
@@ -187,92 +182,709 @@
                     <input id="password" type="password" placeholder="Senha">
                     <input id="picture" type="text" placeholder="Foto">
                     <input id="cpf" type="text" placeholder="Cpf">
-                    <input id="condo_id" type="text" placeholder="Condomínio">
-                    <input id="role" type="text" placeholder="Role">
+                    <input id="role" type="text" placeholder="Cargo">
                     <button id="btnCadastro">Salvar</button>
                 </form>
             </div>
         </div>
+
+        <!-- Modal Regras -->
         <div id="rulesModal" class="modal">
             <div class="modal-content">
                 <button class="close" onclick="closeModal('rulesModal')">X</button>
                 <h2>Regras</h2>
-                <div id="rulesList"></div>
-                <button id="buttonRules">Regras</button>
+                <button onclick="openModal('ruleCreateModal')">Adicionar Regra</button>
+                <button onclick="openModal('ruleUpdateModal')">Editar Regra</button>
+                <button onclick="openModal('ruleListModal')">Ver Regras</button>
+                <button onclick="openModal('ruleDeleteModal')">Excluir Regra</button>
             </div>
         </div>
 
-        <div id="newRuleModal" class="modal">
-            <div class="modal-content">
-                <button class="close" onclick="closeModal('newRuleModal')">X</button>
-                <h2>Regras</h2>
-                <input id="ruleDescription" type="text" placeholder="Descrição da regra">
-                <button id="buttonAddRule">Nova Regra</button>
-            </div>
-        </div>
-        <div id="deleteRuleModal" class="modal">
-            <div class="modal-content">
-                <button class="close" onclick="closeModal('deleteRuleModal')">X</button>
-                <h2>Regras</h2>
-                <input id="ruleId" type="text" placeholder="Número da regra">
-                <button id="buttonDeleteRule">Nova Regra</button>
-            </div>
-        </div>
-        <!-- Modal Criar Reunião -->
         <div id="meetingModal" class="modal">
             <div class="modal-content">
                 <h2>Nova Reunião</h2>
                 <input id="nameMetting" type="text" placeholder="Nome da Reunião">
-                <input id="" type="text" placeholder="cnpj">
-                <button id="">Novo</button>
+                <input id="cnpjMeeting" type="text" placeholder="CNPJ">
+                <button id="createMeeting">Criar</button>
                 <button class="close" onclick="closeModal('meetingModal')">X</button>
             </div>
         </div>
 
-        <!-- Modal Publicar Produto -->
         <div id="marketModal" class="modal">
             <div class="modal-content">
                 <button class="close" onclick="closeModal('marketModal')">X</button>
                 <h2>Novo Produto</h2>
                 <input id="nameProduto" type="text" placeholder="Nome do Produto">
-                <input id="cnpj" type="text" placeholder="cnpj">
+                <input id="cnpj" type="text" placeholder="CNPJ">
                 <button id="buttonMarket">Publicar</button>
             </div>
         </div>
-        <!-- Modal Chat Público -->
-        <div id="chatModal" class="modal">
-            <div class="modal-content">
-                <button class="close" onclick="closeModal('chatModal')">X</button>
-                <h2>💬 Chat Público</h2>
-                <div id="chatBox"
-                    style="height:200px; overflow-y:auto; border:1px solid #ccc; padding:10px; border-radius:8px; margin-bottom:10px;">
-                    <p><b>Síndico:</b> Bem-vindos ao chat do condomínio!</p>
-                </div>
-                <input type="text" id="chatInput" placeholder="Digite sua mensagem...">
-                <button onclick="sendMessage()">Enviar</button>
-            </div>
-        </div>
 
-        <!-- Modal Cadastro de Pet -->
-        <div id="petModal" class="modal">
-            <div class="modal-content">
-                <button class="close" onclick="closeModal('petModal')">X</button>
-                <h2>🐶 Cadastro de Pet</h2>
-                <input type="text" id="petName" placeholder="Nome do Pet">
-                <input type="text" id="petType" placeholder="Espécie (Cachorro, Gato, etc.)">
-                <input type="text" id="petBreed" placeholder="Raça">
-                <button onclick="registerPet()">Cadastrar</button>
-            </div>
-        </div>
-
-        <!-- Modal Solicitação de Manutenção -->
         <div id="maintenanceModal" class="modal">
             <div class="modal-content">
                 <button class="close" onclick="closeModal('maintenanceModal')">X</button>
                 <h2>🛠️ Solicitar Manutenção</h2>
                 <input type="text" id="maintenanceTitle" placeholder="Título da Solicitação">
                 <textarea id="maintenanceDesc" placeholder="Descreva o problema"></textarea>
-                <button onclick="">Enviar Solicitação</button>
+                <button>Enviar Solicitação</button>
+            </div>
+        </div>
+
+        <div id="reservationsModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('reservationsModal')">X</button>
+                <h2>📅 Reservas</h2>
+                <button onclick="openModal('reservationCreateModal')">Nova Reserva</button>
+                <button onclick="openModal('reservationStatusModal')">Atualizar Status</button>
+                <button onclick="openModal('reservationListModal')">Ver Reservas</button>
+            </div>
+        </div>
+
+        <div id="petsModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('petsModal')">X</button>
+                <h2>🐾 Pets</h2>
+                <button onclick="openModal('petCreateModal')">Cadastrar Pet</button>
+                <button onclick="openModal('petUpdateModal')">Editar Pet</button>
+                <button onclick="openModal('petListModal')">Ver Pets</button>
+                <button onclick="openModal('petDeleteModal')">Remover Pet</button>
+            </div>
+        </div>
+
+        <div id="productsModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('productsModal')">X</button>
+                <h2>🛍️ Produtos</h2>
+                <button onclick="openModal('productCreateModal')">Adicionar Produto</button>
+                <button onclick="openModal('productUpdateModal')">Editar Produto</button>
+                <button onclick="openModal('productListModal')">Ver Produtos</button>
+                <button onclick="openModal('shopProductsModal')">Ver Produtos da Loja</button>
+                <button onclick="openModal('productDeleteModal')">Excluir Produto</button>
+            </div>
+        </div>
+
+        <div id="timesModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('timesModal')">X</button>
+                <h2>⏰ Horários</h2>
+                <button onclick="openModal('timeCreateModal')">Adicionar Horário</button>
+                <button onclick="openModal('timeUpdateModal')">Editar Horário</button>
+                <button onclick="openModal('shopTimesModal')">Ver Horários</button>
+                <button onclick="openModal('timeDeleteModal')">Excluir Horário</button>
+            </div>
+        </div>
+
+        <div id="orderModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('orderModal')">X</button>
+                <h2>🧾 Pedidos</h2>
+                <button onclick="openModal('orderCreateModal')">Novo Pedido</button>
+                <button onclick="openModal('orderUpdateModal')">Atualizar Pedido</button>
+                <button onclick="openModal('myOrdersModal')">Meus Pedidos</button>
+                <button onclick="openModal('shopOrdersModal')">Pedidos da Loja</button>
+            </div>
+        </div>
+
+        <div id="specialHallModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('specialHallModal')">X</button>
+                <h2>🏛️ Salão de Festas</h2>
+                <button onclick="openModal('specialHallCreateModal')">Reservar Salão</button>
+                <button onclick="openModal('specialHallUpdateModal')">Editar Reserva</button>
+                <button onclick="openModal('specialHallListModal')">Ver Reservas</button>
+                <button onclick="openModal('specialHallDeleteModal')">Cancelar Reserva</button>
+            </div>
+        </div>
+
+        <div id="shopsModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('shopsModal')">X</button>
+                <h2>🏪 Lojas</h2>
+                <button onclick="openModal('shopCreateModal')">Cadastrar Loja</button>
+                <button onclick="openModal('shopUpdateModal')">Editar Loja</button>
+                <button onclick="openModal('shopListModal')">Ver Lojas</button>
+                <button onclick="openModal('shopDeleteModal')">Excluir Loja</button>
+            </div>
+        </div>
+
+        <div id="reportsModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('reportsModal')">X</button>
+                <h2>📊 Relatórios</h2>
+                <button onclick="openModal('reportCreateModal')">Novo Relatório</button>
+                <button onclick="openModal('reportUpdateModal')">Editar Relatório</button>
+                <button onclick="openModal('reportListModal')">Ver Relatórios</button>
+            </div>
+        </div>
+
+        <div id="vehiclesModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('vehiclesModal')">X</button>
+                <h2>🚗 Veículos</h2>
+                <button onclick="openModal('vehicleCreateModal')">Cadastrar Veículo</button>
+                <button onclick="openModal('vehicleUpdateModal')">Editar Veículo</button>
+                <button onclick="openModal('vehicleListModal')">Ver Veículos</button>
+                <button onclick="openModal('vehicleDeleteModal')">Excluir Veículo</button>
+            </div>
+        </div>
+
+        <div id="chatGeneralModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('chatGeneralModal')">X</button>
+                <h2>💬 Chat Geral</h2>
+                <div id="chatGeneralBox"
+                    style="height:200px; overflow-y:auto; border:1px solid #ccc; padding:10px; border-radius:8px; margin-bottom:10px;">
+                </div>
+                <input type="text" id="chatGeneralInput" placeholder="Digite sua mensagem...">
+                <button id="btnPostMessages">Carregar Mensagens</button>
+            </div>
+        </div>
+
+
+        <!-- Novos Modais -------------------------------------------------------------------------------------------------------- -->
+
+        <!-- Criar Reserva (POST) -->
+        <div id="reservationCreateModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('reservationCreateModal')">X</button>
+                <h2>📅 Criar Reserva</h2>
+                <input type="number" id="reservationCreateHallId" placeholder="ID da Área Comum" required>
+                <input type="datetime-local" id="reservationPostStartTime" placeholder="Data e Hora Início" required>
+                <input type="datetime-local" id="reservationPostEndTime" placeholder="Data e Hora Fim" required>
+                <button id="buttonPostReservetions">Reservar</button>
+            </div>
+        </div>
+
+        <!-- Gerenciar Status da Reserva (PUT) -->
+        <div id="reservationStatusModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('reservationStatusModal')">X</button>
+                <h2>🔄 Gerenciar Status da Reserva</h2>
+                <label for="reservationStatus">Status da reserva:</label>
+                <select id="reservationStatus" name="status" required>
+                    <option value="">-- Selecione --</option>
+                    <option value="confirmed">Confirmada</option>
+                    <option value="canceled">Cancelada</option>
+                </select>
+                <button id="buttonUpdateReservetions">Atualizar Status</button>
+            </div>
+        </div>
+
+        <!-- Listar Reservas de uma Área Comum (GET) -->
+        <div id="reservationListModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('reservationListModal')">X</button>
+                <h2>📋 Reservas do Salão</h2>
+                <input type="number" id="hallId" placeholder="ID da Área Comum">
+                <div id="reservationListContent"></div>
+                <button id="buttonGetReservitions">Buscar Reservas</button>
+
+            </div>
+        </div>
+
+        <!-- MODAIS PARA LOJAS -->
+
+        <!-- Criar Loja (POST) -->
+        <div id="shopCreateModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('shopCreateModal')">X</button>
+                <h2>🏪 Criar Loja</h2>
+                <input type="text" id="shopCnpj" placeholder="CNPJ (XX.XXX.XXX/XXXX-XX)" required>
+                <input type="text" id="shopName" placeholder="Nome da Loja" required>
+                <button id="buttonPostMarket">Salvar</button>
+            </div>
+        </div>
+
+        <!-- Listar Lojas (GET) -->
+        <div id="shopListModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('shopListModal')">X</button>
+                <h2>📋 Lojas Cadastradas</h2>
+                <div id="shopsListContent"></div>
+                <button id="buttonGetMarket">Buscar Lojas</button>
+            </div>
+        </div>
+
+        <!-- Atualizar Loja (PUT) -->
+        <div id="shopUpdateModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('shopUpdateModal')">X</button>
+                <h2>✏️ Atualizar Loja</h2>
+                <form id="updateShopForm">
+                    <input type="number" id="updateShopId" placeholder="ID da Loja" required>
+                    <input type="text" id="updateShopCnpj" placeholder="Novo CNPJ">
+                    <input type="text" id="updateShopName" placeholder="Novo Nome da Loja">
+                    <button id="buttonUpdateMarket">Atualizar</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Deletar Loja (DELETE) -->
+        <div id="shopDeleteModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('shopDeleteModal')">X</button>
+                <h2>🗑️ Deletar Loja</h2>
+                <input type="number" id="deleteShopId" placeholder="ID da Loja" required>
+                <button id="buttonDeletteMarket">Deletar</button>
+            </div>
+        </div>
+
+        <!-- MODAIS PARA PRODUTOS -->
+
+        <!-- Criar Produto (POST) -->
+        <div id="productCreateModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('productCreateModal')">X</button>
+                <h2>🛍️ Adicionar Produto</h2>
+                <input type="number" id="productShopId" placeholder="ID da Loja" required>
+                <input type="text" id="productName" placeholder="Nome do Produto" required>
+                <input type="text" id="productDescription" placeholder="Descrição">
+                <input type="number" id="productPrice" placeholder="Preço" step="0.01" required>
+                <input type="text" id="productType" placeholder="Tipo / Categoria">
+                <input type="number" id="productQuantity" placeholder="Quantidade" min="0">
+                <button id="buttonPostProducts">Salvar</button>
+            </div>
+        </div>
+
+        <!-- Buscar Produto por ID (GET) -->
+        <div id="productListModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('productListModal')">X</button>
+                <h2>🔍 Buscar Produto</h2>
+                <input type="number" id="getProductId" placeholder="ID do Produto" required>
+                <div id="productList"></div>
+                <button id="buttonGetProducts">Buscar</button>
+            </div>
+        </div>
+
+        <!-- Atualizar Produto (PUT) -->
+        <div id="productUpdateModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('productUpdateModal')">X</button>
+                <h2>✏️ Atualizar Produto</h2>
+                <form id="updateProductForm">
+                    <input type="number" id="updateProductId" placeholder="ID do Produto" required>
+                    <input type="text" id="updateProductName" placeholder="Novo Nome">
+                    <input type="text" id="updateProductDescription" placeholder="Nova Descrição">
+                    <input type="number" id="updateProductPrice" placeholder="Novo Preço" step="0.01">
+                    <input type="text" id="updateProductType" placeholder="Novo Tipo / Categoria">
+                    <input type="number" id="updateProductQuantity" placeholder="Nova Quantidade" min="0">
+                    <button id="buttonUpdateProducts">Atualizar</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Deletar Produto (DELETE) -->
+        <div id="productDeleteModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('productDeleteModal')">X</button>
+                <h2>🗑️ Deletar Produto</h2>
+                <input type="number" id="deleteProductId" placeholder="ID do Produto" required>
+                <button id="buttonDelleteProducts">Deletar</button>
+            </div>
+        </div>
+
+        <!-- Listar Produtos de uma Loja (GET) -->
+        <div id="shopProductsModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('shopProductsModal')">X</button>
+                <h2>📦 Produtos da Loja</h2>
+                <input type="number" id="shopProductsId" placeholder="ID da Loja" required>
+                <div id="shopProductsList"></div>
+                <button id="buttonGetShopProducts">Listar</button>
+            </div>
+        </div>
+
+        <!-- MODAIS PARA HORÁRIOS DE FUNCIONAMENTO -->
+
+        <!-- Criar Horário (POST) -->
+        <div id="timeCreateModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('timeCreateModal')">X</button>
+                <h2>⏰ Criar Horário de Funcionamento</h2>
+                <input type="number" id="timeShopId" placeholder="ID da Loja" required>
+                <select id="firstDay" required>
+                    <option value="">Dia Inicial</option>
+                    <option value="Domingo">Domingo</option>
+                    <option value="Segunda">Segunda</option>
+                    <option value="Terça">Terça</option>
+                    <option value="Quarta">Quarta</option>
+                    <option value="Quinta">Quinta</option>
+                    <option value="Sexta">Sexta</option>
+                    <option value="Sábado">Sábado</option>
+                </select>
+                <select id="endDay" required>
+                    <option value="">Dia Final</option>
+                    <option value="Domingo">Domingo</option>
+                    <option value="Segunda">Segunda</option>
+                    <option value="Terça">Terça</option>
+                    <option value="Quarta">Quarta</option>
+                    <option value="Quinta">Quinta</option>
+                    <option value="Sexta">Sexta</option>
+                    <option value="Sábado">Sábado</option>
+                </select>
+                <input type="time" id="openingTime" placeholder="Abertura" required>
+                <input type="time" id="closingTime" placeholder="Fechamento" required>
+                <button id="buttonPostTimes">Salvar</button>
+            </div>
+        </div>
+
+        <!-- Listar Horários de uma Loja (GET) -->
+        <div id="shopTimesModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('shopTimesModal')">X</button>
+                <h2>📅 Horários da Loja</h2>
+                <input type="number" id="shopTimesId" placeholder="ID da Loja" required>
+                <div id="shopTimesList"></div>
+                <button id="buttonGetShopTimes">Listar</button>
+            </div>
+        </div>
+
+        <!-- Atualizar Horário (PUT) -->
+        <div id="timeUpdateModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('timeUpdateModal')">X</button>
+                <h2>✏️ Atualizar Horário</h2>
+                <input type="number" id="updateTimeId" placeholder="ID do Horário" required>
+                <select id="updateFirstDay">
+                    <option value="">Dia Inicial</option>
+                    <option value="Domingo">Domingo</option>
+                    <option value="Segunda">Segunda</option>
+                    <option value="Terça">Terça</option>
+                    <option value="Quarta">Quarta</option>
+                    <option value="Quinta">Quinta</option>
+                    <option value="Sexta">Sexta</option>
+                    <option value="Sábado">Sábado</option>
+                </select>
+                <select id="updateEndDay">
+                    <option value="">Dia Final</option>
+                    <option value="Domingo">Domingo</option>
+                    <option value="Segunda">Segunda</option>
+                    <option value="Terça">Terça</option>
+                    <option value="Quarta">Quarta</option>
+                    <option value="Quinta">Quinta</option>
+                    <option value="Sexta">Sexta</option>
+                    <option value="Sábado">Sábado</option>
+                </select>
+                <input type="time" id="updateOpeningTime" placeholder="Abertura">
+                <input type="time" id="updateClosingTime" placeholder="Fechamento">
+                <button id="buttonUpdateTimes">Atualizar</button>
+            </div>
+        </div>
+
+        <!-- Deletar Horário (DELETE) -->
+        <div id="timeDeleteModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('timeDeleteModal')">X</button>
+                <h2>🗑️ Deletar Horário</h2>
+                <input type="number" id="deleteTimeId" placeholder="ID do Horário" required>
+                <button id="buttonDeletteTimes">Deletar</button>
+            </div>
+        </div>
+
+        <!-- MODAIS PARA PEDIDOS -->
+
+        <!-- Criar Pedido (POST) -->
+        <div id="orderCreateModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('orderCreateModal')">X</button>
+                <h2>🛒 Criar Pedido</h2>
+                <form id="createOrderForm">
+                    <input type="number" id="orderShopId" placeholder="ID da Loja" required>
+                    <textarea id="orderDescription" placeholder="Descrição (opcional)"></textarea>
+                    <button id="buttonPostOrder">Criar Pedido</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Atualizar Status do Pedido (PUT) -->
+        <div id="orderUpdateModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('orderUpdateModal')">X</button>
+                <h2>✏️ Atualizar Status do Pedido</h2>
+                <input type="number" id="updateOrderId" placeholder="ID do Pedido" required>
+                <select id="updateOrderStatus" required>
+                    <option value="">Selecionar Status</option>
+                    <option value="pendente">Pendente</option>
+                    <option value="retirado">Retirado</option>
+                    <option value="entregue">Entregue</option>
+                </select>
+                <button id="buttonUpdateOrder">Atualizar Status</button>
+            </div>
+        </div>
+
+        <!-- Listar Meus Pedidos (GET) -->
+        <div id="myOrdersModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('myOrdersModal')">X</button>
+                <h2>📋 Meus Pedidos</h2>
+                <div id="myOrdersList">
+                </div><button id="buttonGetOrderMy">Listar Pedidos</button>
+            </div>
+        </div>
+
+        <!-- Listar Pedidos de uma Loja (GET) -->
+        <div id="shopOrdersModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('shopOrdersModal')">X</button>
+                <h2>📋 Pedidos da Loja</h2>
+                <input type="number" id="shopOrdersId" placeholder="ID da Loja" required>
+                <div id="shopOrdersList"></div>
+                <button id="buttonGetOrderShopId">Listar Pedidos</button>
+            </div>
+        </div>
+
+        <!-- MODAIS PARA ÁREAS COMUNS -->
+
+        <!-- Criar Área Comum (POST) -->
+        <div id="specialHallCreateModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('specialHallCreateModal')">X</button>
+                <h2>🏛️ Criar Área Comum</h2>
+                <input type="text" id="specialHallName" placeholder="Nome da Área" maxlength="100" required>
+                <textarea id="specialHallDescription" placeholder="Descrição (opcional)"></textarea>
+                <input type="number" id="specialHallCapacity" placeholder="Capacidade (opcional)" min="1">
+                <label>
+                    <input type="checkbox" id="specialHallAvailable" checked> Disponível
+                </label>
+                <button id="buttonPostSpecial">Criar Área</button>
+            </div>
+        </div>
+
+        <!-- Atualizar Área Comum (PUT) -->
+        <div id="specialHallUpdateModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('specialHallUpdateModal')">X</button>
+                <h2>✏️ Atualizar Área Comum</h2>
+                <input type="number" id="updateSpecialHallId" placeholder="ID da Área" required>
+                <input type="text" id="updateSpecialHallName" placeholder="Nome da Área" maxlength="100">
+                <textarea id="updateSpecialHallDescription" placeholder="Descrição"></textarea>
+                <input type="number" id="updateSpecialHallCapacity" placeholder="Capacidade" min="1">
+                <label>
+                    <input type="checkbox" id="updateSpecialHallAvailable"> Disponível
+                </label>
+                <button id="buttonUpdateSpecial">Atualizar Área</button>
+            </div>
+        </div>
+
+        <!-- Deletar Área Comum (DELETE) -->
+        <div id="specialHallDeleteModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('specialHallDeleteModal')">X</button>
+                <h2>🗑️ Deletar Área Comum</h2>
+                <input type="number" id="deleteSpecialHallId" placeholder="ID da Área" required>
+                <button id="buttonDeletteSpecial">Deletar Área</button>
+            </div>
+        </div>
+
+        <!-- Listar Áreas Comuns (GET) -->
+        <div id="specialHallListModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('specialHallListModal')">X</button>
+                <h2>📋 Áreas Comuns</h2>
+                <div id="specialHallsList"></div>
+                <button id="buttonGetSpecial">Listar Áreas</button>
+            </div>
+        </div>
+
+        <!-- MODAIS PARA PETS -->
+
+        <!-- Criar Pet (POST) -->
+        <div id="petCreateModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('petCreateModal')">X</button>
+                <h2>🐾 Criar Pet</h2>
+                <label>Tipo de Pet:</label>
+                <select id="petType" required>
+                    <option value="">Selecione</option>
+                    <option value="cachorro">Cachorro</option>
+                    <option value="gato">Gato</option>
+                    <option value="outro">Outro</option>
+                </select>
+                <input type="text" id="petName" placeholder="Nome do Pet" maxlength="50" required>
+                <button id="buttonPostPets">Criar Pet</button>
+            </div>
+        </div>
+
+        <!-- Atualizar Pet (PUT) -->
+        <div id="petUpdateModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('petUpdateModal')">X</button>
+                <h2>✏️ Atualizar Pet</h2>
+                <input type="number" id="updatePetId" placeholder="ID do Pet" required>
+                <label>Tipo de Pet:</label>
+                <select id="updatePetType">
+                    <option value="">Selecione</option>
+                    <option value="cachorro">Cachorro</option>
+                    <option value="gato">Gato</option>
+                    <option value="outro">Outro</option>
+                </select>
+                <input type="text" id="updatePetName" placeholder="Nome do Pet" maxlength="50">
+                <button id="buttonUpdatePets">Atualizar Pet</button>
+            </div>
+        </div>
+
+        <!-- Deletar Pet (DELETE) -->
+        <div id="petDeleteModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('petDeleteModal')">X</button>
+                <h2>🗑️ Deletar Pet</h2>
+                <input type="number" id="deletePetId" placeholder="ID do Pet" required>
+                <button id="buttonDelettePets">Deletar Pet</button>
+            </div>
+        </div>
+
+        <!-- Listar Pets do Usuário (GET) -->
+        <div id="petListModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('petListModal')">X</button>
+                <h2>📋 Meus Pets</h2>
+                <div id="petsList"></div>
+                <button id="buttonGetPets">Listar Pets</button>
+            </div>
+        </div>
+
+        <!-- MODAIS PARA VEÍCULOS -->
+
+        <!-- Criar Veículo (POST) -->
+        <div id="vehicleCreateModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('vehicleCreateModal')">X</button>
+                <h2>🚗 Criar Veículo</h2>
+                <input type="text" id="vehiclePlate" placeholder="Placa (7 caracteres)" maxlength="7" required>
+                <input type="text" id="vehicleModel" placeholder="Modelo do Veículo" maxlength="50" required>
+                <input type="text" id="vehicleColor" placeholder="Cor do Veículo" maxlength="20" required>
+                <button id="buttonPostVehicles">Criar Veículo</button>
+            </div>
+        </div>
+
+        <!-- Atualizar Veículo (PUT) -->
+        <div id="vehicleUpdateModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('vehicleUpdateModal')">X</button>
+                <h2>✏️ Atualizar Veículo</h2>
+                <input type="number" id="updateVehicleId" placeholder="ID do Veículo" required>
+                <input type="text" id="updateVehiclePlate" placeholder="Placa (7 caracteres)" maxlength="7">
+                <input type="text" id="updateVehicleModel" placeholder="Modelo do Veículo" maxlength="50">
+                <input type="text" id="updateVehicleColor" placeholder="Cor do Veículo" maxlength="20">
+                <button id="buttonUpdateVehicles">Atualizar Veículo</button>
+            </div>
+        </div>
+
+        <!-- Deletar Veículo (DELETE) -->
+        <div id="vehicleDeleteModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('vehicleDeleteModal')">X</button>
+                <h2>🗑️ Deletar Veículo</h2>
+                <input type="number" id="deleteVehicleId" placeholder="ID do Veículo" required>
+                <button id="buttonDeletteVehicles">Deletar Veículo</button>
+            </div>
+        </div>
+
+        <!-- Listar Veículos do Usuário (GET) -->
+        <div id="vehicleListModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('vehicleListModal')">X</button>
+                <h2>📋 Meus Veículos</h2>
+                <div id="vehiclesList"></div>
+                <button id="buttonGetVehicles">Listar Veículos</button>
+            </div>
+        </div>
+
+        <!-- MODAIS PARA REGRAS -->
+
+        <!-- Criar Regra (POST) -->
+        <div id="ruleCreateModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('ruleCreateModal')">X</button>
+                <h2>📜 Criar Regra</h2>
+                <textarea id="ruleDescription" placeholder="Descrição da Regra" required></textarea>
+                <button id="buttonPostRules">Criar Regra</button>
+            </div>
+        </div>
+
+        <!-- Atualizar Regra (PUT) -->
+        <div id="ruleUpdateModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('ruleUpdateModal')">X</button>
+                <h2>✏️ Atualizar Regra</h2>
+                <form id="updateRuleForm">
+                    <input type="number" id="updateRuleId" placeholder="ID da Regra" required>
+                    <textarea id="updateRuleDescription" placeholder="Nova Descrição da Regra"></textarea>
+                    <button id="buttonUpdateRules">Atualizar Regra</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Deletar Regra (DELETE) -->
+        <div id="ruleDeleteModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('ruleDeleteModal')">X</button>
+                <h2>🗑️ Deletar Regra</h2>
+                <input type="number" id="deleteRuleId" placeholder="ID da Regra" required>
+                <button id="buttonDeletteRules">Deletar Regra</button>
+            </div>
+        </div>
+
+        <!-- Listar Regras (GET) -->
+        <div id="ruleListModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('ruleListModal')">X</button>
+                <h2>📋 Regras do Condomínio</h2>
+                <div id="rulesList"></div>
+                <button id="buttonGetRules">Listar Regras</button>
+            </div>
+        </div>
+
+        <!-- MODAIS PARA CHAMADOS / REPORTS -->
+
+        <!-- Criar Chamado (POST) -->
+        <div id="reportCreateModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('reportCreateModal')">X</button>
+                <h2>🆕 Criar Chamado</h2>
+                <form id="createReportForm">
+                    <input type="text" id="reportTitle" placeholder="Título do Chamado" required>
+                    <textarea id="reportText" placeholder="Descrição do problema (opcional)"></textarea>
+                    <input type="url" id="reportPath" placeholder="URL do arquivo anexo (opcional)">
+                    <button id="buttonPostReports">Criar Chamado</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Atualizar Status do Chamado (PUT) -->
+        <div id="reportUpdateModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('reportUpdateModal')">X</button>
+                <h2>🔄 Atualizar Status do Chamado</h2>
+                <input type="number" id="updateReportId" placeholder="ID do Chamado" required>
+                <input type="text" id="reportTitlePut" placeholder="Title">
+                <input type="text" id="reportTextPut" placeholder="Text">
+                <input type="text" id="pathPut" placeholder="Arquivos externos">
+                <select id="updateReportStatus" required>
+                    <option value="">Selecione o status</option>
+                    <option value="pendente">Pendente</option>
+                    <option value="em_andamento">Em andamento</option>
+                    <option value="resolvido">Resolvido</option>
+                </select>
+                <button id="buttonUpdateReports">Atualizar Status</button>
+            </div>
+        </div>
+
+        <!-- Listar Chamados (GET) -->
+        <div id="reportListModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('reportListModal')">X</button>
+                <h2>📋 Chamados do Condomínio</h2>
+                <select id="filterReportStatus">
+                    <option value="">Todos</option>
+                    <option value="pendente">Pendente</option>
+                    <option value="em_andamento">Em andamento</option>
+                    <option value="resolvido">Resolvido</option>
+                </select>
+                <div id="reportsList" style="height:200px; overflow-y:auto; border:1px solid #ccc; padding:10px; border-radius:8px; margin-bottom:10px;"></div>
+                <button id="buttonGetReports">Filtrar / Listar Chamados</button>
+
             </div>
         </div>
     </div>

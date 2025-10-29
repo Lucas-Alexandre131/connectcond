@@ -24,14 +24,17 @@ function esconderLoader() {
 
 $("#buttonPostReservetions").on("click", function (e) {
     const token = getItem("authToken");
-    const id = $("#idProduto").val();
-    const horario = {id};
+    const special_hall_id = Number($("#reservationCreateHallId").val());
+    const start_time = String($("#reservationPostStartTime").val());
+    const end_time = String($("#reservationEndTime").val());
+    const horario = { special_hall_id, start_time, end_time };
+    console.log("Payload enviado:", horario);
     e.preventDefault();
     mostrarLoader();
 
     $.ajax({
-        type: "GET",
-        url: `https://connectcond-backend.onrender.com/reservetions`,
+        type: "POST",
+        url: `https://connectcond-backend.onrender.com/reservations`,
         contentType: "application/json",
         headers: {
             Authorization: `Bearer ${token}`
@@ -41,7 +44,7 @@ $("#buttonPostReservetions").on("click", function (e) {
     })
         .done(function (res) {
             try {
-                const resultado = handleHttpResponse(res);
+                const resultado = handleHttpResponse(res.special_hall_id);
 
                 if (!res.token) {
                     $("#saida").html(`
@@ -73,24 +76,19 @@ $("#buttonPostReservetions").on("click", function (e) {
 
 $("#buttonUpdateReservetions").on("click", function (e) {
     const token = getItem("authToken");
-    const id = $("#idProduto").val();
-    const name = $("#nameProduto").val();
-    const descreption = $("#descricaoProduto").val();
-    const price = $("#precoProduto").val();
-    const product_type = $("#nameProduto").val();
-    const quantiy =$("#quantidadeProduto").val();
-    const horario = { name, cnpj, descreption, price, product_type, quantiy}
+    const special_hall_id = Number($("#statusReservationHallId").val());
+    const status = $("#reservationStatus").val();
     e.preventDefault();
     mostrarLoader();
 
     $.ajax({
         type: "PUT",
-        url: `https://connectcond-backend.onrender.com/reservetions/${id}/status`,
+        url: `https://connectcond-backend.onrender.com/reservations/:${special_hall_id}/status`,
         contentType: "application/json",
         headers: {
             Authorization: `Bearer ${token}`
         },
-        data: JSON.stringify(horario),
+        data: JSON.stringify(status),
         dataType: "json"
     })
         .done(function (res) {
@@ -127,7 +125,7 @@ $("#buttonUpdateReservetions").on("click", function (e) {
 
 $("#buttonGetReservitions").on("click", function (e) {
     const token = getItem("authToken");
-    const hallId = $("#idProduto").val();
+    const hallId = $("#hallId").val();
     e.preventDefault();
     mostrarLoader();
 
@@ -141,33 +139,47 @@ $("#buttonGetReservitions").on("click", function (e) {
         dataType: "json"
     })
         .done(function (res) {
-            try {
-                const resultado = handleHttpResponse(res);
+            console.log("Resposta da API:", res);
 
-                if (!res.token) {
-                    $("#saida").html(`
-                    <div>
-                        ❌ Erro ao obter token.<br/>
-                        <pre>${JSON.stringify(res, null, 2)}</pre>
-                        ${resultado}
-                    </div>
-                `);
-                } else {
-                    $("#saida").html(`<div>✅ Cadastro realizado com sucesso! Redirecionando...</div>`);
-                    setItem("authToken", res.token);
-                    setTimeout(() => window.location.href = "/src/pages/syndic.html", 2000);
+            try {
+                // Garante que 'res' nunca seja null
+                const data = res || {};
+                const reservations = data.reservations || [];
+
+                if (reservations.length === 0) {
+                    $("#reservationListContent").html(`
+                <div class="no-results">
+                    💤 Nenhuma reserva encontrada para esta área.
+                </div>
+            `);
+                    return;
                 }
+
+                const rulesHtml = reservations.map(reserva => `
+            <div class="rule-item">
+                <p><strong>ID:</strong> ${reserva.id}</p>
+                <p><strong>Descrição:</strong> ${reserva.description || 'Sem descrição'}</p>
+                <p><strong>Início:</strong> ${new Date(reserva.start_time).toLocaleString()}</p>
+                <p><strong>Término:</strong> ${new Date(reserva.end_time).toLocaleString()}</p>
+            </div>
+        `).join("");
+
+                $("#reservationListContent").html(rulesHtml);
+
             } catch (error) {
-                console.error("Erro no processamento:", error);
-                $("#saida").html(`<div>⚠️ Erro inesperado. Tente novamente.</div>`);
+                console.error("Erro no processamento das regras:", error);
+                $("#saida").html(`
+            <div>
+                ⚠️ Ocorreu um erro inesperado. Tente novamente mais tarde.
+            </div>
+        `);
             } finally {
                 esconderLoader();
             }
         })
+
         .fail(function (xhr) {
-            console.error("Erro na requisição:", xhr.responseJSON || xhr.responseText);
-            const responseText = xhr.responseJSON?.message || "Erro desconhecido.";
-            $("#saida").html(`<div>❌ Erro ${xhr.status}: ${responseText}</div>`);
+            errorMessage(xhr.status);
             esconderLoader();
         });
 });

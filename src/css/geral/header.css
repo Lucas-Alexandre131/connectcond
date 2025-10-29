@@ -32,6 +32,19 @@
   transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
+.mast-header-logado {
+  width: 100%;
+  background: radial-gradient(1200px 400px at 10% -10%, rgba(29, 78, 216, .08), transparent 55%),
+    radial-gradient(900px 300px at 90% 0%, rgba(217, 119, 6, .05), transparent 40%),
+    var(--bg-soft);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  color: var(--text);
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
 /* Container do Header */
 .container-masthead {
   max-width: 1200px;

@@ -22,43 +22,42 @@ function esconderLoader() {
     }, wait);
 }
 
-$("#buttonPostChat").on("click", function (e) {
+$("#btnPostMessages").on("click", function (e) {
     const token = getItem("authToken");
-    const id = $("#idProduto").val();
-    const horario = {id};
     e.preventDefault();
     mostrarLoader();
 
     $.ajax({
         type: "POST",
-        url: `https://connectcond-backend.onrender.com/public`,
+        url: "https://connectcond-backend.onrender.com/public",
         contentType: "application/json",
         headers: {
             Authorization: `Bearer ${token}`
         },
-        data: JSON.stringify(horario),
+        data: JSON.stringify({}), // Pode adicionar filtros se quiser
         dataType: "json"
     })
         .done(function (res) {
             try {
-                const resultado = handleHttpResponse(res);
+                console.log("💬 Mensagens carregadas:", res);
+                $("#messages").empty();
 
-                if (!res.token) {
-                    $("#saida").html(`
-                    <div>
-                        ❌ Erro ao obter token.<br/>
-                        <pre>${JSON.stringify(res, null, 2)}</pre>
-                        ${resultado}
-                    </div>
-                `);
+                if (Array.isArray(res) && res.length > 0) {
+                    res.forEach(msg => {
+                        $("#chatGeneralBox").append(`
+                            <div class="msg">
+                                <strong>${msg.author_name || "Usuário"}:</strong> ${msg.text}
+                            </div>
+                        `);
+                    });
                 } else {
-                    $("#saida").html(`<div>✅ Cadastro realizado com sucesso! Redirecionando...</div>`);
-                    setItem("authToken", res.token);
-                    setTimeout(() => window.location.href = "/src/pages/syndic.html", 2000);
+                    $("#saida").html("<em>Nenhuma mensagem encontrada.</em>");
                 }
+
+                $("#saida").html("<div>✅ Mensagens carregadas com sucesso!</div>");
             } catch (error) {
                 console.error("Erro no processamento:", error);
-                $("#saida").html(`<div>⚠️ Erro inesperado. Tente novamente.</div>`);
+                $("#saida").html("<div>⚠️ Erro inesperado. Tente novamente.</div>");
             } finally {
                 esconderLoader();
             }
@@ -74,7 +73,7 @@ $("#buttonPostChat").on("click", function (e) {
 $("#buttonPostChatMessage").on("click", function (e) {
     const token = getItem("authToken");
     const id = $("#idProduto").val();
-    const horario = {id};
+    const horario = { id };
     e.preventDefault();
     mostrarLoader();
 

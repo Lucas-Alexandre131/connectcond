@@ -1,24 +1,35 @@
 function theme() {
-    const btn = document.getElementById("theme-btn");
     const body = document.body;
+
+    const btn = document.getElementById("theme-btn");
     const btnD = document.getElementById('toggle');
     const menu = document.getElementById('menu');
 
-    btnD.addEventListener('click', () => menu.classList.toggle('show'));
+    // Menu dropdown
+    if (btnD && menu) {
+        btnD.addEventListener('click', () => menu.classList.toggle('show'));
 
-    document.addEventListener('click', e => {
-        if (!e.target.closest('.menu')) menu.classList.remove('show');
-    });
+        document.addEventListener('click', e => {
+            if (!e.target.closest('.menu')) menu.classList.remove('show');
+        });
+    }
+
+    // Se não existe botão de tema, sai da função
+    if (!btn) return;
 
     // Carregar preferência salva
     if (localStorage.getItem("theme") === "dark") {
         body.setAttribute("data-theme", "dark");
         btn.textContent = "☀️";
+    } else {
+        body.removeAttribute("data-theme");
+        btn.textContent = "🌙";
     }
 
     // Alternar tema via botão
     btn.addEventListener("click", () => {
-        if (body.getAttribute("data-theme") === "dark") {
+        const isDark = body.getAttribute("data-theme") === "dark";
+        if (isDark) {
             body.removeAttribute("data-theme");
             btn.textContent = "🌙";
             localStorage.setItem("theme", "light");
@@ -32,9 +43,8 @@ function theme() {
     // Alternar tema com tecla "T"
     document.addEventListener('keydown', e => {
         if (e.key && e.key.toLowerCase() === 't') {
-            const root = document.documentElement;
-            const currentTheme = root.dataset.theme === "dark" ? "light" : "dark";
-            root.dataset.theme = currentTheme;
+            const currentTheme = body.getAttribute("data-theme") === "dark" ? "light" : "dark";
+            body.setAttribute("data-theme", currentTheme);
             localStorage.setItem("theme", currentTheme);
             btn.textContent = currentTheme === "dark" ? "☀️" : "🌙";
         }

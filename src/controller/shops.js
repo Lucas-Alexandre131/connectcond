@@ -38,24 +38,23 @@ $("#buttonGetMarket").on("click", function (e) {
     })
         .done(function (res) {
             try {
-                const resultado = handleHttpResponse(res);
+                // Insert into the div
+                console.log("Payload:" + res);
+                const rulesHtml = res.map(rule => `
+                <div class="rule-item">
+                    <p>${rule}</p>
+                </div>
+            `).join("");
 
-                if (!res.token) {
-                    $("#saida").html(`
-                    <div>
-                        ❌ Erro ao obter token.<br/>
-                        <pre>${JSON.stringify(res, null, 2)}</pre>
-                        ${resultado}
-                    </div>
-                `);
-                } else {
-                    $("#saida").html(`<div>✅ Cadastro realizado com sucesso! Redirecionando...</div>`);
-                    setItem("authToken", res.token);
-                    setTimeout(() => window.location.href = "/src/pages/syndic.html", 2000);
-                }
+                $("#shopsListContent").html(rulesHtml);
+
             } catch (error) {
-                console.error("Erro no processamento:", error);
-                $("#saida").html(`<div>⚠️ Erro inesperado. Tente novamente.</div>`);
+                console.error("Erro no processamento das regras:", error);
+                $("#saida").html(`
+            <div>
+                ⚠️ Ocorreu um erro inesperado. Tente novamente mais tarde.
+            </div>
+        `);
             } finally {
                 esconderLoader();
             }
@@ -66,12 +65,12 @@ $("#buttonGetMarket").on("click", function (e) {
             $("#saida").html(`<div>❌ Erro ${xhr.status}: ${responseText}</div>`);
             esconderLoader();
         });
-});
+}); // funcionando
 
-$("#buttonMarket").on("click", function (e) {
+$("#buttonPostMarket").on("click", function (e) {
     const token = getItem("authToken");
-    const name = $("#nameProduto").val();
-    const cnpj = $("#cnpj").val();
+    const name = $("#shopName").val();
+    const cnpj = $("#shopCnpj").val();
     const produto = { name, cnpj }
     e.preventDefault();
     mostrarLoader();
@@ -116,14 +115,14 @@ $("#buttonMarket").on("click", function (e) {
             $("#saida").html(`<div>❌ Erro ${xhr.status}: ${responseText}</div>`);
             esconderLoader();
         });
-});
+}); // funcionando
 
 $("#buttonUpdateMarket").on("click", function (e) {
     const token = getItem("authToken");
-    const id = $("#idProduto").val();
-    const name = $("#nameProduto").val();
-    const cnpj = $("#cnpj").val();
-    const produto = { name, cnpj }
+    const id = $("#updateShopId").val();
+    const cnpj = $("#updateShopCnpj").val();
+    const name = $("#updateShopName").val();
+    const shop = { name, cnpj }
     e.preventDefault();
     mostrarLoader();
 
@@ -134,7 +133,7 @@ $("#buttonUpdateMarket").on("click", function (e) {
         headers: {
             Authorization: `Bearer ${token}`
         },
-        data: JSON.stringify(produto),
+        data: JSON.stringify(shop),
         dataType: "json"
     })
         .done(function (res) {
@@ -167,14 +166,11 @@ $("#buttonUpdateMarket").on("click", function (e) {
             $("#saida").html(`<div>❌ Erro ${xhr.status}: ${responseText}</div>`);
             esconderLoader();
         });
-});
+}); // funcionando
 
-$("#buttonDelleteMarket").on("click", function (e) {
+$("#buttonDeletteMarket").on("click", function (e) {
     const token = getItem("authToken");
-    const id = $("#idProduto").val();
-    const name = $("#nameProduto").val();
-    const cnpj = $("#cnpj").val();
-    const produto = { name, cnpj }
+    const id = $("#deleteShopId").val();
     e.preventDefault();
     mostrarLoader();
 
@@ -185,7 +181,6 @@ $("#buttonDelleteMarket").on("click", function (e) {
         headers: {
             Authorization: `Bearer ${token}`
         },
-        data: JSON.stringify(produto),
         dataType: "json"
     })
         .done(function (res) {
@@ -218,4 +213,4 @@ $("#buttonDelleteMarket").on("click", function (e) {
             $("#saida").html(`<div>❌ Erro ${xhr.status}: ${responseText}</div>`);
             esconderLoader();
         });
-});
+}); // funcionando

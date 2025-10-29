@@ -24,13 +24,14 @@ function esconderLoader() {
 
 $("#buttonPostOrder").on("click", function (e) {
     const token = getItem("authToken");
-    const id = $("#idProduto").val();
-    const horario = {id};
+    const shop_id = Number($("#orderShopId").val());
+    const descreption = $("#orderDescription").val();
+    const horario = { shop_id, descreption };
     e.preventDefault();
     mostrarLoader();
 
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: `https://connectcond-backend.onrender.com/orders`,
         contentType: "application/json",
         headers: {
@@ -69,23 +70,20 @@ $("#buttonPostOrder").on("click", function (e) {
             $("#saida").html(`<div>❌ Erro ${xhr.status}: ${responseText}</div>`);
             esconderLoader();
         });
-});
+}); // funcionando
 
-$("#buttonUpdateOrders").on("click", function (e) {
+$("#buttonUpdateOrder").on("click", function (e) {
     const token = getItem("authToken");
-    const id = $("#idProduto").val();
-    const name = $("#nameProduto").val();
-    const descreption = $("#descricaoProduto").val();
-    const price = $("#precoProduto").val();
-    const product_type = $("#nameProduto").val();
-    const quantiy =$("#quantidadeProduto").val();
-    const horario = { name, cnpj, descreption, price, product_type, quantiy}
+    const shop_id = Number($("#updateOrderId").val());
+    const descreption = $("#updateOrderDescription").val();
+    const status = $("#updateOrderStatus").val();
+    const horario = { shop_id, descreption, status };
     e.preventDefault();
     mostrarLoader();
 
     $.ajax({
         type: "PUT",
-        url: `https://connectcond-backend.onrender.com/orders/${id}/status`,
+        url: `https://connectcond-backend.onrender.com/orders/${shop_id}/status`,
         contentType: "application/json",
         headers: {
             Authorization: `Bearer ${token}`
@@ -123,11 +121,10 @@ $("#buttonUpdateOrders").on("click", function (e) {
             $("#saida").html(`<div>❌ Erro ${xhr.status}: ${responseText}</div>`);
             esconderLoader();
         });
-});
+}); // funcionando
 
-$("#buttonGetOrdersMy").on("click", function (e) {
+$("#buttonGetOrderMy").on("click", function (e) {
     const token = getItem("authToken");
-    const shopId = $("#idShop").val();
     e.preventDefault();
     mostrarLoader();
 
@@ -142,86 +139,69 @@ $("#buttonGetOrdersMy").on("click", function (e) {
     })
         .done(function (res) {
             try {
-                const resultado = handleHttpResponse(res);
+                // Insert into the div
+                console.log("Payload:" + res);
+                const rulesHtml = res.map(rule => `
+                                <div class="rule-item">
+                                    <p>${res.descreption}</p>
+                                </div>
+                            `).join("");
 
-                if (!res.token) {
-                    $("#saida").html(`
-                    <div>
-                        ❌ Erro ao obter token.<br/>
-                        <pre>${JSON.stringify(res, null, 2)}</pre>
-                        ${resultado}
-                    </div>
-                `);
-                } else {
-                    $("#saida").html(`<div>✅ Cadastro realizado com sucesso! Redirecionando...</div>`);
-                    setItem("authToken", res.token);
-                    setTimeout(() => window.location.href = "/src/pages/syndic.html", 2000);
-                }
+                $("#myOrdersList").html(rulesHtml);
+
             } catch (error) {
-                console.error("Erro no processamento:", error);
-                $("#saida").html(`<div>⚠️ Erro inesperado. Tente novamente.</div>`);
+                console.error("Erro no processamento das regras:", error);
+                $("#saida").html(`
+                            <div>
+                                ⚠️ Ocorreu um erro inesperado. Tente novamente mais tarde.
+                            </div>
+                        `);
             } finally {
                 esconderLoader();
             }
         })
+
         .fail(function (xhr) {
-            console.error("Erro na requisição:", xhr.responseJSON || xhr.responseText);
-            const responseText = xhr.responseJSON?.message || "Erro desconhecido.";
-            $("#saida").html(`<div>❌ Erro ${xhr.status}: ${responseText}</div>`);
+            errorMessage(xhr.status);
             esconderLoader();
         });
-});
+}); // funcionando
 
-$("#buttonGetOrdersShopId").on("click", function (e) {
+$("#buttonGetOrderShopId").on("click", function (e) {
     const token = getItem("authToken");
-    const id = $("#idTimes").val();
-    const name = $("#nameProduto").val();
-    const descreption = $("#descricaoProduto").val();
-    const price = $("#precoProduto").val();
-    const product_type = $("#nameProduto").val();
-    const quantiy =$("#quantidadeProduto").val();
-    const produto = { name, cnpj, descreption, price, product_type, quantiy}
-    e.preventDefault();
-    mostrarLoader();
+    const shop_id = $("#shopOrdersId").val();
 
     $.ajax({
-        type: "DELETE",
-        url: `https://connectcond-backend.onrender.com/shops/${id}/orders`,
+        type: "GET",
+        url: `https://connectcond-backend.onrender.com/shops/${shop_id}/orders`,
         contentType: "application/json",
         headers: {
             Authorization: `Bearer ${token}`
         },
-        data: JSON.stringify(produto),
         dataType: "json"
     })
         .done(function (res) {
             try {
-                const resultado = handleHttpResponse(res);
+                console.log("Resposta do backend:", res);
 
-                if (!res.token) {
-                    $("#saida").html(`
-                    <div>
-                        ❌ Erro ao obter token.<br/>
-                        <pre>${JSON.stringify(res, null, 2)}</pre>
-                        ${resultado}
-                    </div>
-                `);
-                } else {
-                    $("#saida").html(`<div>✅ Cadastro realizado com sucesso! Redirecionando...</div>`);
-                    setItem("authToken", res.token);
-                    setTimeout(() => window.location.href = "/src/pages/syndic.html", 2000);
-                }
+                // Se for um único produto
+                const productHtml = `
+                        <div>
+                            <p>${res[shop_id].description ?? "Não possui descrição."}</p>
+                        </div>
+                    `;
+
+                $("#shopOrdersList").html(productHtml);
+
             } catch (error) {
-                console.error("Erro no processamento:", error);
-                $("#saida").html(`<div>⚠️ Erro inesperado. Tente novamente.</div>`);
+                console.error("Erro no processamento das regras:", error);
+                $("#saida").html(`<div>⚠️ Ocorreu um erro inesperado. Tente novamente mais tarde.</div>`);
             } finally {
                 esconderLoader();
             }
         })
         .fail(function (xhr) {
-            console.error("Erro na requisição:", xhr.responseJSON || xhr.responseText);
-            const responseText = xhr.responseJSON?.message || "Erro desconhecido.";
-            $("#saida").html(`<div>❌ Erro ${xhr.status}: ${responseText}</div>`);
+            errorMessage(xhr.status);
             esconderLoader();
         });
-});
+}); // funcionando

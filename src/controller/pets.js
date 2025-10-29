@@ -24,19 +24,18 @@ function esconderLoader() {
 
 $("#buttonPostPets").on("click", function (e) {
     const token = getItem("authToken");
-    const id = $("#idProduto").val();
-    const horario = {id};
+    const name = $('#petName').val();
+    const type = $('#petType').val();
+    const animal = { name, type }
     e.preventDefault();
     mostrarLoader();
 
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: `https://connectcond-backend.onrender.com/pets`,
         contentType: "application/json",
-        headers: {
-            Authorization: `Bearer ${token}`
-        },
-        data: JSON.stringify(horario),
+        headers: { Authorization: `Bearer ${token}` },
+        data: JSON.stringify(animal),
         dataType: "json"
     })
         .done(function (res) {
@@ -51,25 +50,36 @@ $("#buttonPostPets").on("click", function (e) {
                         ${resultado}
                     </div>
                 `);
-                } else {
-                    $("#saida").html(`<div>✅ Cadastro realizado com sucesso! Redirecionando...</div>`);
-                    setItem("authToken", res.token);
-                    setTimeout(() => window.location.href = "/src/pages/syndic.html", 2000);
+                    return;
                 }
+
+                const petsHtml = pets.map(pet => `
+                <div class="rule-item">
+                    <p><strong>Nome:</strong> ${pet.name}</p>
+                    <p><strong>Espécie:</strong> ${pet.species || "Não informada"}</p>
+                    <p><strong>Raça:</strong> ${pet.breed || "Não informada"}</p>
+                    <p><strong>Porte:</strong> ${pet.size || "Não informado"}</p>
+                </div>
+            `).join("");
+
+                $("#petsList").html(petsHtml);
+
             } catch (error) {
-                console.error("Erro no processamento:", error);
-                $("#saida").html(`<div>⚠️ Erro inesperado. Tente novamente.</div>`);
+                console.error("Erro no processamento dos pets:", error);
+                $("#saida").html(`
+                <div>
+                    ⚠️ Ocorreu um erro inesperado. Tente novamente mais tarde.
+                </div>
+            `);
             } finally {
                 esconderLoader();
             }
         })
         .fail(function (xhr) {
-            console.error("Erro na requisição:", xhr.responseJSON || xhr.responseText);
-            const responseText = xhr.responseJSON?.message || "Erro desconhecido.";
-            $("#saida").html(`<div>❌ Erro ${xhr.status}: ${responseText}</div>`);
+            errorMessage(xhr.status);
             esconderLoader();
         });
-});
+});// funcionando
 
 $("#buttonGetPets").on("click", function (e) {
     const token = getItem("authToken");
@@ -80,52 +90,58 @@ $("#buttonGetPets").on("click", function (e) {
         type: "GET",
         url: `https://connectcond-backend.onrender.com/pets/my`,
         contentType: "application/json",
-        headers: {
-            Authorization: `Bearer ${token}`
-        },
+        headers: { Authorization: `Bearer ${token}` },
         dataType: "json"
     })
-        .done(function (res) {
-            try {
-                const resultado = handleHttpResponse(res);
+    .done(function (res) {
+        try {
+            console.log("Payload completo:", JSON.stringify(res, null, 2));
 
-                if (!res.token) {
-                    $("#saida").html(`
-                    <div>
-                        ❌ Erro ao obter token.<br/>
-                        <pre>${JSON.stringify(res, null, 2)}</pre>
-                        ${resultado}
+            // Se res for null, transforma em array vazio
+            const pets = res ? (Array.isArray(res) ? res : (res.pets || [])) : [];
+
+            if (pets.length === 0) {
+                $("#petsList").html(`
+                    <div class="no-results">
+                        🐾 Nenhum pet cadastrado ainda.
                     </div>
                 `);
-                } else {
-                    $("#saida").html(`<div>✅ Cadastro realizado com sucesso! Redirecionando...</div>`);
-                    setItem("authToken", res.token);
-                    setTimeout(() => window.location.href = "/src/pages/syndic.html", 2000);
-                }
-            } catch (error) {
-                console.error("Erro no processamento:", error);
-                $("#saida").html(`<div>⚠️ Erro inesperado. Tente novamente.</div>`);
-            } finally {
-                esconderLoader();
+                return;
             }
-        })
-        .fail(function (xhr) {
-            console.error("Erro na requisição:", xhr.responseJSON || xhr.responseText);
-            const responseText = xhr.responseJSON?.message || "Erro desconhecido.";
-            $("#saida").html(`<div>❌ Erro ${xhr.status}: ${responseText}</div>`);
+
+            const petsHtml = pets.map(pet => `
+                <div class="rule-item">
+                    <p><strong>Nome:</strong> ${pet.name}</p>
+                    <p><strong>Espécie:</strong> ${pet.type || "Não informada"}</p>
+                    <hr>
+                </div>
+            `).join("");
+
+            $("#petsList").html(petsHtml);
+
+        } catch (error) {
+            console.error("Erro no processamento dos pets:", error);
+            $("#saida").html(`
+                <div>
+                    ⚠️ Ocorreu um erro inesperado. Tente novamente mais tarde.
+                </div>
+            `);
+        } finally {
             esconderLoader();
-        });
-});
+        }
+    })
+    .fail(function (xhr) {
+        errorMessage(xhr.status);
+        esconderLoader();
+    });
+}); // funcionando
 
 $("#buttonUpdatePets").on("click", function (e) {
     const token = getItem("authToken");
-    const id = $("#idProduto").val();
-    const name = $("#nameProduto").val();
-    const descreption = $("#descricaoProduto").val();
-    const price = $("#precoProduto").val();
-    const product_type = $("#nameProduto").val();
-    const quantiy =$("#quantidadeProduto").val();
-    const horario = { name, cnpj, descreption, price, product_type, quantiy}
+    const id = $("#updatePetId").val();
+    const type = $("#updatePetType").val();
+    const name = $("#updatePetName").val();
+    const animal = { type, name };
     e.preventDefault();
     mostrarLoader();
 
@@ -136,7 +152,7 @@ $("#buttonUpdatePets").on("click", function (e) {
         headers: {
             Authorization: `Bearer ${token}`
         },
-        data: JSON.stringify(horario),
+        data: JSON.stringify(animal),
         dataType: "json"
     })
         .done(function (res) {
@@ -169,17 +185,11 @@ $("#buttonUpdatePets").on("click", function (e) {
             $("#saida").html(`<div>❌ Erro ${xhr.status}: ${responseText}</div>`);
             esconderLoader();
         });
-});
+}); // funcionando
 
 $("#buttonDelettePets").on("click", function (e) {
     const token = getItem("authToken");
-    const id = $("#idTimes").val();
-    const name = $("#nameProduto").val();
-    const descreption = $("#descricaoProduto").val();
-    const price = $("#precoProduto").val();
-    const product_type = $("#nameProduto").val();
-    const quantiy =$("#quantidadeProduto").val();
-    const produto = { name, cnpj, descreption, price, product_type, quantiy}
+    const id = $("#deletePetId").val();
     e.preventDefault();
     mostrarLoader();
 
@@ -190,7 +200,6 @@ $("#buttonDelettePets").on("click", function (e) {
         headers: {
             Authorization: `Bearer ${token}`
         },
-        data: JSON.stringify(produto),
         dataType: "json"
     })
         .done(function (res) {
@@ -223,4 +232,4 @@ $("#buttonDelettePets").on("click", function (e) {
             $("#saida").html(`<div>❌ Erro ${xhr.status}: ${responseText}</div>`);
             esconderLoader();
         });
-});
+}); // funcionando

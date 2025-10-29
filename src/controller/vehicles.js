@@ -1,4 +1,3 @@
-// newUser.js
 import { handleHttpResponse } from "../controller/errors/handleHttpResponse.js";
 import { getItem, setItem } from "../controller/cookie/authCookie.js";
 import { errorMessage } from "../services/errorMessage.js";
@@ -24,19 +23,21 @@ function esconderLoader() {
 
 $("#buttonPostVehicles").on("click", function (e) {
     const token = getItem("authToken");
-    const id = $("#idProduto").val();
-    const horario = {id};
+    const plate = $("#vehiclePlate").val();
+    const model = $("#vehicleModel").val();
+    const color= $("#vehicleColor").val();
+    const vehicle = { plate,model,color };
     e.preventDefault();
     mostrarLoader();
 
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: `https://connectcond-backend.onrender.com/vehicles`,
         contentType: "application/json",
         headers: {
             Authorization: `Bearer ${token}`
         },
-        data: JSON.stringify(horario),
+        data: JSON.stringify(vehicle),
         dataType: "json"
     })
         .done(function (res) {
@@ -69,7 +70,7 @@ $("#buttonPostVehicles").on("click", function (e) {
             $("#saida").html(`<div>❌ Erro ${xhr.status}: ${responseText}</div>`);
             esconderLoader();
         });
-});
+}); // funcionando
 
 $("#buttonGetVehicles").on("click", function (e) {
     const token = getItem("authToken");
@@ -87,24 +88,28 @@ $("#buttonGetVehicles").on("click", function (e) {
     })
         .done(function (res) {
             try {
-                const resultado = handleHttpResponse(res);
+                // Insert into the div
+                console.log("Payload:", res);
 
-                if (!res.token) {
-                    $("#saida").html(`
+                if (!res || !Array.isArray(res)) {
+                    console.warn("Payload inválido ou vazio");
+                    $("#vehiclesList").html("<div>❌ Nenhum veículo encontrado.</div>");
+                    return;
+                }
+
+                const vehiclesHtml = res.map(vehicle => `
+        <div>${vehicle.name}</div>
+    `).join("");
+
+                $("#vehiclesList").html(vehiclesHtml);
+
+            } catch (error) {
+                console.error("Erro no processamento das regras:", error);
+                $("#saida").html(`
                     <div>
-                        ❌ Erro ao obter token.<br/>
-                        <pre>${JSON.stringify(res, null, 2)}</pre>
-                        ${resultado}
+                        ⚠️ Ocorreu um erro inesperado. Tente novamente mais tarde.
                     </div>
                 `);
-                } else {
-                    $("#saida").html(`<div>✅ Cadastro realizado com sucesso! Redirecionando...</div>`);
-                    setItem("authToken", res.token);
-                    setTimeout(() => window.location.href = "/src/pages/syndic.html", 2000);
-                }
-            } catch (error) {
-                console.error("Erro no processamento:", error);
-                $("#saida").html(`<div>⚠️ Erro inesperado. Tente novamente.</div>`);
             } finally {
                 esconderLoader();
             }
@@ -115,17 +120,15 @@ $("#buttonGetVehicles").on("click", function (e) {
             $("#saida").html(`<div>❌ Erro ${xhr.status}: ${responseText}</div>`);
             esconderLoader();
         });
-});
+}); // funcionando(teste)
 
 $("#buttonUpdateVehicles").on("click", function (e) {
     const token = getItem("authToken");
-    const id = $("#idProduto").val();
-    const name = $("#nameProduto").val();
-    const descreption = $("#descricaoProduto").val();
-    const price = $("#precoProduto").val();
-    const product_type = $("#nameProduto").val();
-    const quantiy =$("#quantidadeProduto").val();
-    const horario = { name, cnpj, descreption, price, product_type, quantiy}
+    const id = $("#deleteVehicleId").val();
+    const plate = $("#updateVehiclePlate").val();
+    const model = $("#updateVehicleModel").val();
+    const color= $("#updateVehicleColor").val();
+    const vehicle = { plate,model,color };
     e.preventDefault();
     mostrarLoader();
 
@@ -136,7 +139,7 @@ $("#buttonUpdateVehicles").on("click", function (e) {
         headers: {
             Authorization: `Bearer ${token}`
         },
-        data: JSON.stringify(horario),
+        data: JSON.stringify(vehicle),
         dataType: "json"
     })
         .done(function (res) {
@@ -169,17 +172,11 @@ $("#buttonUpdateVehicles").on("click", function (e) {
             $("#saida").html(`<div>❌ Erro ${xhr.status}: ${responseText}</div>`);
             esconderLoader();
         });
-});
+}); // funcionando
 
 $("#buttonDeletteVehicles").on("click", function (e) {
     const token = getItem("authToken");
-    const id = $("#idTimes").val();
-    const name = $("#nameProduto").val();
-    const descreption = $("#descricaoProduto").val();
-    const price = $("#precoProduto").val();
-    const product_type = $("#nameProduto").val();
-    const quantiy =$("#quantidadeProduto").val();
-    const produto = { name, cnpj, descreption, price, product_type, quantiy}
+    const id = Number($("#deleteVehicleId").val());
     e.preventDefault();
     mostrarLoader();
 
@@ -190,7 +187,6 @@ $("#buttonDeletteVehicles").on("click", function (e) {
         headers: {
             Authorization: `Bearer ${token}`
         },
-        data: JSON.stringify(produto),
         dataType: "json"
     })
         .done(function (res) {
@@ -223,4 +219,4 @@ $("#buttonDeletteVehicles").on("click", function (e) {
             $("#saida").html(`<div>❌ Erro ${xhr.status}: ${responseText}</div>`);
             esconderLoader();
         });
-});
+}); // funcionando

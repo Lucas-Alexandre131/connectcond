@@ -28,7 +28,7 @@
 
 <body>
     <!-- Header dinâmico -->
-    <header class="mast-header"></header>
+    <header class="mast-header-logado"></header>
 
     <div class="loader"></div>
 
@@ -40,7 +40,7 @@
 
     <!-- Footer dinâmico -->
     <footer class="footer"></footer>
-    
+
     <!-- Modais -->
     <script>
         function openModal(id) {
@@ -59,19 +59,29 @@
     <!-- Componentes dinâmicos + carregamento do JS correto na ordem -->
     <script>
         // Primeiro carrega o header, depois aplica tema
-        loadComponentByClass("mast-header", "/src/components/head.html")
+        loadComponentByClass("mast-header-logado", "/src/components/head.html")
             .then(() => {
                 theme();
             });
         loadComponentByClass("container-syndic", "/src/components/geral.html")
             .then(() => {
-                import("/src/controller/newUser.js"), import("/src/controller/rules.js",
-                    import("/src/controller/shops.js")
-                );
+                import("/src/controller/chat.js"),
+                    import("/src/controller/login.js"),
+                    import("/src/controller/newUser.js"),
+                    import("/src/controller/orders.js"),
+                    import("/src/controller/pets.js"),
+                    import("/src/controller/products.js"),
+                    import("/src/controller/reports.js"),
+                    import("/src/controller/reservetions.js"),
+                    import("/src/controller/rules.js"),
+                    import("/src/controller/shops.js"),
+                    import("/src/controller/sign.js"),
+                    import("/src/controller/special-halls.js"),
+                    import("/src/controller/times.js"),
+                    import("/src/controller/vehicles.js");
             });
-            loadComponentByClass("loader", "/src/components/loader.html")
+        loadComponentByClass("loader", "/src/components/loader.html")
         // Carrega o footer
-        loadComponentByClass("footer", "/src/components/footer.html");
     </script>
 </body>
 

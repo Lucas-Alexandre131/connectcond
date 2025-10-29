@@ -21,7 +21,7 @@ function esconderLoader() {
     }, wait);
 }
 
-$("#buttonRules").on("click", function (e) {
+$("#buttonGetRules").on("click", function (e) {
     const token = getItem("authToken");
     e.preventDefault();
     mostrarLoader();
@@ -38,10 +38,12 @@ $("#buttonRules").on("click", function (e) {
         .done(function (res) {
             try {
                 // Insert into the div
-
+                console.log(res);
                 const rulesHtml = res.map(rule => `
                 <div class="rule-item">
-                    <p>${rule.description}</p>
+                    <p><strong>Número da regra: </strong> ${rule.id}</p>
+                    <p><strong>Descrição: </strong> ${rule.description || "Não informada"}</p>
+                    <hr>
                 </div>
             `).join("");
 
@@ -64,7 +66,7 @@ $("#buttonRules").on("click", function (e) {
             esconderLoader();
         });
 });
-$("#buttonAddRule").on("click", function (e) {
+$("#buttonPostRules").on("click", function (e) {
     e.preventDefault();
     const token = getItem("authToken");
     const description = $("#ruleDescription").val();
@@ -93,7 +95,7 @@ $("#buttonAddRule").on("click", function (e) {
         });
 });
 
-$("#buttonUpdateRule").on("click", function (e) {
+$("#buttonUpdateRules").on("click", function (e) {
     e.preventDefault();
     const token = getItem("authToken");
     const id = $("#ruleId").val(); // ID da regra a atualizar
@@ -126,7 +128,7 @@ $("#buttonUpdateRule").on("click", function (e) {
             esconderLoader();
         });
 });
-$("#buttonDeleteRule").on("click", function (e) {
+$("#buttonDeletteRules").on("click", function (e) {
     e.preventDefault();
     const token = getItem("authToken");
     const id = $("#ruleId").val();
