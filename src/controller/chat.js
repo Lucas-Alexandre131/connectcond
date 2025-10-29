@@ -70,43 +70,44 @@ $("#btnPostMessages").on("click", function (e) {
         });
 });
 
+// 📩 Enviar mensagem pública
 $("#buttonPostChatMessage").on("click", function (e) {
     const token = getItem("authToken");
-    const id = $("#idProduto").val();
-    const horario = { id };
+    const text = $("#chatGeneralInput").val().trim();
     e.preventDefault();
     mostrarLoader();
 
+    if (!text) {
+        alert("Digite uma mensagem antes de enviar.");
+        esconderLoader();
+        return;
+    }
+
     $.ajax({
         type: "POST",
-        url: `https://connectcond-backend.onrender.com/public/message`,
+        url: "https://connectcond-backend.onrender.com/public/message",
         contentType: "application/json",
         headers: {
             Authorization: `Bearer ${token}`
         },
-        data: JSON.stringify(horario),
+        data: JSON.stringify({ text }),
         dataType: "json"
     })
         .done(function (res) {
             try {
-                const resultado = handleHttpResponse(res);
+                console.log("📨 Mensagem enviada:", res);
 
-                if (!res.token) {
-                    $("#saida").html(`
-                    <div>
-                        ❌ Erro ao obter token.<br/>
-                        <pre>${JSON.stringify(res, null, 2)}</pre>
-                        ${resultado}
-                    </div>
-                `);
-                } else {
-                    $("#saida").html(`<div>✅ Cadastro realizado com sucesso! Redirecionando...</div>`);
-                    setItem("authToken", res.token);
-                    setTimeout(() => window.location.href = "/src/pages/syndic.html", 2000);
+                $("#chatGeneralInput").val(""); // Limpa o input
+
+                $("#saida").html("<div>✅ Mensagem enviada com sucesso!</div>");
+
+                // Atualiza as mensagens se a função existir
+                if (typeof loadPublicMessages === "function") {
+                    loadPublicMessages();
                 }
             } catch (error) {
                 console.error("Erro no processamento:", error);
-                $("#saida").html(`<div>⚠️ Erro inesperado. Tente novamente.</div>`);
+                $("#saida").html("<div>⚠️ Erro inesperado. Tente novamente.</div>");
             } finally {
                 esconderLoader();
             }
