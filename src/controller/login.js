@@ -1,7 +1,7 @@
 import { handleHttpResponse } from "../controller/errors/handleHttpResponse.js";
 import { showLoader, hideLoader } from "../services/showSvg.js";
 import { getItem } from "../controller/cookie/authCookie.js";
-import { limparSaida, processarLoginErro, processarLoginSucesso, lidarComErroGeral } from "../services/login.js";
+import { limparSaida, processarLoginErro, processarLoginSucesso, lidarComErroGeral } from "../services/auxiliares.js";
 import { errorMessage } from "../services/errorMessage.js";
 
 $("#buttonLogin").on("click", function (e) {
