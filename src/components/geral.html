@@ -126,7 +126,7 @@
             <div class="card">
                 <h3>💬 Chat Público</h3>
                 <p>Converse com os moradores em um chat aberto.</p>
-                <button onclick="openModal('chatGeneralModal')">Entrar no Chat</button>
+                <button id="btnPostMessages" onclick="openModal('chatGeneralModal')">Entrar no Chat</button>
             </div>
 
             <div class="card">
@@ -297,10 +297,9 @@
                 <button class="close" onclick="closeModal('chatGeneralModal')">X</button>
                 <h2>💬 Chat Geral</h2>
                 <div id="chatGeneralBox"
-                    style="height:200px; overflow-y:auto; border:1px solid #ccc; padding:10px; border-radius:8px; margin-bottom:10px;">
+                    style="height:350px; overflow-y:auto; border:1px solid #ccc; padding:10px; border-radius:8px; margin-bottom:10px;">
                 </div>
                 <input type="text" id="chatGeneralInput" placeholder="Digite sua mensagem...">
-                <button id="btnPostMessages">Carregar Mensagens</button>
                 <button id="buttonPostChatMessage">Publicar</button>
             </div>
         </div>
@@ -310,15 +309,14 @@
             <div class="modal-content">
                 <button class="close" onclick="closeModal('userModal')">X</button>
                 <h2>Novo Usuário</h2>
-                <form>
-                    <input id="name" type="text" placeholder="Nome do Usuário">
-                    <input id="email" type="email" placeholder="Email">
-                    <input id="password" type="password" placeholder="Senha">
-                    <input id="picture" type="text" placeholder="Foto">
-                    <input id="cpf" type="text" placeholder="Cpf">
-                    <input id="role" type="text" placeholder="Cargo">
-                    <button id="btnCadastro">Salvar</button>
-                </form>
+                <input id="name" type="text" placeholder="Nome do Usuário">
+                <input id="email" type="email" placeholder="Email">
+                <input id="password" type="password" placeholder="Senha">
+                <input id="picture" type="text" placeholder="Foto">
+                <input id="cpf" type="text" placeholder="Cpf">
+                <input id="role" type="text" placeholder="Cargo">
+                <div class="saida"></div>
+                <button id="btnCadastro">Salvar</button>
             </div>
         </div>
 
