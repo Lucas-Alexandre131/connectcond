@@ -9,5 +9,6 @@ function loadComponentByClass(className, filePath) {
         resolve();
       }
     });
+    window.loadComponentByClass = loadComponentByClass;
   });
 }
