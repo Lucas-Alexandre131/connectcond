@@ -2,7 +2,6 @@
 <html lang="pt-BR">
 
 <head>
-
   <script>
     // Verifica e aplica o tema salvo no localStorage ao carregar a página
     window.addEventListener("DOMContentLoaded", () => {
@@ -15,7 +14,6 @@
     });
   </script>
 
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login</title>
@@ -23,58 +21,63 @@
   <link rel="shortcut icon" href="/src/assets/icons/logotcc.ico" type="image/x-icon">
   <link rel="stylesheet" href="/src/css/geral/header.css">
   <link rel="stylesheet" href="/src/css/login.css">
-  <link rel="stylesheet" href="/src/css/geral/errorMessage.css">
   <link rel="stylesheet" href="/src/css/geral/loader.css">
   <link rel="stylesheet" href="/src/css/geral/footer.css">
 </head>
 
 <body>
-  <!-- Loader -->
-  <div class="loader"></div>
-
-  <!-- header -->
+  <!-- Header -->
   <header class="mast-header"></header>
 
-  <!-- mensagen de erro -->
+  <!-- Loader -->
+  <div id="loader" class="loader">
+    <svg fill="hsl(228, 50%, 50%)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M12,4a8,8,0,0,1,7.89,6.7A1.53,1.53,0,0,0,21.38,12h0a1.5,1.5,0,0,0,1.48-1.75,11,11,0,0,0-21.72,0A1.5,1.5,0,0,0,2.62,12h0a1.53,1.53,0,0,0,1.49-1.3A8,8,0,0,1,12,4Z">
+        <animateTransform attributeName="transform" type="rotate" dur="0.75s" values="0 12 12;360 12 12"
+          repeatCount="indefinite" />
+      </path>
+    </svg>
+  </div>
+
+  <!-- Mensagem de erro -->
   <div class="mensagem-erro"></div>
 
-  <!-- container -->
+  <!-- Container -->
   <div class="container">
     <div class="container-login">
       <section class="left-panel-login">
         <h2>ConnectCond</h2>
-        <p>Não tem uma conta?<a class="register-link" aria-label="Ir para a página de cadastro"
-            href="sign.html">Cadastre-se</a></p>
+        <p>Não tem uma conta?
+          <a class="register-link" aria-label="Ir para a página de cadastro" href="sign.html">Cadastre-se</a>
+        </p>
       </section>
+
       <section class="right-panel-login">
         <h2 id="login-title">Login</h2>
         <form id="loginForm" class="form-login">
           <input type="email" id="email" class="input-login" placeholder="email" required>
-          <input type="text" id="password" class="input-login" placeholder="senha" required>
-          <button id="buttonLogin" type="button" class="btn btn-primary">Entrar</button>
+          <input type="password" id="password" class="input-login" placeholder="senha" required>
+          <div id="saida" class="mensagem-erro"></div>
+          <button id="buttonLogin" type="submit" class="btn btn-primary">Entrar</button>
         </form>
-        <small class="register-count">Não tem uma conta?<a class="register-link"
-            aria-label="Ir para a página de cadastro" href="sign.html">Cadastre-se</a></small>
-
+        <small class="register-count">
+          Não tem uma conta?
+          <a class="register-link" aria-label="Ir para a página de cadastro" href="sign.html">Cadastre-se</a>
+        </small>
       </section>
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer class="footer "></footer>
-
+  <!-- Scripts -->
   <script src="/src/services/loader.js"></script>
   <script src="/src/services/theme.js"></script>
 
-  <!-- Executa a função -->
   <script>
-    // Carrega os componentes em sequência e garante que o tema só execute após o header
     loadComponentByClass("mast-header", "/src/components/head.html")
       .then(() => {
         theme();
       });
-    loadComponentByClass("loader", "/src/components/loader.html");
-    loadComponentByClass("footer", "/src/components/footer.html");
   </script>
   <script type="module" src="/src/controller/login.js"></script>
 </body>
