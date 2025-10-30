@@ -1,8 +1,11 @@
 import { handleHttpResponse } from "../controller/errors/handleHttpResponse.js";
+import { errorMessage } from "../services/errorMessage.js";
 import { getItem } from "../controller/cookie/authCookie.js";
 import { lidarComErroGeral } from "../services/auxiliares.js";
-import { showLoader, hideLoader} from "../services/showSvg.js";
+import { showLoader, hideLoader } from "../services/showSvg.js";
 import { errorMessage } from "../services/errorMessage.js";
+import { showError } from "./errors/errorHandle.js";
+import { showError } from "./errors/errorHandle.js";
 
 
 $(document).ready(function () {
@@ -24,16 +27,16 @@ $(document).ready(function () {
         const email = $("#email").val();
         const picture = $("#picture").val();
 
+        const userData = { cpf, role, password, name, email, picture };
         showLoader();
+        console.log("Dados:", userData);
 
-        if (!cpf || !role || !password || !name || !email) {
-            $(".saida").html(`<div>⚠️ Preencha todos os campos obrigatórios.</div>`);
+        if (!userData) {
+            errorMessage(userData);
             hideLoader();
             return;
         }
-
-        const userData = { cpf, role, password, name, email, picture };
-        console.log("Enviando dados:", userData);
+        console.log("Dados:", userData);
 
         $.ajax({
             type: "POST",
@@ -48,7 +51,7 @@ $(document).ready(function () {
             .done(function (res) {
                 try {
                     const resultado = handleHttpResponse(res);
-                    if(!resultado){
+                    if (!resultado) {
                         console.log(resultado.message);
                     }
                     return res;
@@ -61,7 +64,7 @@ $(document).ready(function () {
             .fail(function (xhr) {
                 errorMessage(xhr.status);
                 const resultado = handleHttpResponse(null, xhr);
-                $("#saida").text(`Erro: ${resultado.mensagem}`);
+                showError(resultado.mensagem || 'Erro desconhecido.');
                 hideLoader();
             });
     });
