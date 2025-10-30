@@ -48,20 +48,31 @@
     <!-- Container onde o formulário será carregado -->
     <div class="container-syndic"></div>
 
-    <!-- Saída de mensagens -->
-    <div id="saida"></div>
-
     <!-- Footer dinâmico -->
     <footer class="footer"></footer>
 
     <!-- Modais -->
     <script>
         function openModal(id) {
-            document.getElementById(id).classList.add('active');
+            const modal = document.getElementById(id);
+            if (modal) {
+                // Fecha outros modais abertos (opcional)
+                document.querySelectorAll('.modal.active').forEach(m => {
+                    m.style.display = 'none';
+                    m.classList.remove('active');
+                });
+
+                modal.style.display = 'block';
+                modal.classList.add('active');
+            }
         }
 
         function closeModal(id) {
-            document.getElementById(id).classList.remove('active');
+            const modal = document.getElementById(id);
+            if (modal) {
+                modal.style.display = 'none';
+                modal.classList.remove('active');
+            }
         }
     </script>
 
