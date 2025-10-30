@@ -2,6 +2,19 @@
 <html lang="pt-BR">
 
 <head>
+    <script>
+        window.addEventListener("DOMContentLoaded", () => {
+            const token = localStorage.getItem("authToken");
+
+            if (token) {
+                console.log("passou");
+            } else {
+                console.warn("Nenhum token encontrado. Redirecionando...");
+                window.location.href = "./src/pages/login.html"; // 🔹 use barras normais
+            }
+        });
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel do Síndico</title>
