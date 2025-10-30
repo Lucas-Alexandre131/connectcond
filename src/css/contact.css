@@ -70,9 +70,10 @@ body {
 }
 
 .contact-info {
-  flex: 1;
-  min-width: 250px;
-  max-width: 350px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 .info-item {
