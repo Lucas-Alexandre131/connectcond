@@ -1,44 +1,47 @@
 /* === Tema Claro (default) === */
 :root {
-  --bg: #f9fafb;
-  /* fundo geral */
-  --bg-soft: #ffffff;
-  /* fundo liso (cards, hero principal) */
-  --bg-section: #f3f4f6;
-  /* fundo alternativo para seções */
-  --bg-hero: #ffffff;
-  /* fundo exclusivo da hero */
-  --card: #ffffff;
-  --border: #e5e7eb;
-  --text: #1f2937;
-  --muted: #6b7280;
-  --brand: #2563eb;
-  --h1: blue;
+    --bg: #f9fafb;
+    /* fundo geral */
+    --bg-soft: #ffffff;
+    /* fundo liso (cards, hero principal) */
+    --bg-section: #f3f4f6;
+    /* fundo alternativo para seções */
+    --bg-hero: #ffffff;
+    /* fundo exclusivo da hero */
+    --card: #ffffff;
+    --border: #e5e7eb;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --brand: #2563eb;
+    --h1: blue;
 }
 
 /* === Tema Escuro === */
 [data-theme="dark"] {
-  --bg: #111827;
-  --bg-soft: #1f2937;
-  --bg-section: #1e293b;  /* um tom intermediário */
-  --bg-hero: #0f172a;     /* hero mais destacada */
-  --card: #1f2937;
-  --border: #374151;
-  --text: #f9fafb;
-  --muted: #9ca3af;
-  --brand: #3b82f6;
+    --bg: #111827;
+    --bg-soft: #1f2937;
+    --bg-section: #1e293b;
+    /* um tom intermediário */
+    --bg-hero: #0f172a;
+    /* hero mais destacada */
+    --card: #1f2937;
+    --border: #374151;
+    --text: #f9fafb;
+    --muted: #9ca3af;
+    --brand: #3b82f6;
 }
+
 /* padrão body */
 body {
-  line-height: 1.6;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: var(--text);
-  background: var(--bg);
-  transition: background 0.3s ease, color 0.3s ease;
+    line-height: 1.6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* Conteúdo principal */
-.container {
+d .container {
     max-width: 1200px;
     margin: 30px auto;
     padding: 20px;
@@ -111,7 +114,8 @@ body {
 }
 
 .card button:hover {
-    background: #1d4ed8; /* tom mais escuro do brand */
+    background: #1d4ed8;
+    /* tom mais escuro do brand */
 }
 
 /* Modal */
@@ -151,15 +155,12 @@ body {
     transition: background 0.3s ease, border-color 0.3s ease;
 }
 
-@keyframes zoomIn {
-    from {
-        transform: scale(0.7);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
+.saida {
+    display: none;
+    font-weight: 500;
+    margin-top: 8px;
+    text-align: center;
+    transition: opacity 0.3s ease;
 }
 
 .modal-content h2 {
@@ -207,4 +208,16 @@ body {
     color: #fff;
     cursor: pointer;
     font-weight: bold;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
