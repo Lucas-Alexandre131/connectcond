@@ -137,6 +137,8 @@ body {
 }
 
 .modal-content {
+    display: flex;
+    flex-direction: column;
     background: var(--card);
     padding: 30px;
     border-radius: 12px;
