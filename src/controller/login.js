@@ -1,32 +1,23 @@
 import { handleHttpResponse } from "../controller/errors/handleHttpResponse.js";
-import { getItem, setItem } from "../controller/cookie/authCookie.js";
+import { showLoader, hideLoader } from "../services/showSvg.js";
+import { getItem } from "../controller/cookie/authCookie.js";
+import { limparSaida, processarLoginErro, processarLoginSucesso, lidarComErroGeral } from "../services/login.js";
 import { errorMessage } from "../services/errorMessage.js";
-
-let loaderStartTime = null;
-
-function mostrarLoader() {
-    loaderStartTime = Date.now();
-    const div = document.getElementById("loader");
-    div.style.display = "flex";
-}
-
-function esconderLoader() {
-    const elapsed = Date.now() - loaderStartTime;
-    const minTime = 1500; // 1.5 segundos mínimos
-    const wait = Math.max(0, minTime - elapsed);
-
-    setTimeout(() => {
-        const div = document.getElementById("loader");
-        div.style.display = "none";
-    }, wait);
-}
 
 $("#buttonLogin").on("click", function (e) {
     e.preventDefault();
+
+    if (!this.checkValidity()) {
+        this.reportValidity();
+        return;
+    }// validação de dados fornecidos no form
+
     const email = $("#email").val();
     const password = $("#password").val();
+    const saida = $("#saida");
 
-    mostrarLoader();
+    limparSaida(saida);
+    showLoader();
 
     $.ajax({
         type: "POST",
@@ -39,44 +30,23 @@ $("#buttonLogin").on("click", function (e) {
             try {
                 const resultado = handleHttpResponse(res);
 
-                if (!res.token) {
-                    $("#saida").html(`
-                <div>
-                    ${res}
-                    ${resultado}
-                </div>
-            `);
+                const token = res?.token;
+
+                if (token) {
+                    processarLoginSucesso(token, saida);
                 } else {
-                    $("#saida").html(`
-                <div>
-                    ✅ Login realizado com sucesso!
-                    ${res.token}
-                </div>
-            `);
-
-                    setItem("authToken", res.token); // token com seu valor
-                    const token = getItem("authToken");
-
-                    if (token) {
-                        setTimeout(() => {
-                            window.location.href = "/src/pages/syndic.html";
-                        }, 2000);
-                    }
+                    processarLoginErro(resultado, saida);
                 }
             } catch (error) {
-                console.error("Erro no processamento do login:", error);
-                $("#saida").html(`
-            <div">
-                ⚠️ Ocorreu um erro inesperado. Tente novamente mais tarde.
-            </div>
-        `);
+                lidarComErroGeral(error);
             } finally {
-                esconderLoader();
+                hideLoader();
             }
         })
-
         .fail(function (xhr) {
             errorMessage(xhr.status);
-            esconderLoader();
+            const resultado = handleHttpResponse(null, xhr);
+            $("#saida").text(`Erro: ${resultado.mensagem}`);
+            hideLoader();
         });
 });
