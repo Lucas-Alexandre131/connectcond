@@ -1,31 +1,15 @@
-// newUser.js
 import { handleHttpResponse } from "../controller/errors/handleHttpResponse.js";
-import { getItem, setItem } from "../controller/cookie/authCookie.js";
 import { errorMessage } from "../services/errorMessage.js";
-
-let loaderStartTime = null;
-
-function mostrarLoader() {
-    loaderStartTime = Date.now();
-    const div = document.getElementById("loader");
-    if (div) div.style.display = "flex";
-}
-
-function esconderLoader() {
-    const elapsed = Date.now() - loaderStartTime;
-    const minTime = 1500;
-    const wait = Math.max(0, minTime - elapsed);
-
-    setTimeout(() => {
-        const div = document.getElementById("loader");
-        if (div) div.style.display = "none";
-    }, wait);
-}
+import { getItem } from "../controller/cookie/authCookie.js";
+import { exibirRes, lidarComErroGeral } from "../services/auxiliares.js";
+import { showLoader, hideLoader } from "../services/showSvg.js";
+import { showError } from "./errors/errorHandle.js";
+import { exibirMensagens } from "../services/images.js";
 
 $("#btnPostMessages").on("click", function (e) {
     const token = getItem("authToken");
     e.preventDefault();
-    mostrarLoader();
+    showLoader();
 
     $.ajax({
         type: "POST",
@@ -40,37 +24,22 @@ $("#btnPostMessages").on("click", function (e) {
         .done(function (res) {
             try {
                 console.log("💬 Mensagens carregadas:", res);
-                $("#messages").empty();
-
-                if (Array.isArray(res) && res.length > 0) {
-                    res.forEach(msg => {
-                        $("#chatGeneralBox").append(`
-                            <div class="msg">
-                                <strong>${msg.author_name || "Usuário"}:</strong> ${msg.text}
-                            </div>
-                        `);
-                    });
-                } else {
-                    $("#saida").html("<em>Nenhuma mensagem encontrada.</em>");
-                }
-
-                $("#saida").html("<div>✅ Mensagens carregadas com sucesso!</div>");
+                exibirMensagens(res);
             } catch (error) {
-                console.error("Erro no processamento:", error);
-                $("#saida").html("<div>⚠️ Erro inesperado. Tente novamente.</div>");
+                lidarComErroGeral(error);
             } finally {
-                esconderLoader();
+                hideLoader();
             }
         })
         .fail(function (xhr) {
-            console.error("Erro na requisição:", xhr.responseJSON || xhr.responseText);
-            const responseText = xhr.responseJSON?.message || "Erro desconhecido.";
-            $("#saida").html(`<div>❌ Erro ${xhr.status}: ${responseText}</div>`);
-            esconderLoader();
+            errorMessage(xhr.status);
+            const resultado = handleHttpResponse(null, xhr);
+            showError(resultado.mensagem || 'Erro desconhecido.');
+            hideLoader();
         });
 });
+// 📩 Pegar mensagem pública
 
-// 📩 Enviar mensagem pública
 $("#buttonPostChatMessage").on("click", function (e) {
     const token = getItem("authToken");
     const text = $("#chatGeneralInput").val().trim();
@@ -119,3 +88,4 @@ $("#buttonPostChatMessage").on("click", function (e) {
             esconderLoader();
         });
 });
+// 📩 Enviar mensagem pública
