@@ -177,8 +177,8 @@
             <div class="modal-content">
                 <button class="close" onclick="closeModal('rulesModal')">X</button>
                 <h2>Regras</h2>
-                <button onclick="openModal('ruleListModal')">Ver Regras</button>
-                <button onclick="openModal('ruleCreateModal')">Adicionar Regra</button>
+                <button id="buttonGetRules" onclick="openModal('resposta')">Ver Regras</button>
+                <button onclick="openModal('criar')">Adicionar Regra</button>
                 <button onclick="openModal('ruleUpdateModal')">Editar Regra</button>
                 <button onclick="openModal('ruleDeleteModal')">Excluir Regra</button>
             </div>
@@ -350,6 +350,11 @@
             </div>
         </div>
 
-        <div class="teste"></div>
+        <div id="resposta" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeModal('resposta')">X</button>
+                <div id="saida"></div>
+            </div>
+        </div>
     </div>
 </div>
