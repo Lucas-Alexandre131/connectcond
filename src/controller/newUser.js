@@ -4,7 +4,6 @@ import { getItem } from "../controller/cookie/authCookie.js";
 import { lidarComErroGeral } from "../services/auxiliares.js";
 import { showLoader, hideLoader } from "../services/showSvg.js";
 import { showError } from "./errors/errorHandle.js";
-import { showError } from "./errors/errorHandle.js";
 
 
 $(document).ready(function () {
