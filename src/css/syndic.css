@@ -32,16 +32,22 @@
 }
 
 /* padrão body */
+html,
 body {
     line-height: 1.6;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--text);
     background: var(--bg);
     transition: background 0.3s ease, color 0.3s ease;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+
 /* Conteúdo principal */
-d .container {
+.container {
     max-width: 1200px;
     margin: 30px auto;
     padding: 20px;
@@ -123,8 +129,8 @@ d .container {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background: rgba(0, 0, 0, 0.55);
     display: flex;
     align-items: center;
@@ -140,44 +146,65 @@ d .container {
     opacity: 1;
 }
 
+/* Conteúdo do modal */
 .modal-content {
     display: flex;
     flex-direction: column;
-    background: var(--card);
+    background: var(--card, #fff);
     padding: 30px;
     border-radius: 12px;
     width: 420px;
     max-width: 95%;
-    border: 1px solid var(--border);
+    border: 1px solid var(--border, #ccc);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
     animation: zoomIn 0.3s ease;
     position: relative;
     transition: background 0.3s ease, border-color 0.3s ease;
 }
 
-.saida {
-    display: none;
-    font-weight: 500;
-    margin-top: 8px;
-    text-align: center;
-    transition: opacity 0.3s ease;
+/* === Animação suave === */
+@keyframes zoomIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
-.modal-content h2 {
-    margin-bottom: 15px;
-    color: var(--text);
+/* === Botão de fechar === */
+.modal-content .close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #e74c3c;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
 }
 
+.modal-content .close:hover {
+    background: #c0392b;
+}
+
+/* === Campos e botões === */
 .modal-content input,
 .modal-content textarea {
     width: 100%;
     padding: 12px;
     margin: 10px 0;
-    border: 1px solid var(--border);
+    border: 1px solid var(--border, #ccc);
     border-radius: 8px;
     font-size: 14px;
-    background: var(--bg-soft);
-    color: var(--text);
+    background: var(--bg-soft, #f9f9f9);
+    color: var(--text, #333);
     transition: background 0.3s ease, color 0.3s ease;
 }
 
@@ -197,17 +224,15 @@ d .container {
     background: #219150;
 }
 
-.modal-content .close {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background: #e74c3c;
-    border: none;
-    padding: 6px 10px;
-    border-radius: 6px;
-    color: #fff;
-    cursor: pointer;
-    font-weight: bold;
+/* === Cabeçalho === */
+.modal-content h2 {
+    margin-bottom: 15px;
+    color: var(--text, #333);
+}
+
+/* === Interação: clicar fora do conteúdo fecha === */
+.modal:not(.active) {
+    pointer-events: none;
 }
 
 #chatGeneralBox {
@@ -252,7 +277,8 @@ d .container {
     display: flex;
     flex-direction: column;
     flex: 1;
-    position: relative; /* para posicionar o horário */
+    position: relative;
+    /* para posicionar o horário */
 }
 
 .msg strong {
@@ -281,10 +307,12 @@ d .container {
 #chatGeneralBox::-webkit-scrollbar {
     width: 6px;
 }
+
 #chatGeneralBox::-webkit-scrollbar-thumb {
     background-color: #bbb;
     border-radius: 4px;
 }
+
 #chatGeneralBox::-webkit-scrollbar-thumb:hover {
     background-color: #999;
 }
