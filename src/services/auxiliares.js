@@ -4,9 +4,9 @@ export function limparSaida(saida) {
   saida.empty();
 }
 
-export function exibirMensagemSucesso(saida, mensagem) {
+export function exibirMensagem(saida, mensagem) {
   saida.html(`
-    <div class="login-success">
+    <div>
       ${mensagem}
     </div>
   `);
@@ -53,4 +53,9 @@ export function lidarComErroGeral(error) {
   console.error("Erro ao processar login:", error);
   const saida = $("#saida");
   exibirMensagemErro(saida, "❌ Ocorreu um erro inesperado. Tente novamente.");
+}
+
+export function exibirRes(res){
+  const saida = $("#saida");
+  exibirMensagem(saida, res);
 }
